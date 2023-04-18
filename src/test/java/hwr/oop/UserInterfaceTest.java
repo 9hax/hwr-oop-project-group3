@@ -7,6 +7,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.List;
 
 // TODO Delete this placeholder test.
 class UserInterfaceTest {
@@ -36,5 +38,15 @@ class UserInterfaceTest {
         String lastOutput = outputLines[outputLines.length-1];
 
         Assertions.assertThat(lastOutput.equals(outputString)).isTrue();
+    }
+
+    @Test
+    void test_parse_list() {
+        // Return a sorted list of unsanitized user input numbers.
+        Assertions.assertThat(
+                Arrays.equals(
+                        UserInterface.parseInputNumberList("1,0, 5 ,4, 3,2,6,7,8,9"),
+                        new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
+                ).isTrue();
     }
 }
