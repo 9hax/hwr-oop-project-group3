@@ -97,10 +97,12 @@ public class Game {
             lastRound = lastRound.playRoundTen(state, points);
             player.rounds.add(lastRound);
         }
+        // player results get calculated and printed out
         for (Player player : players) {
             player.calculatePlayerResults(player);
             System.out.println(player.name + " with " + player.currentPoints);
         }
+        //winner with name and points printed out
         System.out.println("The winner is " + getWinner(players).name + " with " + getWinner(players).currentPoints + " points.\n " + "Congratulations!");
 
     }
