@@ -32,7 +32,6 @@ public class Round {
     public Round playNormalRound(BowlingStates state, Player player){
         Round currentRound;
         playedState= state;
-        //asks whish
         if (state.equals(BowlingStates.STRIKE)) {
             System.out.println("Strike! " + 10 + " points added");
             player.extraRounds.add(roundNumber + 1);
@@ -48,7 +47,7 @@ public class Round {
         else{
             currentRound = new Round(roundNumber, player.currentPoints);
         }
-        player.rounds.add(currentRound);
+
         return currentRound;
     }
 

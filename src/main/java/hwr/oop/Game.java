@@ -41,6 +41,7 @@ public class Game {
             }
         }
 
+        //for 9 rounds for 10 players
         for (int roundNumber = 0; roundNumber < 9; roundNumber++) {
             for (Player player : players) {
                 //print roundNumber, the current points of a player and the plaxer name and the
@@ -62,6 +63,7 @@ public class Game {
                         System.out.println((pinsTotal - currentRound.getRoundPoints()) + " pins left. " + points + " points added");
                     }
                 }
+                player.rounds.add(currentRound);
             }
         }
         Round lastRound = new Round(10, 0);
