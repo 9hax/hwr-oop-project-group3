@@ -5,7 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * UserInterface for the base game.
+ * Output is standardized to allow for external output parsing.
+ */
 public class UserInterface {
+
+    /**
+     * Puts an output to Stdout.
+     * @param outputValue String to be sent to stdout.
+     */
     public static void sendOutput(String outputValue) {
         // This is a wrapper function to make custom user interfaces easier in the future.
 
@@ -14,18 +23,30 @@ public class UserInterface {
         System.out.println(outputValue);
     }
 
+    /**
+     * Prompts the user with a customizable prompt and returns the input.
+     * @param prompt The custom prompt that is at the start of the input line.
+     * @return the String that was input up to the first lineSeparator.
+     */
     public static String promptUser(String prompt) {
-        // Prompt the User with a customizable Prompt and return the first line of input.
-        // This is a wrapper function to make custom user interfaces easier in the future.
         Scanner scanner = new Scanner(System.in);
         System.out.print(prompt);
         return scanner.nextLine();
     }
 
+    /**
+     * Prompts the user with a prompt of "> ".
+     * @return the String that was input up to the fist lineSeparator.
+     */
     public static String promptUser() {
-        return promptUser("> "); // Default prompt
+        return promptUser("> ");
     }
 
+    /**
+     * Parse a list-like string containing numbers separated with commata with basic error correction.
+     * @param input The String to be parsed.
+     * @return an Array of numbers present in the input.
+     */
     public static int[] parseInputNumberList(String input) {
         String[] numbers = input.split(",");
         List<Integer> outputList = new ArrayList<>();
@@ -53,7 +74,14 @@ public class UserInterface {
         return numbersArray;
     }
 
-    public static int multichoice(String prompt, List<String> choices, int invalidChoice) {
+    /**
+     * Provide a Multiple Choice-like input for a list of Strings with a prompt.
+     * @param prompt Prompt to output before listing available choices.
+     * @param choices List of available choices.
+     * @param invalidChoice Fallback Value if input is invalid.
+     * @return the index of the chosen option in the choices list.
+     */
+    public static int multichoice(String prompt, ArrayList<String> choices, int invalidChoice) {
         // Using a list here is faster from Java 17 on.
         // It also makes removing objects easier.
         System.out.println(prompt);
@@ -74,15 +102,24 @@ public class UserInterface {
         }
     }
 
-    public static int multichoice(String prompt, List<String> choices) {
-        // Overload function without default
+    /**
+     * Overloaded function Handler for multichoice but defaults invalidChoice to -1.
+     */
+    public static int multichoice(String prompt, ArrayList<String> choices) {
         return multichoice(prompt, choices, -1);
     }
 
     // TODO: This function needs a test, since using a test that simply sends multiple lines throws an error,
     //  which has nothing to do with this code, but Scanner. ¯\_(ツ)_/¯
-    public static int retryMultichoice(String prompt, List<String> choices) {
-        // This retries a multichoice until the return is a valid number.
+
+    /**
+     * Retries a multichoice until the input is valid. For more info check out {@link UserInterface#multichoice(String, ArrayList, int)}
+     * @see UserInterface#multichoice(String, ArrayList, int)
+     * @param prompt Prompt for the multichoice.
+     * @param choices Choices for the multichoice.
+     * @return The first valid input.
+     */
+    public static int retryMultichoice(String prompt, ArrayList<String> choices) {
         int returnValue = -1;
         while (returnValue < 0) {
             returnValue = multichoice(prompt, choices, -1);
