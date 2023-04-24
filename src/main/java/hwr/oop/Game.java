@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 
-
 public class Game {
     List<Pin> pins = List.of(new Pin(1, true), new Pin(2, true), new Pin(3, true),
             new Pin(4, true), new Pin(5, true), new Pin(6, true),

@@ -10,7 +10,6 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
-// TODO Delete this placeholder test.
 class UserInterfaceTest {
     @Test
     void test_input() {
