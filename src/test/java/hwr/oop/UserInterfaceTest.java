@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,7 +56,7 @@ class UserInterfaceTest {
         String testInput = String.format(String.valueOf(choice+1), System.lineSeparator(), System.lineSeparator());
         System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-        List<String> choices = new ArrayList<String>();
+        List<String> choices = new ArrayList<>();
         choices.add("Choice 1");
         int returned = UserInterface.multichoice("Test prompt", choices);
 
@@ -71,7 +70,7 @@ class UserInterfaceTest {
         String testInput = String.format(input, System.lineSeparator(), System.lineSeparator());
         System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-        List<String> choices = new ArrayList<String>();
+        List<String> choices = new ArrayList<>();
         choices.add("Choice 1");
         int returned = UserInterface.multichoice("Test prompt", choices);
 
