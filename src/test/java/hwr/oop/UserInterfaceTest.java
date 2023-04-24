@@ -65,7 +65,7 @@ class UserInterfaceTest {
     }
 
     @Test
-    void test_multichoice_invalid_retry() {
+    void test_multichoice_invalid() {
         // initialize a multiple choice and select the first element.
         String input = "invalid";
         String testInput = String.format(input, System.lineSeparator(), System.lineSeparator());
