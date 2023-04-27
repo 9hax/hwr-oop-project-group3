@@ -1,4 +1,7 @@
 package hwr.oop;
 
-public class RoundState {
+public enum RoundState {
+    STRIKE,
+    SPARE,
+    NORMAL
 }
