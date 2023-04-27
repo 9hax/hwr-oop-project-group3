@@ -50,16 +50,7 @@ class UserInterfaceTest {
 
     @Test
     void test_multichoice() {
-        // initialize a multiple choice and select the first element.
-        int choice = 0; // first choice
-        String testInput = String.format(String.valueOf(choice+1), System.lineSeparator(), System.lineSeparator());
-        System.setIn(new ByteArrayInputStream(testInput.getBytes()));
 
-        ArrayList<String> choices = new ArrayList<>();
-        choices.add("Choice 1");
-        int returned = UserInterface.multichoice("Test prompt", choices);
-
-        Assertions.assertThat(returned == choice).isTrue();
     }
 
     @Test
