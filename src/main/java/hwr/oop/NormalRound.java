@@ -22,7 +22,8 @@ public class NormalRound implements Round {
     }
 
     public int play(){
-        boolean[] hitPins = SinglePlay.convertHitPins(UserInterface.parseInputNumberList(UserInterface.promptUser("Which pins have been hit?\n>")));
+        UserInterface ui = new ConsoleUI(new ConsoleIOHandler(false));
+        boolean[] hitPins = SinglePlay.convertHitPins(ui.parseInputNumberList(ui.promptUser("Which pins have been hit?\n>")));
         updatePinState(hitPins);
 
         if (SinglePlay.allHit(pinsState)) {
@@ -30,7 +31,7 @@ public class NormalRound implements Round {
             return 10;
         }
 
-        hitPins = SinglePlay.convertHitPins(UserInterface.parseInputNumberList(UserInterface.promptUser("Which pins have been hit?\n>")));
+        hitPins = SinglePlay.convertHitPins(ui.parseInputNumberList(ui.promptUser("Which pins have been hit?\n>")));
         updatePinState(hitPins);
 
         if (SinglePlay.allHit(pinsState)) {
