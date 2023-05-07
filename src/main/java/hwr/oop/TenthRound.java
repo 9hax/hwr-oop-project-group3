@@ -13,16 +13,17 @@ public class TenthRound implements Round {
     }
 
     public int play(){
-        boolean[] hitPins = SinglePlay.convertHitPins(UserInterface.parseInputNumberList(UserInterface.promptUser("Last round!\nWhich pins have been hit?\n>")));
+        UserInterface ui = new ConsoleUI(new ConsoleIOHandler(false));
+        boolean[] hitPins = SinglePlay.convertHitPins(ui.parseInputNumberList(ui.promptUser("Last round!\nWhich pins have been hit?\n>")));
         updatePinState(hitPins);
         int points;
 
         if (SinglePlay.allHit(pinsState)) {
             points = 10;
             roundState = RoundState.STRIKE;
-            UserInterface.promptUser("You hit a strike.You get two additional throws.");
+            ui.promptUser("You hit a strike.You get two additional throws.");
             for(int th = 0; th<2; th++){
-                hitPins = SinglePlay.convertHitPins(UserInterface.parseInputNumberList(UserInterface.promptUser
+                hitPins = SinglePlay.convertHitPins(ui.parseInputNumberList(ui.promptUser
                         (String.format("Throw number %d",(th+1) ))));
                 updatePinState(hitPins);
                 points += getHitPinCount(pinsState);
@@ -30,14 +31,14 @@ public class TenthRound implements Round {
             return points;
         }
 
-        hitPins = SinglePlay.convertHitPins(UserInterface.parseInputNumberList(UserInterface.promptUser("Which pins have been hit?\n>")));
+        hitPins = SinglePlay.convertHitPins(ui.parseInputNumberList(ui.promptUser("Which pins have been hit?\n>")));
         updatePinState(hitPins);
 
         if (SinglePlay.allHit(pinsState)) {
             points = 10;
             roundState = RoundState.SPARE;
-            UserInterface.promptUser("You hit a spare.You get one additional throw.");
-            hitPins = SinglePlay.convertHitPins(UserInterface.parseInputNumberList(UserInterface.promptUser
+            ui.promptUser("You hit a spare.You get one additional throw.");
+            hitPins = SinglePlay.convertHitPins(ui.parseInputNumberList(ui.promptUser
                     (String.format("Throw number 1"))));
             updatePinState(hitPins);
             points += getHitPinCount(pinsState);
