@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class NormalRound implements Round {
     private boolean[] pinsState;
 
-
     private RoundState roundState;
 
     public NormalRound(){
@@ -34,5 +33,19 @@ public class NormalRound implements Round {
         return 10 - pinCount;
     }
 
+    public boolean ifSpare(boolean[] pPinsState){
+        if (SinglePlay.allHit(pPinsState)) {
+            roundState = RoundState.SPARE;
+            return true;
+        }
+        return false;
+    }
 
+    public boolean ifStrike(boolean[] pPinsState) {
+        if (SinglePlay.allHit(pPinsState)) {
+            roundState = RoundState.STRIKE;
+            return true;
+        }
+        return false;
+    }
 }
