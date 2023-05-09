@@ -26,3 +26,8 @@ This repository contains a student project created for an ongoing lecture on obj
 | Number | Dependency Name | Dependency Description | Why is it necessary? |
 |--------|-----------------|------------------------|----------------------|
 | 1      | /               | /                      | /                    |
+
+## Contributing
+
+### Für jede Funktion wird zuerst ein Test geschrieben!
+### Jede Funktion wird mit JavaDoc kommentiert.
