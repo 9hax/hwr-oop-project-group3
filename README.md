@@ -12,7 +12,7 @@ This repository contains a student project created for an ongoing lecture on obj
 
 ## Feature List
 
-[TODO]: # (For each feature implemented, add a row to the table!)
+[TODO]: #(For each feature implemented, add a row to the table!)
 
 | Number | Feature | Tests |
 |--------|---------|-------|
