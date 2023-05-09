@@ -52,6 +52,7 @@ Liste mit 10 Runden
 - Gesamtpunktzahl berechnen
 
 ## Spiel
+### Attributes
 Liste mit unbregenzter Anzahl an Spielern
 ### Actions
 - Gewinner ermitteln
