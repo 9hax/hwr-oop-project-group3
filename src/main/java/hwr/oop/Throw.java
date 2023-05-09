@@ -2,6 +2,12 @@ package hwr.oop;
 
 public class Throw {
     int fallenPins;
+    public Throw(int fallenPins) {
+        setFallenPins(fallenPins);
+    }
+    public Throw() {
+    }
+
     public void setFallenPins(int fallenPins) throws IllegalArgumentException{
         if (fallenPins <= 10 && fallenPins >= 0) {
             this.fallenPins = fallenPins;
