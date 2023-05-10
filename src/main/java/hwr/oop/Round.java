@@ -9,4 +9,6 @@ interface Round {
 
     boolean isSpare();
 
+    int getBonuspoints();
+
 }

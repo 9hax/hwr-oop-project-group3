@@ -5,13 +5,16 @@ import java.util.List;
 
 public class NormalRound implements Round{
 
-    List<Throw> throwList;
+    private final List<Throw> throwList;
+    private final Round previousRound;
 
     public NormalRound() {
         this.throwList = Arrays.asList(new Throw(), new Throw());
+        this.previousRound = null;
     }
 
     public NormalRound(List<Throw> throwList) {
+        this.previousRound = null;
 
         if (validateThrowList(throwList)) {
             this.throwList = throwList;
@@ -20,9 +23,13 @@ public class NormalRound implements Round{
         }
     }
 
+    public NormalRound(List<Throw> throwList, Round previousRound) {
+        this.throwList = throwList;
+        this.previousRound = previousRound;
+    }
 
+    @Override
     public int getPoints(){
-        //TODO logic SPARE STRIKE
         int roundPoints =0;
         for (Throw singleThrow :
                 throwList) {
@@ -48,6 +55,11 @@ public class NormalRound implements Round{
 
         int sum = firstThrow.getFallenPins() + secondThrow.getFallenPins();
         return sum == 10;
+    }
+
+    @Override
+    public int getBonuspoints() {
+        return 0;
     }
 
     private static boolean validateThrowList(List<Throw> throwListValidationTarget) {

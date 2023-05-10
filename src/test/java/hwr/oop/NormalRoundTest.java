@@ -83,4 +83,22 @@ public class NormalRoundTest {
         boolean isStrike = notStrikeRound.isStrike();
         assertThat(isStrike).isFalse();
     }
+
+    @Test
+    void round3PinsThrow5PinsThrow_8Points() {
+        List<Throw> eightPointsThrow = List.of(new Throw(3), new Throw(5));
+        Round eightPointsRound = new NormalRound(eightPointsThrow);
+        int points = eightPointsRound.getPoints();
+        assertThat(points).isEqualTo(8);
+    }
+
+    @Test
+    void throw3and5_throw4and3_noBonuspointsInFristRound() {
+        List<Throw> firstRoundThrows = List.of(new Throw(3), new Throw(5));
+        List<Throw> secondRoundThrows = List.of(new Throw(3), new Throw(4));
+        Round firstRound = new NormalRound(firstRoundThrows);
+        Round secondRound = new NormalRound(secondRoundThrows, firstRound);
+        int bonuspoints = secondRound.getBonuspoints();
+        assertThat(bonuspoints).isEqualTo(0);
+    }
 }
