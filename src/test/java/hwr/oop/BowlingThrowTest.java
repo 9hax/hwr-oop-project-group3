@@ -7,23 +7,28 @@ import org.junit.jupiter.api.Test;
 
 public class BowlingThrowTest {
     @Test
-    void testSetFallenPins_3PinsFallen(){
+    void testSetFallenPins_ValidPinsFallen(){
         //given
         Throw bowlThrow = new Throw();
-        //when
+
         bowlThrow.setFallenPins(3);
-        //then
         assertThat(bowlThrow.getFallenPins()).isEqualTo(3);
+
+        bowlThrow.setFallenPins(0);
+        assertThat(bowlThrow.getFallenPins()).isEqualTo(0);
+        bowlThrow.setFallenPins(10);
+        assertThat(bowlThrow.getFallenPins()).isEqualTo(10);
     }
 
     @Test
-    void testSetFallenPins_15PinsFallen(){
+    void testSetFallenPins_InvalidPinsFallen(){
         //given
         Throw bowlThrow = new Throw();
-        //when
-
         //then
         assertThatThrownBy(() -> bowlThrow.setFallenPins(15)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> bowlThrow.setFallenPins(-1)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> bowlThrow.setFallenPins(11)).isInstanceOf(IllegalArgumentException.class);
+
     }
 
     @Test
