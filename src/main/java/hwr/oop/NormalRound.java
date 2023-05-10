@@ -37,9 +37,6 @@ public class NormalRound implements Round{
                 throwListValidationTarget) {
             fallenPinsValidityCounter += singleThrow.getFallenPins();
         }
-        if (fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 11) {
-            return true;
-        }
-        return false;
+        return fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 11;
     }
 }
