@@ -23,7 +23,7 @@ public class BowlingThrowTest {
         //when
 
         //then
-        assertThatThrownBy(() -> {bowlThrow.setFallenPins(15);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> bowlThrow.setFallenPins(15)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class BowlingThrowTest {
         //when
 
         //then
-        assertThatThrownBy(() -> {bowlThrow.setFallenPins(-1);}).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> bowlThrow.setFallenPins(-1)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
