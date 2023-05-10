@@ -58,7 +58,7 @@ public class NormalRound implements Round{
     }
 
     @Override
-    public int getBonuspoints() {
+    public int getBonusPoints() {
         return 0;
     }
 

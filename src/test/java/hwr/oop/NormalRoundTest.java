@@ -85,7 +85,7 @@ public class NormalRoundTest {
     }
 
     @Test
-    void round3PinsThrow5PinsThrow_8Points() {
+    void throw3PinsThrow5Pins_8Points() {
         List<Throw> eightPointsThrow = List.of(new Throw(3), new Throw(5));
         Round eightPointsRound = new NormalRound(eightPointsThrow);
         int points = eightPointsRound.getPoints();
@@ -93,12 +93,12 @@ public class NormalRoundTest {
     }
 
     @Test
-    void throw3and5_throw4and3_noBonuspointsInFristRound() {
+    void throw3and5_throw4and3_noBonusPointsInFristRound() {
         List<Throw> firstRoundThrows = List.of(new Throw(3), new Throw(5));
         List<Throw> secondRoundThrows = List.of(new Throw(3), new Throw(4));
         Round firstRound = new NormalRound(firstRoundThrows);
         Round secondRound = new NormalRound(secondRoundThrows, firstRound);
-        int bonuspoints = secondRound.getBonuspoints();
-        assertThat(bonuspoints).isEqualTo(0);
+        int bonusPoints = secondRound.getBonusPoints();
+        assertThat(bonusPoints).isEqualTo(0);
     }
 }
