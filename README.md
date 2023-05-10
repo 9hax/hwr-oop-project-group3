@@ -6,13 +6,13 @@ This repository contains a student project created for an ongoing lecture on obj
 
 ## Abstract
 
-[TODO]: #(Write a short description of your project.)
-[TODO]: #(State most important features.)
-[TODO]: #(State the most interesting problems you encountered during the project.)
+[TODO]: <> (Write a short description of your project.)
+[TODO]: <> (State most important features.)
+[TODO]: <> (State the most interesting problems you encountered during the project.)
 
 ## Feature List
 
-[TODO]: #(For each feature implemented, add a row to the table!)
+[TODO]: <> (Add a new row to the table for every completed feature.)
 
 | Number | Feature | Tests |
 |--------|---------|-------|
@@ -21,7 +21,7 @@ This repository contains a student project created for an ongoing lecture on obj
 
 ## Additional Dependencies
 
-[TODO]: #(For each additional dependency your project requires- Add an additional row to the table!)
+[TODO]: <> (Add a new row to the table for every required dependency.)
 
 | Number | Dependency Name | Dependency Description | Why is it necessary? |
 |--------|-----------------|------------------------|----------------------|
