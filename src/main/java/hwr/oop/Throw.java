@@ -1,7 +1,7 @@
 package hwr.oop;
 
 public class Throw {
-    int fallenPins;
+    private int fallenPins;
     public Throw(int fallenPins) {
         setFallenPins(fallenPins);
     }
@@ -18,5 +18,9 @@ public class Throw {
 
     public int getFallenPins() {
         return fallenPins;
+    }
+
+    public boolean hasCleared() {
+        return fallenPins == 10;
     }
 }

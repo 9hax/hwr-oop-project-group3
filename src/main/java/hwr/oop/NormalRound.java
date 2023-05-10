@@ -27,7 +27,7 @@ public class NormalRound implements Round{
         int roundPoints =0;
         for (Throw singleThrow :
                 throwList) {
-            roundPoints+=singleThrow.fallenPins;
+            roundPoints+=singleThrow.getFallenPins();
         }
         return roundPoints;
     }
@@ -35,6 +35,12 @@ public class NormalRound implements Round{
     @Override
     public RoundState getState() {
         return state;
+    }
+
+    @Override
+    public boolean isStrike() {
+        Throw firstThrow = this.throwList.get(0);
+        return firstThrow.hasCleared();
     }
 
     private static boolean validateThrowList(List<Throw> throwListValidationTarget) {
@@ -45,4 +51,6 @@ public class NormalRound implements Round{
         }
         return fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 10;
     }
+
+
 }

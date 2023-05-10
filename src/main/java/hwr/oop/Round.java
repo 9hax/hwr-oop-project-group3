@@ -7,4 +7,6 @@ interface Round {
      int getPoints();
      RoundState getState();
 
+    boolean isStrike();
+
 }

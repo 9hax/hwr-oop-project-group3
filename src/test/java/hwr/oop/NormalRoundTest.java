@@ -1,5 +1,6 @@
 package hwr.oop;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -35,4 +36,22 @@ public class NormalRoundTest{
         List<Throw> invalidThrowList = List.of(new Throw(6), new Throw(6));
         assertThatThrownBy(() -> new NormalRound(invalidThrowList)).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void checkIsStrikeTest() {
+        List<Throw> strikeThrow = List.of(new Throw(10));
+        Round strikeRound = new NormalRound(strikeThrow);
+        boolean isStrike = strikeRound.isStrike();
+        assertThat(isStrike).isTrue();
+    }
+
+    @Test
+    void checkIsNotStrikeTest() {
+        List<Throw> notStrikeThrows = List.of(new Throw(9));
+        Round notStrikeRound = new NormalRound(notStrikeThrows);
+        boolean isStrike = notStrikeRound.isStrike();
+        assertThat(isStrike).isFalse();
+    }
+
+
 }
