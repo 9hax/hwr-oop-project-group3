@@ -13,8 +13,14 @@ public class NormalRound implements Round{
     }
 
     public NormalRound(List<Throw> throwList) {
-        this.throwList = throwList;
+
+        if (validateThrowList(throwList)) {
+            this.throwList = throwList;
+        } else {
+            throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
+        }
     }
+
 
     public int getPoints(){
         //TODO logic SPARE STRIKE
@@ -24,5 +30,16 @@ public class NormalRound implements Round{
             roundPoints+=singleThrow.fallenPins;
         }
         return roundPoints;
+    }
+    private static boolean validateThrowList(List<Throw> throwListValidationTarget) {
+        int fallenPinsValidityCounter = 0;
+        for (Throw singleThrow :
+                throwListValidationTarget) {
+            fallenPinsValidityCounter += singleThrow.getFallenPins();
+        }
+        if (fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 11) {
+            return true;
+        }
+        return false;
     }
 }
