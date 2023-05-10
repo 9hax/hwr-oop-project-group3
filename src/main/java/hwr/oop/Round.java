@@ -1,12 +1,12 @@
 package hwr.oop;
 
-import java.util.List;
-
 interface Round {
 
-     int getPoints();
-     RoundState getState();
+    int getPoints();
+
 
     boolean isStrike();
+
+    boolean isSpare();
 
 }

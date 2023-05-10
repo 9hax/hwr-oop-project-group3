@@ -4,9 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NormalRound implements Round{
-    int counter;
+
     List<Throw> throwList;
-    RoundState state;
 
     public NormalRound() {
         this.throwList = Arrays.asList(new Throw(), new Throw());
@@ -32,15 +31,23 @@ public class NormalRound implements Round{
         return roundPoints;
     }
 
-    @Override
-    public RoundState getState() {
-        return state;
-    }
 
     @Override
     public boolean isStrike() {
         Throw firstThrow = this.throwList.get(0);
         return firstThrow.hasCleared();
+    }
+
+    @Override
+    public boolean isSpare() {
+        if (throwList.size()<2) {
+            return false;
+        }
+        Throw firstThrow = this.throwList.get(0);
+        Throw secondThrow = this.throwList.get(1);
+
+        int sum = firstThrow.getFallenPins() + secondThrow.getFallenPins();
+        return sum == 10;
     }
 
     private static boolean validateThrowList(List<Throw> throwListValidationTarget) {

@@ -1,6 +1,5 @@
 package hwr.oop;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,7 +7,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class NormalRoundTest{
+public class NormalRoundTest {
 
     @Test
     void createEmptyRoundTest() {
@@ -17,7 +16,7 @@ public class NormalRoundTest{
     }
 
     @Test
-    void getPointsTest(){
+    void getPointsTest() {
         List<Throw> normalThrowList = List.of(new Throw(1), new Throw(3));
         Round round = new NormalRound(normalThrowList);
         assertThat(round.getPoints()).isEqualTo(4);
@@ -53,5 +52,35 @@ public class NormalRoundTest{
         assertThat(isStrike).isFalse();
     }
 
+    @Test
+    void checkIsSpareTest() {
+        List<Throw> spareThrows = List.of(new Throw(6), new Throw(4));
+        Round spareRound = new NormalRound(spareThrows);
+        boolean isSpare = spareRound.isSpare();
+        assertThat(isSpare).isTrue();
+    }
 
+    @Test
+    void throw3PinsThrow6Pins_noSpare() {
+        List<Throw> noSpareThrows = List.of(new Throw(3), new Throw(6));
+        Round noSpareRound = new NormalRound(noSpareThrows);
+        boolean isSpare = noSpareRound.isSpare();
+        assertThat(isSpare).isFalse();
+    }
+
+    @Test
+    void throw10Pins_noSpare() {
+        List<Throw> spareThrow = List.of(new Throw(10));
+        Round strikeRound = new NormalRound(spareThrow);
+        boolean isSpare = strikeRound.isSpare();
+        assertThat(isSpare).isFalse();
+    }
+
+    @Test
+    void throw0PinsThrow10Pins_noStrike() {
+        List<Throw> notStrikeThrows = List.of(new Throw(0), new Throw(10));
+        Round notStrikeRound = new NormalRound(notStrikeThrows);
+        boolean isStrike = notStrikeRound.isStrike();
+        assertThat(isStrike).isFalse();
+    }
 }
