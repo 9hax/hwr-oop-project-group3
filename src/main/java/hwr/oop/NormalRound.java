@@ -31,6 +31,12 @@ public class NormalRound implements Round{
         }
         return roundPoints;
     }
+
+    @Override
+    public RoundState getState() {
+        return state;
+    }
+
     private static boolean validateThrowList(List<Throw> throwListValidationTarget) {
         int fallenPinsValidityCounter = 0;
         for (Throw singleThrow :
