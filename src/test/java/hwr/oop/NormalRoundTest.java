@@ -6,12 +6,12 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class RoundTest {
+public class NormalRoundTest {
 
     @Test
     void getPointsTest(){
         List<Throw> normalThrowList = List.of(new Throw(1), new Throw(3));
-        Round round = new Round(0, normalThrowList);
+        Round round = new NormalRound(normalThrowList);
         assertThat(round.getPoints()).isEqualTo(4);
     }
 }
