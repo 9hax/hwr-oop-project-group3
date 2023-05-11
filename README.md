@@ -7,8 +7,15 @@ This repository contains a student project created for an ongoing lecture on obj
 ## Abstract
 
 [TODO]: <> (Write a short description of your project.)
+This Application provides a Bowling Game.
+
 [TODO]: <> (State most important features.)
+[not implemented]: <> (Score Table Calculation)
+[not implemented]: <> (User Management)
+[not implemented]: <> (Automatic Winner detection)
+
 [TODO]: <> (State the most interesting problems you encountered during the project.)
+Test driven development is hard to grasp at first, but easier the more time you spend on it.
 
 ## Feature List
 
@@ -16,8 +23,8 @@ This repository contains a student project created for an ongoing lecture on obj
 
 | Number | Feature | Tests |
 |--------|---------|-------|
-| 1      | /       | /     |
-
+| 1      | Throws  | 4     |
+| 2      | Rounds  | 5     |
 
 ## Additional Dependencies
 
