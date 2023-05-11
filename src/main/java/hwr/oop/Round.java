@@ -1,5 +1,7 @@
 package hwr.oop;
 
+import java.util.List;
+
 interface Round {
 
     int getPoints();
@@ -14,4 +16,7 @@ interface Round {
     void setPreviousRound(Round round);
 
     void calculateBonusPoints();
+    void calculateBonusPoints(List<Throw> throwList);
+
+    void prepareBonusCounter();
 }

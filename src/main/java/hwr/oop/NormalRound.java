@@ -1,5 +1,6 @@
 package hwr.oop;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,14 +13,18 @@ public class NormalRound implements Round{
 
     int bonusPointCalculationCounter;
 
+    boolean bonusPointCalculationCounterIsValid;
+
 
     public NormalRound() {
         this.throwList = Arrays.asList(new Throw(), new Throw());
         this.previousRound = null;
+        this.bonusPointCalculationCounterIsValid = false;
     }
 
     public NormalRound(List<Throw> throwList) {
         this.previousRound = null;
+        this.bonusPointCalculationCounterIsValid = false;
 
         if (validateThrowList(throwList)) {
             this.throwList = throwList;
@@ -31,6 +36,7 @@ public class NormalRound implements Round{
     public NormalRound(List<Throw> throwList, Round previousRound) {
         this.throwList = throwList;
         this.previousRound = previousRound;
+        this.bonusPointCalculationCounterIsValid = false;
     }
 
     @Override
@@ -70,6 +76,42 @@ public class NormalRound implements Round{
     @Override
     public void setPreviousRound(Round round) {
         this.previousRound = round;
+    }
+
+    @Override
+    public void calculateBonusPoints() {
+        if (previousRound == null){
+            return;
+        }
+        previousRound.calculateBonusPoints(throwList);
+    }
+
+    @Override
+    public void calculateBonusPoints(List<Throw> throwList){
+        List<Throw> tempThrowList = new ArrayList<>(this.throwList);
+        for (; bonusPointCalculationCounter > 0; bonusPointCalculationCounter--){
+            if (tempThrowList.isEmpty()) {break;}
+            bonusPoints =+ tempThrowList.get(0).getFallenPins();
+            tempThrowList.remove(0);
+        }
+        List<Throw> fullThrowList = new ArrayList<>(this.throwList);
+        fullThrowList.addAll(throwList);
+        if (previousRound == null){
+            return;
+        }
+        previousRound.calculateBonusPoints(fullThrowList);
+    }
+
+    @Override
+    public void prepareBonusCounter(){
+        if (bonusPointCalculationCounterIsValid) return;
+        if (isStrike()){
+            bonusPointCalculationCounter = 2;
+        }
+        if (isSpare()){
+            bonusPointCalculationCounter = 1;
+        }
+        bonusPointCalculationCounterIsValid = true;
     }
 
     private static boolean validateThrowList(List<Throw> throwListValidationTarget) {

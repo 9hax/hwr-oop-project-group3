@@ -36,6 +36,8 @@ public class NormalRoundTest {
         List<Throw> secondRoundThrows = List.of(new Throw(3), new Throw(4));
         Round strikeRound = new NormalRound(strikeRoundThrows);
         Round secondRound = new NormalRound(secondRoundThrows, strikeRound);
+        strikeRound.prepareBonusCounter();
+        secondRound.prepareBonusCounter();
         secondRound.calculateBonusPoints();
         int bonusPoints = strikeRound.getBonusPoints();
         assertThat(bonusPoints).isEqualTo(7);
