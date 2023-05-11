@@ -11,4 +11,7 @@ interface Round {
 
     int getBonusPoints();
 
+    void setPreviousRound(Round round);
+
+    void calculateBonusPoints();
 }

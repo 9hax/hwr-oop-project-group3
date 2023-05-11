@@ -1,5 +1,6 @@
 package hwr.oop;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -20,6 +21,28 @@ public class NormalRoundTest {
         List<Throw> normalThrowList = List.of(new Throw(1), new Throw(3));
         Round round = new NormalRound(normalThrowList);
         assertThat(round.getPoints()).isEqualTo(4);
+    }
+
+    @Test
+    void playNormalRound_hasNoBonusPoints() {
+        List<Throw> normalThrowList = List.of(new Throw(1), new Throw(3));
+        Round round = new NormalRound(normalThrowList);
+        assertThat(round.getBonusPoints()).isEqualTo(0);
+    }
+
+    @Test
+    void playStrikeRound_get7BonusPoints() {
+        List<Throw> strikeRoundThrows = List.of(new Throw(10));
+        List<Throw> secondRoundThrows = List.of(new Throw(3), new Throw(4));
+        Round strikeRound = new NormalRound(strikeRoundThrows);
+        Round secondRound = new NormalRound(secondRoundThrows, strikeRound);
+        secondRound.calculateBonusPoints();
+        int bonusPoints = strikeRound.getBonusPoints();
+        assertThat(bonusPoints).isEqualTo(7);
+    }
+
+    @Test @Disabled("not conceptualized")
+    void calculateBonusPoints_() {
     }
 
     @Test
@@ -101,4 +124,6 @@ public class NormalRoundTest {
         int bonusPoints = secondRound.getBonusPoints();
         assertThat(bonusPoints).isEqualTo(0);
     }
+
+
 }

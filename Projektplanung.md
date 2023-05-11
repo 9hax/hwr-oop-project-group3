@@ -6,7 +6,7 @@
 
 - Runde, in der Strike/Spare geworfen wurde, bekommt von den folgenden Runden die Punktzahl übermittelt und berechnet die Punkte selbst
 - Punkte werden auch weitergegeben, selbst wenn kein Spare oder Strike. Es erfolgt nur keine Berechnung
-- Jede Runde kann maximal 2x Bonuspunkte 
+- Jede Runde kann maximal 2x Bonuspunkte erhalten
 
 ### 10. Runde
 

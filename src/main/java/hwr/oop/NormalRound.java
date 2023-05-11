@@ -6,7 +6,12 @@ import java.util.List;
 public class NormalRound implements Round{
 
     private final List<Throw> throwList;
-    private final Round previousRound;
+    private Round previousRound;
+
+    int bonusPoints;
+
+    int bonusPointCalculationCounter;
+
 
     public NormalRound() {
         this.throwList = Arrays.asList(new Throw(), new Throw());
@@ -59,7 +64,12 @@ public class NormalRound implements Round{
 
     @Override
     public int getBonusPoints() {
-        return 0;
+        return bonusPoints;
+    }
+
+    @Override
+    public void setPreviousRound(Round round) {
+        this.previousRound = round;
     }
 
     private static boolean validateThrowList(List<Throw> throwListValidationTarget) {
