@@ -15,12 +15,4 @@ public class PlayerTest {
         assertThat(namedPlayer.getName()).isEqualTo("Steve");
     }
 
-    @Test @Disabled("I dont know why this is here")
-    void createPlayer_hasTenRounds() {
-        Player player = new Player("Steve");
-        List<Round> rounds = player.getRounds();
-        assertThat(rounds.size()).isEqualTo(10);
-    }
-
-
 }

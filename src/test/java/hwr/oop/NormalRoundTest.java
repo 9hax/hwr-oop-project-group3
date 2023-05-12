@@ -43,10 +43,6 @@ public class NormalRoundTest {
         assertThat(bonusPoints).isEqualTo(7);
     }
 
-    @Test @Disabled("not conceptualized")
-    void calculateBonusPoints_() {
-    }
-
     @Test
     void checkValidityTest() {
         // Test the boundaries
