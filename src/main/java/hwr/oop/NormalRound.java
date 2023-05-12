@@ -88,10 +88,10 @@ public class NormalRound implements Round{
 
     @Override
     public void calculateBonusPoints(List<Throw> throwList){
-        List<Throw> tempThrowList = new ArrayList<>(this.throwList);
+        List<Throw> tempThrowList = new ArrayList<>(throwList);
         for (; bonusPointCalculationCounter > 0; bonusPointCalculationCounter--){
             if (tempThrowList.isEmpty()) {break;}
-            bonusPoints =+ tempThrowList.get(0).getFallenPins();
+            bonusPoints += tempThrowList.get(0).getFallenPins();
             tempThrowList.remove(0);
         }
         List<Throw> fullThrowList = new ArrayList<>(this.throwList);
