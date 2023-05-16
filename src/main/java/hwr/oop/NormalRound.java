@@ -131,10 +131,14 @@ public class NormalRound implements Round{
         return fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 10;
     }
 
-    private static List<Round> convertToList(){
-
-        return null;
+    public ArrayList<Round> convertToList(){
+        ArrayList<Round> tempRoundList;
+        if(previousRound != null) {
+            tempRoundList = previousRound.convertToList();
+        } else {
+            tempRoundList = new ArrayList<>();
+        }
+        tempRoundList.add(this);
+        return tempRoundList;
     }
-
-
 }

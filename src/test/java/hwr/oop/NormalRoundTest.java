@@ -2,6 +2,7 @@ package hwr.oop;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -167,5 +168,18 @@ public class NormalRoundTest {
 
         assertThat(bonusPointsFirstRound).isEqualTo(13);
         assertThat(bonusPointsSecondRound).isEqualTo(7);
+    }
+
+    @Test
+    void createThreeRounds_convertToList() {
+        Round firstRound = new NormalRound(List.of(new Throw(0), new Throw(1)));
+        Round secondRound = new NormalRound(List.of(new Throw(0), new Throw(2)), firstRound);
+        Round thirdRound = new NormalRound(List.of(new Throw(0), new Throw(3)), secondRound);
+
+        ArrayList<Round> roundList = thirdRound.convertToList();
+        ArrayList<Round> roundTestList = new ArrayList<Round>(List.of(firstRound, secondRound, thirdRound));
+
+        assertThat(roundList).isEqualTo(roundTestList);
+
     }
 }

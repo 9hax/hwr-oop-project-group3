@@ -1,5 +1,6 @@
 package hwr.oop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 interface Round {
@@ -19,4 +20,6 @@ interface Round {
     void calculateBonusPoints(List<Throw> throwList);
 
     void prepareBonusCounter();
+
+    ArrayList<Round> convertToList();
 }
