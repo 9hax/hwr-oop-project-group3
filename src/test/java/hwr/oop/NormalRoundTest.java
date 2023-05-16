@@ -43,6 +43,19 @@ public class NormalRoundTest {
     }
 
     @Test
+    void playSpareRound_get3BonusPoints() {
+        List<Throw> strikeRoundThrows = List.of(new Throw (4), new Throw (6));
+        List<Throw> secondRoundThrows = List.of(new Throw(3), new Throw(4));
+        Round strikeRound = new NormalRound(strikeRoundThrows);
+        Round secondRound = new NormalRound(secondRoundThrows, strikeRound);
+        strikeRound.prepareBonusCounter();
+        secondRound.prepareBonusCounter();
+        secondRound.calculateBonusPoints();
+        int bonusPoints = strikeRound.getBonusPoints();
+        assertThat(bonusPoints).isEqualTo(3);
+    }
+
+    @Test
     void checkValidityTest() {
         // Test the boundaries
         List<Throw> validThrowList = List.of(new Throw(0), new Throw(0));
