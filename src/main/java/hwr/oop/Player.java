@@ -22,15 +22,8 @@ public class Player {
         return this.rounds;
     }
 
-    public void addRound(Round round) {
-        if (!rounds.isEmpty()) {
-            round.setPreviousRound(rounds.get(rounds.size()-1));
-        }
-        rounds.add(round);
+
+    public boolean throwBall(int i) {
 
     }
-
-
-
-
 }
