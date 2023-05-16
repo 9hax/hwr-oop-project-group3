@@ -28,15 +28,23 @@ public class NormalRound implements Round{
 
         if (validateThrowList(throwList)) {
             this.throwList = throwList;
+            this.prepareBonusCounter();
         } else {
             throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
         }
     }
 
     public NormalRound(List<Throw> throwList, Round previousRound) {
-        this.throwList = throwList;
-        this.previousRound = previousRound;
+        this.previousRound = null;
         this.bonusPointCalculationCounterIsValid = false;
+
+        if (validateThrowList(throwList)) {
+            this.throwList = throwList;
+            this.previousRound = previousRound;
+            this.prepareBonusCounter();
+        } else {
+            throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
+        }
     }
 
     @Override

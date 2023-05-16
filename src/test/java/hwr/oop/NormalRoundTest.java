@@ -59,7 +59,8 @@ public class NormalRoundTest {
     void checkValidityTest() {
         // Test the boundaries
         List<Throw> validThrowList = List.of(new Throw(0), new Throw(0));
-        assertThat(new NormalRound(validThrowList).getPoints()).isEqualTo(0);
+        NormalRound validRound = new NormalRound(validThrowList);
+        assertThat(validRound.getPoints()).isEqualTo(0);
 
         validThrowList = List.of(new Throw(5), new Throw(5));
         assertThat(new NormalRound(validThrowList).getPoints()).isEqualTo(10);
@@ -67,6 +68,7 @@ public class NormalRoundTest {
         // The following throws an excception, as 11 pins are hit according to the throwList.
         List<Throw> invalidThrowList = List.of(new Throw(6), new Throw(6));
         assertThatThrownBy(() -> new NormalRound(invalidThrowList)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() ->new NormalRound(invalidThrowList, validRound)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -126,7 +128,7 @@ public class NormalRoundTest {
     }
 
     @Test
-    void throw3and5_throw4and3_noBonusPointsInFristRound() {
+    void throw3and5_throw4and3_noBonusPointsInFirstRound() {
         List<Throw> firstRoundThrows = List.of(new Throw(3), new Throw(5));
         List<Throw> secondRoundThrows = List.of(new Throw(3), new Throw(4));
         Round firstRound = new NormalRound(firstRoundThrows);
@@ -135,5 +137,20 @@ public class NormalRoundTest {
         assertThat(bonusPoints).isEqualTo(0);
     }
 
+    @Test
+    void throwTwoStrikes_throw3and4_get13BonusPointsInFirstRound(){
+        List<Throw> firstRoundThrows = List.of(new Throw(10));
+        List<Throw> secondRoundThrows = List.of(new Throw(10));
+        List<Throw> thirdRoundThrows = List.of(new Throw(3), new Throw(4));
 
+        Round firstRound = new NormalRound(firstRoundThrows);
+        Round secondRound = new NormalRound(secondRoundThrows, firstRound);
+        Round thirdRound = new NormalRound(thirdRoundThrows, secondRound);
+        thirdRound.calculateBonusPoints();
+        int bonusPointsFirstRound = firstRound.getBonusPoints();
+        int bonusPointsSecondRound = secondRound.getBonusPoints();
+
+        assertThat(bonusPointsFirstRound).isEqualTo(13);
+        assertThat(bonusPointsSecondRound).isEqualTo(7);
+    }
 }
