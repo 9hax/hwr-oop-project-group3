@@ -96,6 +96,20 @@ public class NormalRoundTest {
     }
 
     @Test
+    void setPreviousSpareTest(){
+        List<Throw> firstRoundThrows = List.of(new Throw(4), new Throw(6));
+        Round firstRound = new NormalRound(firstRoundThrows);
+
+        List<Throw> secondRoundThrows = List.of(new Throw(4), new Throw(2));
+        Round secondRound = new NormalRound(secondRoundThrows, firstRound);
+
+        secondRound.setPreviousRound(firstRound);
+        secondRound.calculateBonusPoints();
+
+        assertThat(firstRound.getBonusPoints()).isEqualTo(4);
+    }
+
+    @Test
     void throw3PinsThrow6Pins_noSpare() {
         List<Throw> noSpareThrows = List.of(new Throw(3), new Throw(6));
         Round noSpareRound = new NormalRound(noSpareThrows);

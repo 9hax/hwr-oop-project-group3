@@ -131,5 +131,10 @@ public class NormalRound implements Round{
         return fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 10;
     }
 
+    private static List<Round> convertToList(){
+
+        return null;
+    }
+
 
 }
