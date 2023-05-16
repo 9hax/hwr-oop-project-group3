@@ -177,7 +177,7 @@ public class NormalRoundTest {
         Round thirdRound = new NormalRound(List.of(new Throw(0), new Throw(3)), secondRound);
 
         ArrayList<Round> roundList = thirdRound.convertToList();
-        ArrayList<Round> roundTestList = new ArrayList<Round>(List.of(firstRound, secondRound, thirdRound));
+        ArrayList<Round> roundTestList = new ArrayList<>(List.of(firstRound, secondRound, thirdRound));
 
         assertThat(roundList).isEqualTo(roundTestList);
 
