@@ -39,4 +39,12 @@ public class Player {
         lastFinishedRound = tempRound;
         tempRound = null;
     }
+
+    public Round getTempRound() {
+        return tempRound;
+    }
+
+    public Round getLastPlayedRound() {
+        return lastFinishedRound;
+    }
 }
