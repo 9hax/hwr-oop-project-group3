@@ -25,4 +25,5 @@ interface Round {
 
     void addThrow(Throw aThrow);
 
+    Round getPreviousRound();
 }

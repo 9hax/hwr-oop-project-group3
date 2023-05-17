@@ -83,6 +83,14 @@ public class NormalRoundTest {
     }
 
     @Test
+    void checkValidityAddThrow(){
+        List<Throw> validThrowList = List.of(new Throw(7));
+        NormalRound unfinishedRound = new NormalRound(validThrowList);
+
+        assertThatThrownBy(()-> unfinishedRound.addThrow(new Throw(7))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void checkIsStrikeTest() {
         List<Throw> strikeThrow = List.of(new Throw(10));
         Round strikeRound = new NormalRound(strikeThrow);
@@ -117,6 +125,7 @@ public class NormalRoundTest {
         secondRound.setPreviousRound(firstRound);
         secondRound.calculateBonusPoints();
 
+        assertThat(secondRound.getPreviousRound()).isEqualTo(firstRound);
         assertThat(firstRound.getBonusPoints()).isEqualTo(4);
     }
 
@@ -189,6 +198,5 @@ public class NormalRoundTest {
         ArrayList<Round> roundTestList = new ArrayList<>(List.of(firstRound, secondRound, thirdRound));
 
         assertThat(roundList).isEqualTo(roundTestList);
-
     }
 }

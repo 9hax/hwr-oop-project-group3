@@ -152,4 +152,9 @@ public class NormalRound implements Round{
             throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
         }
     }
+
+    @Override
+    public Round getPreviousRound() {
+        return previousRound;
+    }
 }
