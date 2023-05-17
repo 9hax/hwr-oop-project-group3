@@ -22,4 +22,7 @@ interface Round {
     void prepareBonusCounter();
 
     ArrayList<Round> convertToList();
+
+    void addThrow(Throw aThrow);
+
 }

@@ -1,29 +1,42 @@
 package hwr.oop;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
 
 
     private final String name;
-    private final List<Round> rounds;
+    private Round lastFinishedRound;
+    private Round tempRound;
 
     public Player(String name) {
         this.name = name;
-        rounds = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Round> getRounds() {
-        return this.rounds;
+
+    public boolean throwBall(int fallenPins) {
+        if (tempRound != null){
+            tempRound.addThrow(new Throw(fallenPins));
+            updateLastPlayedRound();
+            return  false;
+        } else {
+            tempRound = new NormalRound(List.of(new Throw(fallenPins)));
+            if (tempRound.isStrike()){
+                updateLastPlayedRound();
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 
-
-    public boolean throwBall(int i) {
-
+    private void updateLastPlayedRound(){
+        tempRound.setPreviousRound(lastFinishedRound);
+        lastFinishedRound = tempRound;
+        tempRound = null;
     }
 }

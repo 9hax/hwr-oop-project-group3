@@ -17,6 +17,15 @@ public class NormalRoundTest {
     }
 
     @Test
+    void addThrow_getNewPoints() {
+        List <Throw> singleThrowList = List.of(new Throw(3));
+        Round unfinishedRound = new NormalRound(singleThrowList);
+        unfinishedRound.addThrow(new Throw(4));
+        int points = unfinishedRound.getPoints();
+        assertThat(points).isEqualTo(7);
+    }
+
+    @Test
     void getPointsTest() {
         List<Throw> normalThrowList = List.of(new Throw(1), new Throw(3));
         Round round = new NormalRound(normalThrowList);

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class NormalRound implements Round{
 
-    private final List<Throw> throwList;
+    private List<Throw> throwList;
     private Round previousRound;
 
     int bonusPoints;
@@ -140,5 +140,16 @@ public class NormalRound implements Round{
         }
         tempRoundList.add(this);
         return tempRoundList;
+    }
+
+    @Override
+    public void addThrow(Throw aThrow) {
+        ArrayList<Throw> newThrowList = new ArrayList<> (this.throwList);
+        newThrowList.add(aThrow);
+        if (validateThrowList(newThrowList)){
+            this.throwList = newThrowList;
+        } else {
+            throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
+        }
     }
 }
