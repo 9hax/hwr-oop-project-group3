@@ -1,7 +1,6 @@
 package hwr.oop;
 
 import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class PlayerTest {
@@ -38,4 +37,21 @@ public class PlayerTest {
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getLastPlayedRound().getPoints()).isEqualTo(8);
     }
+
+    @Test
+    void calculatePlayerHasNoPoints() {
+        Player namedPlayer = new Player("Steve");
+        assertThat(namedPlayer.gamePoints).isZero();
+    }
+    @Test
+    void calculatePlayerPoints() {
+        Player namedPlayer = new Player("Steve");
+        boolean continueRound = namedPlayer.throwBall(5);
+        continueRound = namedPlayer.throwBall(3);
+
+        assertThat(namedPlayer.calculatePlayerGamePoints()).isEqualTo(8);
+    }
+
+
+    //TODO make everything package private
 }

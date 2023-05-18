@@ -2,27 +2,27 @@ package hwr.oop;
 
 import java.util.List;
 
-public class Player {
+public class Player{
 
+    int gamePoints = 0;
 
     private final String name;
     private Round lastFinishedRound;
     private Round tempRound;
 
-    public Player(String name) {
+    Player(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-
-    public boolean throwBall(int fallenPins) {
+    boolean throwBall(int fallenPins) {
         if (tempRound != null){
             tempRound.addThrow(new Throw(fallenPins));
             updateLastPlayedRound();
-            return  false;
+            return false;
         } else {
             tempRound = new NormalRound(List.of(new Throw(fallenPins)));
             if (tempRound.isStrike()){
@@ -40,11 +40,17 @@ public class Player {
         tempRound = null;
     }
 
-    public Round getTempRound() {
+    Round getTempRound() {
         return tempRound;
     }
 
-    public Round getLastPlayedRound() {
+     Round getLastPlayedRound() {
         return lastFinishedRound;
     }
+
+    int calculatePlayerGamePoints(){
+        gamePoints += getLastPlayedRound().getPoints();
+        return gamePoints;
+    }
+    //TODO make everything package-private
 }
