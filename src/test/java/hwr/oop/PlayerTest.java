@@ -75,5 +75,24 @@ public class PlayerTest {
         assertThat(playerPoints).isEqualTo(28);
     }
 
+    @Test
+    void playSpare_getPlayerPoints() {
+        Player namedPlayer = new Player("Dudududedudude-du Steve");
+        boolean continueRound = namedPlayer.throwBall(9);
+        assertThat(continueRound).isTrue();
+        continueRound = namedPlayer.throwBall(1);
+        assertThat(continueRound).isFalse();
+
+        assertThat(namedPlayer.getPlayerPoints()).isEqualTo(10);
+
+        continueRound = namedPlayer.throwBall(5);
+        assertThat(continueRound).isTrue();
+        continueRound = namedPlayer.throwBall(4);
+        assertThat(continueRound).isFalse();
+
+        int playerPoints = namedPlayer.getPlayerPoints();
+        assertThat(playerPoints).isEqualTo(24);
+    }
+
     //TODO make everything package private
 }
