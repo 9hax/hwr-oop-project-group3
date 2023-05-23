@@ -2,10 +2,7 @@ package hwr.oop;
 
 import java.util.List;
 
-public class Player{
-
-    int gamePoints = 0;
-
+public class Player {
     private final String name;
     private Round lastFinishedRound;
     private Round tempRound;
@@ -34,7 +31,7 @@ public class Player{
         }
     }
 
-    private void updateLastPlayedRound(){
+    private void updateLastPlayedRound() {
         tempRound.setPreviousRound(lastFinishedRound);
         lastFinishedRound = tempRound;
         tempRound = null;
@@ -44,13 +41,15 @@ public class Player{
         return tempRound;
     }
 
-     Round getLastPlayedRound() {
+    Round getLastPlayedRound() {
         return lastFinishedRound;
     }
 
-    int calculatePlayerGamePoints(){
-        gamePoints += getLastPlayedRound().getPoints();
-        return gamePoints;
+    public int getPlayerPoints() {
+        if (lastFinishedRound != null) {
+            return getLastPlayedRound().getTotalPoints();
+        }
+        return 0;
     }
     //TODO make everything package-private
 }

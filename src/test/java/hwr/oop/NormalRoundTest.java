@@ -51,6 +51,9 @@ public class NormalRoundTest {
         secondRound.calculateBonusPoints();
         int bonusPoints = strikeRound.getBonusPoints();
         assertThat(bonusPoints).isEqualTo(7);
+
+        int normalPoints = strikeRound.getPoints();
+        assertThat(normalPoints).isEqualTo(17);
     }
 
     @Test

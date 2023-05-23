@@ -41,15 +41,18 @@ public class PlayerTest {
     @Test
     void calculatePlayerHasNoPoints() {
         Player namedPlayer = new Player("Steve");
-        assertThat(namedPlayer.gamePoints).isZero();
+        assertThat(namedPlayer.getPlayerPoints()).isZero();
     }
     @Test
     void calculatePlayerPoints() {
         Player namedPlayer = new Player("Steve");
         boolean continueRound = namedPlayer.throwBall(5);
         continueRound = namedPlayer.throwBall(3);
+        assertThat(namedPlayer.getPlayerPoints()).isEqualTo(8);
 
-        assertThat(namedPlayer.calculatePlayerGamePoints()).isEqualTo(8);
+        continueRound = namedPlayer.throwBall(2);
+        continueRound = namedPlayer.throwBall(7);
+        assertThat(namedPlayer.getPlayerPoints()).isEqualTo(17);
     }
 
 

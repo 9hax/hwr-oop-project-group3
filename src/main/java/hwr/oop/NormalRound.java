@@ -157,4 +157,15 @@ public class NormalRound implements Round{
     public Round getPreviousRound() {
         return previousRound;
     }
+
+    @Override
+    public int getTotalPoints(){
+        if(previousRound != null) {
+            calculateBonusPoints();
+            int totalPoints = previousRound.getTotalPoints();
+            return totalPoints+getPoints();
+        } else {
+            return getPoints();
+        }
+    }
 }
