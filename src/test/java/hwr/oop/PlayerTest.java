@@ -48,10 +48,13 @@ public class PlayerTest {
         Player namedPlayer = new Player("Steve");
         boolean continueRound = namedPlayer.throwBall(5);
         continueRound = namedPlayer.throwBall(3);
+        assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(8);
 
         continueRound = namedPlayer.throwBall(2);
+        assertThat(continueRound).isTrue();
         continueRound = namedPlayer.throwBall(7);
+        assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(17);
     }
 
@@ -59,11 +62,13 @@ public class PlayerTest {
     void playStrike_getPlayerPoints() {
         Player namedPlayer = new Player("Dudududedudude-du Steve");
         boolean continueRound = namedPlayer.throwBall(10);
-
+        assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(10);
 
         continueRound = namedPlayer.throwBall(5);
+        assertThat(continueRound).isTrue();
         continueRound = namedPlayer.throwBall(4);
+        assertThat(continueRound).isFalse();
 
         int playerPoints = namedPlayer.getPlayerPoints();
         assertThat(playerPoints).isEqualTo(28);
