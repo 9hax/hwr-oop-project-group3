@@ -47,6 +47,7 @@ public class PlayerTest {
     void calculatePlayerPoints() {
         Player namedPlayer = new Player("Steve");
         boolean continueRound = namedPlayer.throwBall(5);
+        assertThat(continueRound).isTrue();
         continueRound = namedPlayer.throwBall(3);
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(8);
