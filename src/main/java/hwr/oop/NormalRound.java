@@ -54,7 +54,7 @@ public class NormalRound implements Round{
                 throwList) {
             roundPoints+=singleThrow.getFallenPins();
         }
-        return roundPoints;
+        return roundPoints+getBonusPoints();
     }
 
 

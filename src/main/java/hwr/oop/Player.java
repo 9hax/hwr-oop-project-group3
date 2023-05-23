@@ -16,13 +16,15 @@ public class Player {
     }
 
     boolean throwBall(int fallenPins) {
-        if (tempRound != null){
+        if (tempRound != null) {
             tempRound.addThrow(new Throw(fallenPins));
+            tempRound.prepareBonusCounter();
             updateLastPlayedRound();
             return false;
         } else {
             tempRound = new NormalRound(List.of(new Throw(fallenPins)));
-            if (tempRound.isStrike()){
+            if (tempRound.isStrike()) {
+                tempRound.prepareBonusCounter();
                 updateLastPlayedRound();
                 return false;
             } else {
@@ -34,6 +36,7 @@ public class Player {
     private void updateLastPlayedRound() {
         tempRound.setPreviousRound(lastFinishedRound);
         lastFinishedRound = tempRound;
+
         tempRound = null;
     }
 
