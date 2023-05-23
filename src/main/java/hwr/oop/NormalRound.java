@@ -115,11 +115,12 @@ public class NormalRound implements Round{
         if (bonusPointCalculationCounterIsValid) return;
         if (isStrike()){
             bonusPointCalculationCounter = 2;
+            bonusPointCalculationCounterIsValid = true;
         }
         if (isSpare()){
             bonusPointCalculationCounter = 1;
+            bonusPointCalculationCounterIsValid = true;
         }
-        bonusPointCalculationCounterIsValid = true;
     }
 
     private static boolean validateThrowList(List<Throw> throwListValidationTarget) {
