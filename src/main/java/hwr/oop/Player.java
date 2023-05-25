@@ -49,8 +49,19 @@ public class Player {
     }
 
     public int getPlayerPoints() {
+
         if (lastFinishedRound != null) {
-            return getLastPlayedRound().getTotalPoints();
+            return lastFinishedRound.getTotalPoints();
+        }
+        return 0;
+    }
+
+    public int getRound() {
+        if (tempRound != null) {
+            return tempRound.getRound();
+        }
+        if (lastFinishedRound != null) {
+            return lastFinishedRound.getRound();
         }
         return 0;
     }

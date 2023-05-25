@@ -28,4 +28,6 @@ interface Round {
     Round getPreviousRound();
 
     int getTotalPoints();
+
+    int getRound();
 }

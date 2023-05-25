@@ -50,9 +50,15 @@ String: name
 Liste mit 10 Runden
 ### Actions
 - Gesamtpunktzahl berechnen
+- Rundennummer ermitteln
 
 ## Spiel
 ### Attributes
 Liste mit unbregenzter Anzahl an Spielern
+Aktueller Spieler
+
 ### Actions
 - Gewinner ermitteln
+- Spiel initialisieren
+- Rundennummer ermitteln
+- 

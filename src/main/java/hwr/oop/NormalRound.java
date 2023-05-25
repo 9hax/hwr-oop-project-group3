@@ -169,4 +169,13 @@ public class NormalRound implements Round{
             return getPoints();
         }
     }
+
+    @Override
+    public int getRound() {
+        if(previousRound == null) {
+            return 0;
+        } else {
+            return previousRound.getRound() + 1;
+        }
+    }
 }
