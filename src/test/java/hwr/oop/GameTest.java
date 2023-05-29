@@ -25,23 +25,43 @@ public class GameTest {
     void createGame_getRound() {
         Game game = new Game(List.of("Bruh", "Bro", "Bre"));
         assertThat(game.getRound()).isEqualTo(0);
+
         Player currentPlayer = game.getCurrentPlayer();
         assertThat(currentPlayer.getName()).isEqualTo("Bruh");
         System.out.println(currentPlayer.getName());
+
         assertThat(currentPlayer.getRound()).isEqualTo(-1);
-        currentPlayer.throwBall(1);
+        currentPlayer.throwBall(4);
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        currentPlayer.throwBall(2);
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(6);
+
+        // Bruh has six points after the round, but is not the game.CurrentPlayer anymore.
+        assertThat(currentPlayer).isNotEqualTo(game.getCurrentPlayer());
+
+        currentPlayer = game.getCurrentPlayer();
+        System.out.println(currentPlayer.getName());
+
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        currentPlayer.throwBall(3);
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        currentPlayer.throwBall(5);
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(8);
+
+        // Bro has 8 points after the round, but is not the game.CurrentPlayer anymore.
+        assertThat(currentPlayer).isNotEqualTo(game.getCurrentPlayer());
+
+        currentPlayer = game.getCurrentPlayer();
+        System.out.println(currentPlayer.getName());
+
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
         currentPlayer.throwBall(1);
-        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(2);
-        // Bruh has two points after the round, but is not the game.CurrentPlayer anymore.
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        currentPlayer.throwBall(8);
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(9);
 
-        assertThat(game.getCurrentPlayer().getPlayerPoints()).isEqualTo(0);
-
-        // Next Player
-        System.out.println(game.getCurrentPlayer().getName());
-        game.getCurrentPlayer().throwBall(1);
-        assertThat(game.getCurrentPlayer().getPlayerPoints()).isEqualTo(0);
-        game.getCurrentPlayer().throwBall(1);
-        assertThat(game.getCurrentPlayer().getPlayerPoints()).isEqualTo(2);
+        // Bro has 8 points after the round, but is not the game.CurrentPlayer anymore.
+        assertThat(currentPlayer).isNotEqualTo(game.getCurrentPlayer());
+        assertThat(game.getCurrentPlayer().getName()).isEqualTo("Bruh");
     }
 }
