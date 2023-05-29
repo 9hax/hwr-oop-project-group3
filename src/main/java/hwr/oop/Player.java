@@ -57,9 +57,6 @@ public class Player {
     }
 
     public int getRound() {
-        if (tempRound != null) {
-            return tempRound.getRound();
-        }
         if (lastFinishedRound != null) {
             return lastFinishedRound.getRound();
         }
