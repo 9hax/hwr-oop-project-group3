@@ -64,4 +64,15 @@ public class GameTest {
         assertThat(currentPlayer).isNotEqualTo(game.getCurrentPlayer());
         assertThat(game.getCurrentPlayer().getName()).isEqualTo("Bruh");
     }
+
+    @Test
+    void test_to_round10() {
+        Game game = new Game(List.of("Hänsel", "Gretel"));
+        assertThat(game.getCurrentPlayer().getName()).isEqualTo("Hänsel");
+        assertThat(game.getRound()).isEqualTo(0);
+        for(int i = 0; i < 40; i++) {
+            game.getCurrentPlayer().throwBall(1);
+        }
+        assertThat(game.getRound()).isEqualTo(9);
+    }
 }
