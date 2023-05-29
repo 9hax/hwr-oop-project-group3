@@ -63,7 +63,7 @@ public class Player {
         if (lastFinishedRound != null) {
             return lastFinishedRound.getRound();
         }
-        return 0;
+        return -1;
     }
     //TODO make everything package-private
 }

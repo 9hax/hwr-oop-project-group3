@@ -27,13 +27,17 @@ public class GameTest {
     void createGame_getRound() {
         Game game = new Game(List.of("Bruh", "Bro", "Bre"));
         assertThat(game.getRound()).isEqualTo(0);
-        assertThat(game.getCurrentPlayer().getName()).isEqualTo("Bruh");
-        System.out.println(game.getCurrentPlayer().getName());
-        assertThat(game.getCurrentPlayer().getRound()).isEqualTo(0);
-        game.getCurrentPlayer().throwBall(1);
+        Player currentPlayer = game.getCurrentPlayer();
+        assertThat(currentPlayer.getName()).isEqualTo("Bruh");
+        System.out.println(currentPlayer.getName());
+        assertThat(currentPlayer.getRound()).isEqualTo(-1);
+        currentPlayer.throwBall(1);
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        currentPlayer.throwBall(1);
+        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(2);
+        // Bruh has two points after the round, but is not the game.CurrentPlayer anymore.
+
         assertThat(game.getCurrentPlayer().getPlayerPoints()).isEqualTo(0);
-        game.getCurrentPlayer().throwBall(1);
-        assertThat(game.getCurrentPlayer().getPlayerPoints()).isEqualTo(2);
 
         // Next Player
         System.out.println(game.getCurrentPlayer().getName());
