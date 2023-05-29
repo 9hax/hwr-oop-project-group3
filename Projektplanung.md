@@ -14,6 +14,13 @@
 - Würfe geben sich trotzdem die Bonuspunkte weiter, nehmen diese aber nicht auf
 - für 3. Wurf muss mindestens ein Spare geworfen wurden sein
 
+## Weitere Überlegungen am 29.5.2023
+- maximale Spiellänge bis 42 - alle Runden mod10=0 sind 10te Runden
+- Punkte werden weiter aufaddiert
+  - danach ist Spiel beendet
+- 
+
+
 ## Vorgang
 - Spiellogik
 - UI
@@ -61,4 +68,4 @@ Aktueller Spieler
 - Gewinner ermitteln
 - Spiel initialisieren
 - Rundennummer ermitteln
-- 
+
