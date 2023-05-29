@@ -7,5 +7,5 @@ public interface IOAdapter {
 
     void queueInput(String inputString);
 
-    String pullOutput();
+    String pollOutput();
 }

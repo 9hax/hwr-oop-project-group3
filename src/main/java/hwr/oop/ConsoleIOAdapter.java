@@ -18,15 +18,11 @@ public class ConsoleIOAdapter implements IOAdapter {
 
     @Override
     public void queueInput(String inputString) {
-        try {
-            throw new ExecutionControl.NotImplementedException("ConsoleIO not been called with mock data");
-        } catch (ExecutionControl.NotImplementedException e) {
-            throw new RuntimeException(e);
-        }
+        throw new RuntimeException("The queueInput Mocking method has been called in a non-mockable class.");
     }
 
     @Override
-    public String pullOutput() {
-        return null;
+    public String pollOutput() {
+        throw new RuntimeException("The pollOutput Mocking method has been called in a non-mockable class.");
     }
 }

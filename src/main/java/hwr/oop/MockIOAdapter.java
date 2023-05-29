@@ -28,7 +28,7 @@ public class MockIOAdapter implements IOAdapter {
         inputQueue.add(inputString);
     }
 
-    public String pullOutput(){
+    public String pollOutput(){
         return  outputQueue.poll();
     }
 

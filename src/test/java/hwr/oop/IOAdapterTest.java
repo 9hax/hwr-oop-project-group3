@@ -49,6 +49,7 @@ public class IOAdapterTest {
     void testInputMock() {
         IOAdapter ioAdapter = new MockIOAdapter();
         String inputString = "This is a test string.";
+        ioAdapter.queueInput(inputString);
 
         String returned = ioAdapter.getString();
 
@@ -59,14 +60,10 @@ public class IOAdapterTest {
     void test_outputMock() {
         IOAdapter ioAdapter = new MockIOAdapter();
         String outputString = "This is another test string.";
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream stream = new PrintStream(outputStream);
-        System.setOut(stream);
 
         ioAdapter.putString(outputString);
 
-        String[] outputLines = outputStream.toString().split(System.lineSeparator());
-        String lastOutput = outputLines[outputLines.length-1];
+        String lastOutput = ioAdapter.pollOutput();
 
         Assertions.assertThat(lastOutput).isEqualTo(outputString);
     }
