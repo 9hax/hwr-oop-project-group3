@@ -4,8 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class MockIOAdapter implements IOAdapter {
-    Queue<String> inputQueue;
-    Queue<String> outputQueue;
+    final Queue<String> inputQueue;
+    final Queue<String> outputQueue;
 
     public MockIOAdapter() {
         inputQueue = new LinkedList<>();

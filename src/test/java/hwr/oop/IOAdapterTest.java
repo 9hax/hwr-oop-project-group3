@@ -1,7 +1,7 @@
 package hwr.oop;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,10 +12,12 @@ public class IOAdapterTest {
     @Test
     void createConsoleIOAdapterTest() {
         IOAdapter ioAdapter = new ConsoleIOAdapter();
+        assertThat(ioAdapter).isNotNull();
     }
     @Test
     void createMockIOTest() {
         IOAdapter ioAdapter = new MockIOAdapter();
+        assertThat(ioAdapter).isNotNull();
     }
     @Test
     void test_input() {
@@ -26,7 +28,7 @@ public class IOAdapterTest {
 
         String returned = ioAdapter.getString();
 
-        Assertions.assertThat(returned).isEqualTo(inputString);
+        assertThat(returned).isEqualTo(inputString);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class IOAdapterTest {
         String[] outputLines = outputStream.toString().split(System.lineSeparator());
         String lastOutput = outputLines[outputLines.length-1];
 
-        Assertions.assertThat(lastOutput).isEqualTo(outputString);
+        assertThat(lastOutput).isEqualTo(outputString);
     }
 
     @Test
@@ -53,7 +55,7 @@ public class IOAdapterTest {
 
         String returned = ioAdapter.getString();
 
-        Assertions.assertThat(returned).isEqualTo(inputString);
+        assertThat(returned).isEqualTo(inputString);
     }
 
     @Test
@@ -65,6 +67,6 @@ public class IOAdapterTest {
 
         String lastOutput = ioAdapter.pollOutput();
 
-        Assertions.assertThat(lastOutput).isEqualTo(outputString);
+        assertThat(lastOutput).isEqualTo(outputString);
     }
 }

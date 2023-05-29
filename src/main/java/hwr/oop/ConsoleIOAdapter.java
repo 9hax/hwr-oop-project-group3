@@ -1,7 +1,4 @@
 package hwr.oop;
-
-import jdk.jshell.spi.ExecutionControl;
-
 import java.util.Scanner;
 
 public class ConsoleIOAdapter implements IOAdapter {
