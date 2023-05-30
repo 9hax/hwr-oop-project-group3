@@ -30,4 +30,6 @@ interface Round {
     int getTotalPoints();
 
     int getRound();
+
+    int getBonusPointCalculationCounter();
 }

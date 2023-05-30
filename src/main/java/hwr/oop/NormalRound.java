@@ -178,4 +178,11 @@ public class NormalRound implements Round{
             return previousRound.getRound() + 1;
         }
     }
+
+    @Override
+    public int getBonusPointCalculationCounter() {
+        return bonusPointCalculationCounter;
+    }
+
+
 }

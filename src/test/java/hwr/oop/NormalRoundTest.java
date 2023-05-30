@@ -202,4 +202,10 @@ public class NormalRoundTest {
 
         assertThat(roundList).isEqualTo(roundTestList);
     }
+
+    @Test
+    void playStrikeRound_getBonusPointCalculationCounter(){
+        Round firstRound = new NormalRound(List.of(new Throw(10)));
+        assertThat(firstRound.getBonusPointCalculationCounter()).isEqualTo(2);
+    }
 }
