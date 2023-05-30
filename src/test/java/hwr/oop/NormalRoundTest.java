@@ -8,12 +8,12 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class NormalRoundTest {
+class NormalRoundTest {
 
     @Test
     void createEmptyRoundTest() {
         Round round = new NormalRound();
-        assertThat(round.getPoints()).isEqualTo(0);
+        assertThat(round.getPoints()).isZero();
     }
 
     @Test
@@ -37,7 +37,7 @@ public class NormalRoundTest {
         List<Throw> normalThrowList = List.of(new Throw(1), new Throw(3));
         Round round = new NormalRound(normalThrowList);
         round.calculateBonusPoints();
-        assertThat(round.getBonusPoints()).isEqualTo(0);
+        assertThat(round.getBonusPoints()).isZero();
     }
 
     @Test
@@ -74,7 +74,7 @@ public class NormalRoundTest {
         // Test the boundaries
         List<Throw> validThrowList = List.of(new Throw(0), new Throw(0));
         NormalRound validRound = new NormalRound(validThrowList);
-        assertThat(validRound.getPoints()).isEqualTo(0);
+        assertThat(validRound.getPoints()).isZero();
 
         validThrowList = List.of(new Throw(5), new Throw(5));
         assertThat(new NormalRound(validThrowList).getPoints()).isEqualTo(10);
@@ -171,7 +171,7 @@ public class NormalRoundTest {
         Round firstRound = new NormalRound(firstRoundThrows);
         Round secondRound = new NormalRound(secondRoundThrows, firstRound);
         int bonusPoints = secondRound.getBonusPoints();
-        assertThat(bonusPoints).isEqualTo(0);
+        assertThat(bonusPoints).isZero();
     }
 
     @Test

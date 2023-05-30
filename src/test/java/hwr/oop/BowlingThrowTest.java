@@ -5,7 +5,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-public class BowlingThrowTest {
+class BowlingThrowTest {
     @Test
     void testSetFallenPins_ValidPinsFallen(){
         //given
@@ -15,7 +15,7 @@ public class BowlingThrowTest {
         assertThat(bowlThrow.getFallenPins()).isEqualTo(3);
 
         bowlThrow.setFallenPins(0);
-        assertThat(bowlThrow.getFallenPins()).isEqualTo(0);
+        assertThat(bowlThrow.getFallenPins()).isZero();
         bowlThrow.setFallenPins(10);
         assertThat(bowlThrow.getFallenPins()).isEqualTo(10);
     }

@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class GameTest {
+class GameTest {
 
     @Test
     void initializeGameTest() {
@@ -24,14 +24,14 @@ public class GameTest {
     @Test
     void createGame_checkPlayerOrder() {
         Game game = new Game(List.of("Bruh", "Bro", "Bre"));
-        assertThat(game.getRound()).isEqualTo(0);
+        assertThat(game.getRound()).isZero();
 
         Player currentPlayer = game.getCurrentPlayer();
         assertThat(currentPlayer.getName()).isEqualTo("Bruh");
 
         assertThat(currentPlayer.getRound()).isEqualTo(-1);
         currentPlayer.throwBall(4);
-        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        assertThat(currentPlayer.getPlayerPoints()).isZero();
         currentPlayer.throwBall(2);
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(6);
 
@@ -41,9 +41,9 @@ public class GameTest {
         currentPlayer = game.getCurrentPlayer();
         assertThat(currentPlayer.getName()).isEqualTo("Bro");
 
-        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        assertThat(currentPlayer.getPlayerPoints()).isZero();
         currentPlayer.throwBall(3);
-        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        assertThat(currentPlayer.getPlayerPoints()).isZero();
         currentPlayer.throwBall(5);
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(8);
 
@@ -53,9 +53,9 @@ public class GameTest {
         currentPlayer = game.getCurrentPlayer();
         assertThat(currentPlayer.getName()).isEqualTo("Bre");
 
-        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        assertThat(currentPlayer.getPlayerPoints()).isZero();
         currentPlayer.throwBall(1);
-        assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
+        assertThat(currentPlayer.getPlayerPoints()).isZero();
         currentPlayer.throwBall(8);
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(9);
 
@@ -68,7 +68,7 @@ public class GameTest {
     void test_to_round10() {
         Game game = new Game(List.of("Hänsel", "Gretel"));
         assertThat(game.getCurrentPlayer().getName()).isEqualTo("Hänsel");
-        assertThat(game.getRound()).isEqualTo(0);
+        assertThat(game.getRound()).isZero();
         for(int i = 0; i < 40; i++) {
             game.getCurrentPlayer().throwBall(1);
         }

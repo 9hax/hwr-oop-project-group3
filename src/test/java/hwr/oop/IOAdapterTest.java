@@ -8,7 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class IOAdapterTest {
+class IOAdapterTest {
 
     @Test
     void createConsoleIOAdapterTest() {
@@ -52,7 +52,7 @@ public class IOAdapterTest {
     void testInputMock() {
         IOAdapter ioAdapter = new MockIOAdapter();
         String inputString = "This is a test string.";
-        assertThat(ioAdapter.getString()).isEqualTo("");
+        assertThat(ioAdapter.getString()).isEmpty();
         ioAdapter.queueInput(inputString);
 
         String returned = ioAdapter.getString();
@@ -77,6 +77,6 @@ public class IOAdapterTest {
         IOAdapter ioAdapter = new ConsoleIOAdapter();
 
         assertThatThrownBy(() ->ioAdapter.queueInput("")).isInstanceOf(RuntimeException.class);
-        assertThatThrownBy(() ->ioAdapter.pollOutput()).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(ioAdapter::pollOutput).isInstanceOf(RuntimeException.class);
     }
 }

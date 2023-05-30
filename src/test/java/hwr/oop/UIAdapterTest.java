@@ -6,7 +6,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class UIAdapterTest {
+class UIAdapterTest {
     @Test
     void startUIPutPlayerNames_getGame() {
         IOAdapter ioAdapter = new MockIOAdapter();
