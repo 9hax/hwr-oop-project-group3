@@ -19,6 +19,7 @@ public class PlayerTest {
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getLastPlayedRound().getPoints()).isEqualTo(10);
         Round lastPlayedRound = namedPlayer.getLastPlayedRound();
+        assertThat(lastPlayedRound.getBonusPointCalculationCounter()).isEqualTo(2);
         continueRound = namedPlayer.throwBall(5);
         assertThat(continueRound).isTrue();
         continueRound = namedPlayer.throwBall(3);
