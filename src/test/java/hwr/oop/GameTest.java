@@ -22,13 +22,12 @@ public class GameTest {
     /* Command + N: Generate Test Method */
 
     @Test
-    void createGame_getRound() {
+    void createGame_checkPlayerOrder() {
         Game game = new Game(List.of("Bruh", "Bro", "Bre"));
         assertThat(game.getRound()).isEqualTo(0);
 
         Player currentPlayer = game.getCurrentPlayer();
         assertThat(currentPlayer.getName()).isEqualTo("Bruh");
-        System.out.println(currentPlayer.getName());
 
         assertThat(currentPlayer.getRound()).isEqualTo(-1);
         currentPlayer.throwBall(4);
@@ -40,7 +39,7 @@ public class GameTest {
         assertThat(currentPlayer).isNotEqualTo(game.getCurrentPlayer());
 
         currentPlayer = game.getCurrentPlayer();
-        System.out.println(currentPlayer.getName());
+        assertThat(currentPlayer.getName()).isEqualTo("Bro");
 
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
         currentPlayer.throwBall(3);
@@ -52,7 +51,7 @@ public class GameTest {
         assertThat(currentPlayer).isNotEqualTo(game.getCurrentPlayer());
 
         currentPlayer = game.getCurrentPlayer();
-        System.out.println(currentPlayer.getName());
+        assertThat(currentPlayer.getName()).isEqualTo("Bre");
 
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(0);
         currentPlayer.throwBall(1);
