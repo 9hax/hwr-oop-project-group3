@@ -14,13 +14,16 @@ public class MockIOAdapter implements IOAdapter {
     @Override
     public String getString() {
         if(!inputQueue.isEmpty()){
-            return inputQueue.poll();
+            String inputString = inputQueue.poll();
+            System.out.println("Polled from input: " + inputString);
+            return inputString;
         }
         return "";
     }
 
     @Override
     public void putString(String outputString) {
+        System.out.println(outputString);
         outputQueue.add(outputString);
     }
 
