@@ -1,7 +1,7 @@
 # HWR OOP Lecture Project - Bowling
-last updated 2023-05-18
 
-This repository contains a student project created for an ongoing lecture on object-oriented programming with Java at HWR Berlin (summer term 2023).
+This repository contains a student project created for an ongoing lecture on object-oriented programming with Java at 
+HWR Berlin (summer term 2023).
 
 > :warning: This code is for educational purposes only. Do not rely on it!
 
@@ -25,20 +25,22 @@ Test driven development is hard to grasp at first, but easier the more time you 
 
 [TODO]: <> (Add a new row to the table for every completed feature.)
 
-| Number | Feature | Tests |
-|--------|---------|-------|
-| 1      | Throws  | 4     |
-| 2      | Rounds  | 19    |
-| 3      | Player  | 5     |
-| 4      | Game    | 1     |
+| Number | Feature   | Tests |
+|--------|-----------|-------|
+| 1      | Throws    | 4     |
+| 2      | Rounds    | 21    |
+| 3      | Player    | 7     |
+| 4      | Game      | 3     |
+| 5      | IOAdapter | 6     |
+| 6      | UI        | 1     |
 
 ## Additional Dependencies
 
 [TODO]: <> (Add a new row to the table for every required dependency.)
 
-| Number | Dependency Name | Dependency Description | Why is it necessary? |
-|--------|-----------------|------------------------|----------------------|
-| 1      | /               | /                      | /                    |
+| Number | Dependency Name | Dependency Description   | Why is it necessary?                           |
+|--------|-----------------|--------------------------|------------------------------------------------|
+| 1      | JVM             | The programming language | Because you need to programm, but I'm not sure |
 
 ## Contributing
 
