@@ -24,7 +24,6 @@ public class Player {
         } else {
             tempRound = new NormalRound(List.of(new Throw(fallenPins)));
             if (tempRound.isStrike()) {
-                tempRound.prepareBonusCounter();
                 updateLastPlayedRound();
                 return false;
             } else {
