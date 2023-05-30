@@ -3,7 +3,7 @@ package hwr.oop;
 import java.util.List;
 
 public class ConsoleUI implements UI {
-    IOAdapter ioAdapter;
+    final IOAdapter ioAdapter;
 
     public ConsoleUI(IOAdapter ioAdapter) {
         this.ioAdapter = ioAdapter;

@@ -79,7 +79,7 @@ class NormalRoundTest {
         validThrowList = List.of(new Throw(5), new Throw(5));
         assertThat(new NormalRound(validThrowList).getPoints()).isEqualTo(10);
 
-        // The following throws an excception, as 11 pins are hit according to the throwList.
+        // The following throws an exception, as 11 pins are hit according to the throwList.
         List<Throw> invalidThrowList = List.of(new Throw(6), new Throw(6));
         assertThatThrownBy(() -> new NormalRound(invalidThrowList)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() ->new NormalRound(invalidThrowList, validRound)).isInstanceOf(IllegalArgumentException.class);
