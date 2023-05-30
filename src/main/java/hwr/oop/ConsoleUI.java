@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ConsoleUI implements UI {
     final IOAdapter ioAdapter;
+    Game game;
 
     public ConsoleUI(IOAdapter ioAdapter) {
         this.ioAdapter = ioAdapter;
@@ -18,7 +19,37 @@ public class ConsoleUI implements UI {
         List <String> playerNames = inputStringList();
         ioAdapter.putString("Registered players: "+
                 playerNames.toString().replace("[", "").replace("]",""));
-        return new Game(playerNames);
+        game = new Game(playerNames);
+        return game;
+    }
+
+    private void playOnce() {
+        //TODO printScores(), add SinglePlayerMode
+        Player player = game.getCurrentPlayer();
+        while (player == game.getCurrentPlayer()) {
+            playPlayerRound(player);
+        }
+    }
+
+    @Override
+    public void playRound() {
+        ioAdapter.putString(Integer.toString(game.getRound()));
+        int currentRound = game.getRound();
+        while (currentRound == game.getRound()) {
+            playOnce();
+        }
+    }
+
+    private void playPlayerRound(Player player) {
+        ioAdapter.putString("How many Pins did " + player.getName() + " hit? >");
+        String input = ioAdapter.getString();
+        int hitPins;
+        try {
+            hitPins = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            hitPins = 0;
+        }
+        player.throwBall(hitPins);
     }
 
     private List<String> inputStringList(){

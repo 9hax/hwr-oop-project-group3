@@ -27,4 +27,15 @@ class ConsoleUIAdapterTest {
         assertThat(players.get(0).getName()).isEqualTo("Steve");
         assertThat(players.get(1).getName()).isEqualTo("Notch");
     }
+
+    @Test
+    void startGamePlayRound_roundEquals1() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        UI ui = new ConsoleUI(ioAdapter);
+        ioAdapter.queueInput("Alex");
+        ioAdapter.queueInput("Steve");
+        Game game = ui.createGame();
+        ui.playRound();
+        assertThat(game.getRound()).isEqualTo(1);
+    }
 }
