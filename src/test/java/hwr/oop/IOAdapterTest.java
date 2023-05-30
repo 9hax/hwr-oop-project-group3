@@ -2,6 +2,7 @@ package hwr.oop;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -51,6 +52,7 @@ public class IOAdapterTest {
     void testInputMock() {
         IOAdapter ioAdapter = new MockIOAdapter();
         String inputString = "This is a test string.";
+        assertThat(ioAdapter.getString()).isEqualTo("");
         ioAdapter.queueInput(inputString);
 
         String returned = ioAdapter.getString();
@@ -68,5 +70,13 @@ public class IOAdapterTest {
         String lastOutput = ioAdapter.pollOutput();
 
         assertThat(lastOutput).isEqualTo(outputString);
+    }
+
+    @Test
+    void testConsoleMockingException(){
+        IOAdapter ioAdapter = new ConsoleIOAdapter();
+
+        assertThatThrownBy(() ->ioAdapter.queueInput("")).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() ->ioAdapter.pollOutput()).isInstanceOf(RuntimeException.class);
     }
 }
