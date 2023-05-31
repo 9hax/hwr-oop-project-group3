@@ -33,6 +33,9 @@ class TextUITest {
         IOAdapter ioAdapter = new MockIOAdapter();
         TextUI ui = new ConsoleTextUI(ioAdapter);
         ioAdapter.queueInput("Alex");
+        ioAdapter.queueInput("");
+        ioAdapter.queueInput("2");
+        ioAdapter.queueInput("4");
         //ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
         ui.playRound();
