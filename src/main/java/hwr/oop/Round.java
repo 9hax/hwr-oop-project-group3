@@ -17,13 +17,13 @@ interface Round {
     void setPreviousRound(Round round);
 
     void calculateBonusPoints();
-    void calculateBonusPoints(List<Throw> throwList);
+    void calculateBonusPoints(List<BowlingThrow> throwList);
 
     void prepareBonusCounter();
 
     ArrayList<Round> convertToList();
 
-    void addThrow(Throw aThrow);
+    void addThrow(BowlingThrow aThrow);
 
     Round getPreviousRound();
 

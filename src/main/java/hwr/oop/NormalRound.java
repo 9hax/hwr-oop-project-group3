@@ -6,7 +6,7 @@ import java.util.List;
 
 public class NormalRound implements Round{
 
-    private List<Throw> throwList;
+    private List<BowlingThrow> throwList;
     private Round previousRound;
 
     int bonusPoints;
@@ -17,12 +17,12 @@ public class NormalRound implements Round{
 
 
     public NormalRound() {
-        this.throwList = Arrays.asList(new Throw(), new Throw());
+        this.throwList = Arrays.asList(new BowlingThrow(), new BowlingThrow());
         this.previousRound = null;
         this.bonusPointCalculationCounterIsValid = false;
     }
 
-    public NormalRound(List<Throw> throwList) {
+    public NormalRound(List<BowlingThrow> throwList) {
         this.previousRound = null;
         this.bonusPointCalculationCounterIsValid = false;
 
@@ -34,7 +34,7 @@ public class NormalRound implements Round{
         }
     }
 
-    public NormalRound(List<Throw> throwList, Round previousRound) {
+    public NormalRound(List<BowlingThrow> throwList, Round previousRound) {
         this.previousRound = null;
         this.bonusPointCalculationCounterIsValid = false;
 
@@ -50,7 +50,7 @@ public class NormalRound implements Round{
     @Override
     public int getPoints(){
         int roundPoints =0;
-        for (Throw singleThrow :
+        for (BowlingThrow singleThrow :
                 throwList) {
             roundPoints+=singleThrow.getFallenPins();
         }
@@ -60,7 +60,7 @@ public class NormalRound implements Round{
 
     @Override
     public boolean isStrike() {
-        Throw firstThrow = this.throwList.get(0);
+        BowlingThrow firstThrow = this.throwList.get(0);
         return firstThrow.hasCleared();
     }
 
@@ -69,8 +69,8 @@ public class NormalRound implements Round{
         if (throwList.size()<2) {
             return false;
         }
-        Throw firstThrow = this.throwList.get(0);
-        Throw secondThrow = this.throwList.get(1);
+        BowlingThrow firstThrow = this.throwList.get(0);
+        BowlingThrow secondThrow = this.throwList.get(1);
 
         int sum = firstThrow.getFallenPins() + secondThrow.getFallenPins();
         return sum == 10;
@@ -95,14 +95,14 @@ public class NormalRound implements Round{
     }
 
     @Override
-    public void calculateBonusPoints(List<Throw> throwList){
-        List<Throw> tempThrowList = new ArrayList<>(throwList);
+    public void calculateBonusPoints(List<BowlingThrow> throwList){
+        List<BowlingThrow> tempThrowList = new ArrayList<>(throwList);
         for (; bonusPointCalculationCounter > 0; bonusPointCalculationCounter--){
             if (tempThrowList.isEmpty()) {break;}
             bonusPoints += tempThrowList.get(0).getFallenPins();
             tempThrowList.remove(0);
         }
-        List<Throw> fullThrowList = new ArrayList<>(this.throwList);
+        List<BowlingThrow> fullThrowList = new ArrayList<>(this.throwList);
         fullThrowList.addAll(throwList);
         if (previousRound == null){
             return;
@@ -123,9 +123,9 @@ public class NormalRound implements Round{
         }
     }
 
-    private static boolean validateThrowList(List<Throw> throwListValidationTarget) {
+    private static boolean validateThrowList(List<BowlingThrow> throwListValidationTarget) {
         int fallenPinsValidityCounter = 0;
-        for (Throw singleThrow :
+        for (BowlingThrow singleThrow :
                 throwListValidationTarget) {
             fallenPinsValidityCounter += singleThrow.getFallenPins();
         }
@@ -144,8 +144,8 @@ public class NormalRound implements Round{
     }
 
     @Override
-    public void addThrow(Throw aThrow) {
-        ArrayList<Throw> newThrowList = new ArrayList<> (this.throwList);
+    public void addThrow(BowlingThrow aThrow) {
+        ArrayList<BowlingThrow> newThrowList = new ArrayList<> (this.throwList);
         newThrowList.add(aThrow);
         if (validateThrowList(newThrowList)){
             this.throwList = newThrowList;

@@ -17,12 +17,12 @@ public class Player {
 
     boolean throwBall(int fallenPins) {
         if (tempRound != null) {
-            tempRound.addThrow(new Throw(fallenPins));
+            tempRound.addThrow(new BowlingThrow(fallenPins));
             tempRound.prepareBonusCounter();
             updateLastPlayedRound();
             return false;
         } else {
-            tempRound = new NormalRound(List.of(new Throw(fallenPins)));
+            tempRound = new NormalRound(List.of(new BowlingThrow(fallenPins)));
             if (tempRound.isStrike()) {
                 updateLastPlayedRound();
                 return false;

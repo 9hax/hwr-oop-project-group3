@@ -1,11 +1,11 @@
 package hwr.oop;
 
-public class Throw {
+public class BowlingThrow {
     private int fallenPins;
-    public Throw(int fallenPins) {
+    public BowlingThrow(int fallenPins) {
         setFallenPins(fallenPins);
     }
-    public Throw() {
+    public BowlingThrow() {
     }
 
     public void setFallenPins(int fallenPins) throws IllegalArgumentException{
