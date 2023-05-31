@@ -24,7 +24,7 @@ public class ConsoleTextUI implements TextUI {
     }
 
     private void allPlayersPlayOneRound() {
-        //TODO printScores(), add SinglePlayerMode
+            //TODO printScores()
         boolean playNextRound = true;
         while (playNextRound) {
             playNextRound = playPlayerRound(game.getCurrentPlayer());
