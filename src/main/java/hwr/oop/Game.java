@@ -19,7 +19,7 @@ public class Game {
     }
 
     public int getRound() {
-        int currentRound = 0;
+        int currentRound = -1;
         for (Player player :
                 players) {
             if (player.getRound() > currentRound) {
