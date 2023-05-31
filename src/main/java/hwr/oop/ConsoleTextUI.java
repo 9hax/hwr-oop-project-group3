@@ -23,7 +23,7 @@ public class ConsoleTextUI implements TextUI {
         return game;
     }
 
-    private void playOnce() {
+    private void allPlayersPlayOneRound() {
         //TODO printScores(), add SinglePlayerMode
         boolean playNextRound = true;
         while (playNextRound) {
@@ -36,7 +36,7 @@ public class ConsoleTextUI implements TextUI {
         ioAdapter.putString(Integer.toString(game.getRound()));
         int currentRound = game.getRound();
         while (currentRound == game.getRound()) {
-            playOnce();
+            allPlayersPlayOneRound();
         }
     }
 

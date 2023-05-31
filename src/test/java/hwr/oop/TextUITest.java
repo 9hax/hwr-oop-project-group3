@@ -29,7 +29,7 @@ class TextUITest {
     }
 
     @Test
-    void startGamePlayRound_roundEquals1() {
+    void startGamePlayRound_gameIsInFirstRound() {
         IOAdapter ioAdapter = new MockIOAdapter();
         TextUI ui = new ConsoleTextUI(ioAdapter);
         ioAdapter.queueInput("Alex");
