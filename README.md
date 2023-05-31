@@ -38,9 +38,9 @@ Test driven development is hard to grasp at first, but easier the more time you 
 
 [TODO]: <> (Add a new row to the table for every required dependency.)
 
-| Number | Dependency Name | Dependency Description   | Why is it necessary?                           |
-|--------|-----------------|--------------------------|------------------------------------------------|
-| 1      | JVM             | The programming language | Because you need to programm, but I'm not sure |
+| Number | Dependency Name                    | Dependency Description                                                    | Why is it necessary?         |
+|--------|------------------------------------|---------------------------------------------------------------------------|------------------------------|
+| 1      | Java-Compatible JVM implementation | A JVM implementation that supports reading Java Class Files from Javac17. | Provides runtime environment |
 
 ## Contributing
 
