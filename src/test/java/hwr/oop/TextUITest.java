@@ -41,4 +41,17 @@ class TextUITest {
         ui.playRound();
         assertThat(game.getRound()).isZero();
     }
+
+    @Test
+    void scorePoints_printScores() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("Alex");
+        ioAdapter.queueInput("");
+        ioAdapter.queueInput("2");
+        ioAdapter.queueInput("4");
+        Game game = ui.createGame();
+        ui.playRound();
+        assertThat(ioAdapter.lastOutput()).isEqualTo("Alex has scored 6 points.");
+    }
 }

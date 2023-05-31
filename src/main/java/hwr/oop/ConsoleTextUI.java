@@ -24,11 +24,11 @@ public class ConsoleTextUI implements TextUI {
     }
 
     private void allPlayersPlayOneRound() {
-            //TODO printScores()
         boolean playNextRound = true;
         while (playNextRound) {
             playNextRound = playPlayerRound(game.getCurrentPlayer());
         }
+        printScores();
     }
 
     @Override
@@ -65,5 +65,13 @@ public class ConsoleTextUI implements TextUI {
             }
         }
         return inputs;
+    }
+
+    private void printScores(){
+        List <Player> players = game.getPlayers();
+        for (Player player :
+                players) {
+            ioAdapter.putString(player.getName() + " has scored " + player.getPlayerPoints() + " points.");
+        }
     }
 }
