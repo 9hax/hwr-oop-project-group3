@@ -61,5 +61,4 @@ public class Player {
         }
         return -1;
     }
-    //TODO make everything package-private
 }
