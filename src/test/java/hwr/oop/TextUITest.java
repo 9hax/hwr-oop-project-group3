@@ -50,7 +50,7 @@ class TextUITest {
         ioAdapter.queueInput("");
         ioAdapter.queueInput("2");
         ioAdapter.queueInput("4");
-        Game game = ui.createGame();
+        ui.createGame();
         ui.playRound();
         assertThat(ioAdapter.lastOutput()).isEqualTo("Alex has scored 6 points.");
     }
