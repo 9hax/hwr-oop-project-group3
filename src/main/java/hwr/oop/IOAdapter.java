@@ -8,4 +8,6 @@ public interface IOAdapter {
     void queueInput(String inputString);
 
     String pollOutput();
+
+    String lastOutput();
 }

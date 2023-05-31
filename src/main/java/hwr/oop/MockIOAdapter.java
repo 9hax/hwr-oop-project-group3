@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public class MockIOAdapter implements IOAdapter {
     final Queue<String> inputQueue;
-    final Queue<String> outputQueue;
+    LinkedList<String> outputQueue;
 
     public MockIOAdapter() {
         inputQueue = new LinkedList<>();
@@ -35,6 +35,13 @@ public class MockIOAdapter implements IOAdapter {
 
     public String pollOutput(){
         return  outputQueue.poll();
+    }
+
+    @Override
+    public String lastOutput() {
+        String lastOutput = outputQueue.getLast();
+        outputQueue = new LinkedList<>();
+        return lastOutput;
     }
 
 }

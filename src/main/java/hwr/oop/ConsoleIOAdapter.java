@@ -22,6 +22,11 @@ public class ConsoleIOAdapter implements IOAdapter {
     public String pollOutput() {
         throw new NonMockableClassException("The pollOutput Mocking method has been called in a non-mockable class.");
     }
+
+    @Override
+    public String lastOutput() {
+        throw new NonMockableClassException("The pollOutput Mocking method has been called in a non-mockable class.");
+    }
 }
 class NonMockableClassException extends RuntimeException {
     public NonMockableClassException(String errorMessage) {
