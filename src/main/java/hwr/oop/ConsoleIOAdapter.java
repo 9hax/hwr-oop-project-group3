@@ -15,11 +15,18 @@ public class ConsoleIOAdapter implements IOAdapter {
 
     @Override
     public void queueInput(String inputString) {
-        throw new RuntimeException("The queueInput Mocking method has been called in a non-mockable class.");
+        throw new NonMockableClassException("The queueInput Mocking method has been called in a non-mockable class.");
     }
 
     @Override
     public String pollOutput() {
-        throw new RuntimeException("The pollOutput Mocking method has been called in a non-mockable class.");
+        throw new NonMockableClassException("The pollOutput Mocking method has been called in a non-mockable class.");
     }
 }
+class NonMockableClassException extends RuntimeException {
+    public NonMockableClassException(String errorMessage) {
+        super(errorMessage);
+    }
+}
+
+
