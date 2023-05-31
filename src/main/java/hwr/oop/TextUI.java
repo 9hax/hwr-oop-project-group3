@@ -1,6 +1,6 @@
 package hwr.oop;
 
-public interface UI {
+public interface TextUI {
     Game createGame();
 
     void playRound();

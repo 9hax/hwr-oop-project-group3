@@ -6,11 +6,11 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class ConsoleUIAdapterTest {
+class TextUITest {
     @Test
     void startUIPutPlayerName_getGame() {
         IOAdapter ioAdapter = new MockIOAdapter();
-        UI ui = new ConsoleUI(ioAdapter);
+        TextUI ui = new ConsoleTextUI(ioAdapter);
         ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
         List <Player> players = game.getPlayers();
@@ -19,7 +19,7 @@ class ConsoleUIAdapterTest {
     @Test
     void startUIPutMultiPlayerGame_getGame() {
         IOAdapter ioAdapter = new MockIOAdapter();
-        UI ui = new ConsoleUI(ioAdapter);
+        TextUI ui = new ConsoleTextUI(ioAdapter);
         ioAdapter.queueInput("Steve");
         ioAdapter.queueInput("Notch");
         Game game = ui.createGame();
@@ -31,7 +31,7 @@ class ConsoleUIAdapterTest {
     @Test
     void startGamePlayRound_roundEquals1() {
         IOAdapter ioAdapter = new MockIOAdapter();
-        UI ui = new ConsoleUI(ioAdapter);
+        TextUI ui = new ConsoleTextUI(ioAdapter);
         ioAdapter.queueInput("Alex");
         ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
