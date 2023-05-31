@@ -25,9 +25,9 @@ public class ConsoleTextUI implements TextUI {
 
     private void playOnce() {
         //TODO printScores(), add SinglePlayerMode
-        Player player = game.getCurrentPlayer();
-        while (player == game.getCurrentPlayer()) {
-            playPlayerRound(player);
+        boolean playNextRound = true;
+        while (playNextRound) {
+            playNextRound = playPlayerRound(game.getCurrentPlayer());
         }
     }
 
@@ -40,7 +40,7 @@ public class ConsoleTextUI implements TextUI {
         }
     }
 
-    private void playPlayerRound(Player player) {
+    private boolean playPlayerRound(Player player) {
         ioAdapter.putString("How many Pins did " + player.getName() + " hit? >");
         String input = ioAdapter.getString();
         int hitPins;
@@ -49,7 +49,7 @@ public class ConsoleTextUI implements TextUI {
         } catch (NumberFormatException e) {
             hitPins = 0;
         }
-        player.throwBall(hitPins);
+        return player.throwBall(hitPins);
     }
 
     private List<String> inputStringList(){

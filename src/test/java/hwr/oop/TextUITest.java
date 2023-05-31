@@ -33,7 +33,7 @@ class TextUITest {
         IOAdapter ioAdapter = new MockIOAdapter();
         TextUI ui = new ConsoleTextUI(ioAdapter);
         ioAdapter.queueInput("Alex");
-        ioAdapter.queueInput("Steve");
+        //ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
         ui.playRound();
         assertThat(game.getRound()).isEqualTo(1);
