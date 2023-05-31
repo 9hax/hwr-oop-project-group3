@@ -24,7 +24,7 @@ class GameTest {
     @Test
     void createGame_checkPlayerOrder() {
         Game game = new Game(List.of("Bruh", "Bro", "Bre"));
-        assertThat(game.getRound()).isZero();
+        assertThat(game.getRound()).isEqualTo(-1);
 
         Player currentPlayer = game.getCurrentPlayer();
         assertThat(currentPlayer.getName()).isEqualTo("Bruh");
@@ -68,7 +68,7 @@ class GameTest {
     void test_to_round10() {
         Game game = new Game(List.of("Hänsel", "Gretel"));
         assertThat(game.getCurrentPlayer().getName()).isEqualTo("Hänsel");
-        assertThat(game.getRound()).isZero();
+        assertThat(game.getRound()).isEqualTo(-1);
         for(int i = 0; i < 40; i++) {
             game.getCurrentPlayer().throwBall(1);
         }
