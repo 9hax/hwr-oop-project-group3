@@ -12,6 +12,7 @@ public class MockIOAdapter implements IOAdapter {
         outputQueue = new LinkedList<>();
     }
     @Override
+    @SuppressWarnings("java:S106")
     public String getString() {
         if(!inputQueue.isEmpty()){
             String inputString = inputQueue.poll();
@@ -22,6 +23,7 @@ public class MockIOAdapter implements IOAdapter {
     }
 
     @Override
+    @SuppressWarnings("java:S106")
     public void putString(String outputString) {
         System.out.println(outputString);
         outputQueue.add(outputString);
