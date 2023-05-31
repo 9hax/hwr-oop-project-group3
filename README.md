@@ -9,8 +9,9 @@ HWR Berlin (summer term 2023).
 
 [TODO]: <> (Write a short description of your project.)
 This application provides the logic of a bowling game. 
-The player has to give the fallen pins to the program. 
-Then it calculates the points and the bonus points of every round.
+The player has to give the number of fallen pins to the program. 
+The program then calculates the points and the bonus points for every round.
+Multiple Players are supported.
 
 [TODO]: <> (State most important features.)
 [not implemented]: <> (Score Table Calculation)
