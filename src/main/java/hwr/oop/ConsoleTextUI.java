@@ -3,11 +3,11 @@ package hwr.oop;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsoleUI implements UI {
+public class ConsoleTextUI implements TextUI {
     final IOAdapter ioAdapter;
     Game game;
 
-    public ConsoleUI(IOAdapter ioAdapter) {
+    public ConsoleTextUI(IOAdapter ioAdapter) {
         this.ioAdapter = ioAdapter;
     }
 
