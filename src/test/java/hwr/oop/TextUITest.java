@@ -39,6 +39,6 @@ class TextUITest {
         //ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
         ui.playRound();
-        assertThat(game.getRound()).isEqualTo(0);
+        assertThat(game.getRound()).isZero();
     }
 }
