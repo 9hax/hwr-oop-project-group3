@@ -79,4 +79,18 @@ class IOAdapterTest {
         assertThatThrownBy(() ->ioAdapter.queueInput("")).isInstanceOf(RuntimeException.class);
         assertThatThrownBy(ioAdapter::pollOutput).isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    void test_lastOutputMock() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        String outputString = "This is test string.";
+        String outputString2 = "This is another test string.";
+
+        ioAdapter.putString(outputString);
+        ioAdapter.putString(outputString2);
+
+        String lastOutput = ioAdapter.lastOutput();
+
+        assertThat(lastOutput).isEqualTo(outputString2);
+    }
 }
