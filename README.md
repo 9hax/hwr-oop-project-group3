@@ -16,7 +16,6 @@ Multiple Players are supported.
 [TODO]: <> (State most important features.)
 [not implemented]: <> (Score Table Calculation)
 [not implemented]: <> (User Management)
-[not implemented]: <> (Automatic Winner detection)
 
 ### Problems
 [TODO]: <> (State the most interesting problems you encountered during the project.)
