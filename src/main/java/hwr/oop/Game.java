@@ -19,10 +19,10 @@ public class Game {
     }
 
     public int getRound() {
-        int currentRound = -1;
+        int currentRound = 10;
         for (Player player :
                 players) {
-            if (player.getRound() > currentRound) {
+            if (player.getRound() < currentRound) {
                 currentRound = player.getRound();
             }
         }
