@@ -87,6 +87,7 @@ class TextUITest {
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("The game starts now!");
 
+        // The following magic number is the number of lines output during this test until the game is done.
         for(int round = 0; round<= 129; round++){
             ioAdapter.pollOutput();
         }
