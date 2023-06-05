@@ -26,7 +26,7 @@
 - [x] Exception Handling bei invalid throw combinations
 - [x] ScoreOutput nur nach Rundenende
 - [x] Strike/Spare ausgeben
-- [ ] das wars doch soweit (we are proud of our work)
+- [x] das wars doch soweit (we are proud of our work)
 
 ## Vorgang
 - Spiellogik
