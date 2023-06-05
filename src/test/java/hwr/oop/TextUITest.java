@@ -75,10 +75,10 @@ class TextUITest {
 
 
         ioAdapter.queueInput("2");
-        ioAdapter.queueInput("2");
-        ioAdapter.queueInput("3");
+        ioAdapter.queueInput("8");
+        ioAdapter.queueInput("10");
         ioAdapter.pollOutput();
-        for(int round = 0; round<= 37; round++){
+        for(int round = 0; round<= 36; round++){
             ioAdapter.queueInput("2");
         }
         ui.createGame();
@@ -89,13 +89,24 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("The game starts now!");
         ioAdapter.pollOutput();
         assertThat(ioAdapter.pollOutput()).isEqualTo("It's Alex's turn.");
+        ioAdapter.pollOutput();
+        ioAdapter.pollOutput();
+        ioAdapter.pollOutput();
+        ioAdapter.pollOutput();
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Alex just scored a SPARE!");
+        ioAdapter.pollOutput();
+        ioAdapter.pollOutput();
+        ioAdapter.pollOutput();
+        ioAdapter.pollOutput();
+        ioAdapter.pollOutput();
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve just scored a STRIKE!");
         ioAdapter.trimOutputQueue(5);
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("Game is finished!");
-        assertThat(ioAdapter.pollOutput()).isEqualTo("The winner is Steve von der Steve with 41 points. CongratulaZZ1ONES!");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("The winner is Steve von der Steve with 50 points. CongratulaZZ1ONES!");
         assertThat(ioAdapter.pollOutput()).isEqualTo("The Scores are the following:");
-        assertThat(ioAdapter.pollOutput()).isEqualTo("Alex scored 40 points.");
-        assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve scored 41 points.");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Alex scored 48 points.");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve scored 50 points.");
     }
 
     @Test

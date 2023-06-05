@@ -25,7 +25,7 @@
 - [ ] UserInputs sanitizen
 - [ ] Exception Handling bei invalid throw combinations
 - [ ] ScoreOutput nur nach Rundenende
-- [ ] Strike/Spare ausgeben
+- [x] Strike/Spare ausgeben
 - [ ] das wars doch soweit (we are proud of our work)
 
 ## Vorgang

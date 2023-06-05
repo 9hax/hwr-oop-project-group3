@@ -81,6 +81,12 @@ public class ConsoleTextUI implements TextUI {
         }
         else {
             ioAdapter.putString(player.getName() + " hit " + hitPins + " pins and has finished this round.");
+            if (player.getLastPlayedRound().isStrike()){
+                ioAdapter.putString(player.getName() + " just scored a STRIKE!");
+            }
+            if (player.getLastPlayedRound().isSpare()) {
+                ioAdapter.putString(player.getName() + " just scored a SPARE!");
+            }
         }
         return continuePlay;
     }
