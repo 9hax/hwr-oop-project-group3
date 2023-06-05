@@ -40,6 +40,19 @@ public class ConsoleTextUI implements TextUI {
         }
     }
 
+    @Override
+    public void playGame() {
+        ioAdapter.putString("The game starts now!");
+        for(int round = 0; round<= 9; round++){
+            playRound();
+        }
+        ioAdapter.putString("Game is finished!");
+
+        ioAdapter.putString("The winner is "+ game.determineWinner().getName() +
+                " with "+ game.determineWinner().getPlayerPoints()+ " points. CongratulaZZ1ONES!");
+    }
+
+
     private boolean playPlayerRound(Player player) {
         ioAdapter.putString("How many pins did " + player.getName() + " hit? >");
         String input = ioAdapter.getString();
