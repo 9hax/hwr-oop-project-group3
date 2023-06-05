@@ -22,17 +22,24 @@ Multiple Players are supported.
 Test driven development is hard to grasp at first, but easier the more time you spend on it.
 
 ## Feature List
+- play a bowling game
+- multiplayer and singleplayer are supported
+- robust error handling and input sanitisation
+- text-mode output
 
 [TODO]: <> (Add a new row to the table for every completed feature.)
 
 | Number | Feature   | Tests |
 |--------|-----------|-------|
 | 1      | Throws    | 4     |
-| 2      | Rounds    | 21    |
+| 2      | Rounds    | 20    |
 | 3      | Player    | 7     |
-| 4      | Game      | 3     |
-| 5      | IOAdapter | 6     |
-| 6      | UI        | 1     |
+| 4      | Game      | 4     |
+| 5      | IOAdapter | 10    |
+| 6      | TextUI    | 7     |
+| 7      | Lifecycle | 1     |
+
+
 
 ## Additional Dependencies
 
