@@ -96,5 +96,16 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve scored 41 points.");
     }
 
+    @Test
+    void restartAfterGameEnd() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("Y");
+        assertThat(ui.askRestart()).isTrue();
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Input Y to play another game. \n>");
+        ioAdapter.queueInput("");
+        assertThat(ui.askRestart()).isFalse();
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Input Y to play another game. \n>");
+    }
 }
 

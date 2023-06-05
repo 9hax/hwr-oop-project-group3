@@ -58,6 +58,12 @@ public class ConsoleTextUI implements TextUI {
         }
     }
 
+    @Override
+    public boolean askRestart() {
+        ioAdapter.putString("Input Y to play another game. \n>");
+        return ioAdapter.getString().equals("Y");
+    }
+
 
     private boolean playPlayerRound(Player player) {
         ioAdapter.putString("How many pins did " + player.getName() + " hit? >");

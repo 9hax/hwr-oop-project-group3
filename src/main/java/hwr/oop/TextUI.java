@@ -6,4 +6,6 @@ public interface TextUI {
     void playRound();
 
     void playGame();
+
+    boolean askRestart();
 }
