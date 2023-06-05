@@ -14,8 +14,8 @@ public class ConsoleTextUI implements TextUI {
     @Override
     public Game createGame() {
         ioAdapter.putString("Please input the names of each player. " +
-                "Please press ENTER after each name." +
-                "Press ENTER twice if you have written down all the player names");
+                "Please press ENTER after each name. " +
+                "Press ENTER twice if you have written down all the player names. \n>");
         List <String> playerNames = inputStringList();
         ioAdapter.putString("Registered players: "+
                 playerNames.toString().replace("[", "").replace("]",""));
@@ -33,7 +33,7 @@ public class ConsoleTextUI implements TextUI {
 
     @Override
     public void playRound() {
-        ioAdapter.putString(Integer.toString(game.getRound()));
+        ioAdapter.putString("Current round is #" + Integer.toString(game.getRound()+1));
         int currentRound = game.getRound();
         while (currentRound == game.getRound()) {
             allPlayersPlayOneRound();
@@ -41,7 +41,7 @@ public class ConsoleTextUI implements TextUI {
     }
 
     private boolean playPlayerRound(Player player) {
-        ioAdapter.putString("How many Pins did " + player.getName() + " hit? >");
+        ioAdapter.putString("How many pins did " + player.getName() + " hit? >");
         String input = ioAdapter.getString();
         int hitPins;
         try {
@@ -49,7 +49,14 @@ public class ConsoleTextUI implements TextUI {
         } catch (NumberFormatException e) {
             hitPins = 0;
         }
-        return player.throwBall(hitPins);
+        boolean continuePlay = player.throwBall(hitPins);
+        if (continuePlay){
+            ioAdapter.putString(player.getName()+ " hit " + Integer.toString(hitPins)+ " pins and throws again.");
+        }
+        else {
+            ioAdapter.putString(player.getName()+ " hit " + Integer.toString(hitPins)+ " pins and has finished this round.");
+        }
+        return continuePlay;
     }
 
     private List<String> inputStringList(){
