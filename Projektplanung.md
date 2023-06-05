@@ -23,7 +23,7 @@
 - [x] Runden# nicht praktisch (Start bei 1 ist besser)
 - [x] Wer ist dran?
 - [x] UserInputs sanitizen
-- [ ] Exception Handling bei invalid throw combinations
+- [x] Exception Handling bei invalid throw combinations
 - [ ] ScoreOutput nur nach Rundenende
 - [x] Strike/Spare ausgeben
 - [ ] das wars doch soweit (we are proud of our work)
