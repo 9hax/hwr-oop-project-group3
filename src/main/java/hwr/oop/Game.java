@@ -40,4 +40,19 @@ public class Game {
         }
         return currentPlayer;
     }
+
+    public Player determineWinner(){
+        if(players.isEmpty()){
+            return null;
+        }
+        Player winner = players.get(0);
+
+        for (Player player :
+                players) {
+            if(player.getPlayerPoints() >winner.getPlayerPoints()){
+                winner = player;
+            }
+        }
+        return winner;
+    }
 }
