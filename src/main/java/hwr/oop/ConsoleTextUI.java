@@ -33,7 +33,7 @@ public class ConsoleTextUI implements TextUI {
 
     @Override
     public void playRound() {
-        ioAdapter.putString("Current round is #" + Integer.toString(game.getRound()+1));
+        ioAdapter.putString("Current round is #" + (game.getRound()+1));
         int currentRound = game.getRound();
         while (currentRound == game.getRound()) {
             allPlayersPlayOneRound();
@@ -51,10 +51,10 @@ public class ConsoleTextUI implements TextUI {
         }
         boolean continuePlay = player.throwBall(hitPins);
         if (continuePlay){
-            ioAdapter.putString(player.getName()+ " hit " + Integer.toString(hitPins)+ " pins and throws again.");
+            ioAdapter.putString(player.getName() + " hit " + hitPins + " pins and throws again.");
         }
         else {
-            ioAdapter.putString(player.getName()+ " hit " + Integer.toString(hitPins)+ " pins and has finished this round.");
+            ioAdapter.putString(player.getName() + " hit " + hitPins + " pins and has finished this round.");
         }
         return continuePlay;
     }
