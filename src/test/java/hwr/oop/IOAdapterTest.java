@@ -53,9 +53,18 @@ class IOAdapterTest {
         IOAdapter ioAdapter = new MockIOAdapter();
         String inputString = "This is a test string.";
         assertThat(ioAdapter.getString()).isEmpty();
-        ioAdapter.queueInput(inputString);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream stream = new PrintStream(outputStream);
+        System.setOut(stream);
 
+        ioAdapter.queueInput(inputString);
         String returned = ioAdapter.getString();
+
+        String[] outputLines = outputStream.toString().split(System.lineSeparator());
+        String lastOutput = outputLines[outputLines.length-1];
+
+        assertThat(lastOutput).isEqualTo("Polled from input: " + inputString);
+
 
         assertThat(returned).isEqualTo(inputString);
     }
@@ -64,10 +73,18 @@ class IOAdapterTest {
     void test_outputMock() {
         IOAdapter ioAdapter = new MockIOAdapter();
         String outputString = "This is another test string.";
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream stream = new PrintStream(outputStream);
+        System.setOut(stream);
+
+
 
         ioAdapter.putString(outputString);
+        String[] outputLines = outputStream.toString().split(System.lineSeparator());
+        String lastOutput = outputLines[outputLines.length-1];
 
-        String lastOutput = ioAdapter.pollOutput();
+        assertThat(lastOutput).isEqualTo(outputString);
+        lastOutput = ioAdapter.pollOutput();
 
         assertThat(lastOutput).isEqualTo(outputString);
     }
@@ -78,6 +95,7 @@ class IOAdapterTest {
 
         assertThatThrownBy(() ->ioAdapter.queueInput("")).isInstanceOf(RuntimeException.class);
         assertThatThrownBy(ioAdapter::pollOutput).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(ioAdapter::lastOutput).isInstanceOf(RuntimeException.class);
     }
 
     @Test
