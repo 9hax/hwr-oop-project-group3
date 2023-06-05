@@ -43,7 +43,8 @@ class TextUITest {
         ui.playRound();
         ioAdapter.pollOutput();
         ioAdapter.pollOutput();
-        assertThat(ioAdapter.pollOutput()).isEqualTo("Current round is #0");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Current round is #1");
+        ioAdapter.pollOutput();
         assertThat(ioAdapter.pollOutput()).isEqualTo("How many pins did Alex hit? >");
         assertThat(ioAdapter.pollOutput()).isEqualTo("Alex hit 2 pins and throws again.");
         assertThat(ioAdapter.pollOutput()).isEqualTo("How many pins did Alex hit? >");

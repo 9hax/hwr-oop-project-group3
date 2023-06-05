@@ -34,7 +34,7 @@ public class ConsoleTextUI implements TextUI {
 
     @Override
     public void playRound() {
-        ioAdapter.putString("Current round is #" + (game.getRound()+1));
+        ioAdapter.putString("Current round is #" + (game.getRound()+2));
         int currentRound = game.getRound();
         while (currentRound == game.getRound()) {
             allPlayersPlayOneRound();
