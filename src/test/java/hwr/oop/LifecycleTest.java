@@ -10,7 +10,6 @@ class LifecycleTest {
         ioAdapter.queueInput("Alex");
         ioAdapter.queueInput("");
 
-        ioAdapter.pollOutput();
         for(int round = 0; round< 20; round++){
             ioAdapter.queueInput("3");
         }
@@ -19,7 +18,6 @@ class LifecycleTest {
         ioAdapter.queueInput("Sbeve");
         ioAdapter.queueInput("");
 
-        ioAdapter.pollOutput();
         for(int round = 0; round< 20; round++){
             ioAdapter.queueInput("2");
         }
