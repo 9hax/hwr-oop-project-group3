@@ -16,7 +16,7 @@ public class ConsoleTextUI implements TextUI {
         ioAdapter.putString("Please input the names of each player. " +
                 "Please press ENTER after each name. " +
                 "Press ENTER twice if you have written down all the player names. \n>");
-        List <String> playerNames = inputStringList();
+        List <String> playerNames = sanitizePlayerName(inputStringList());
         ioAdapter.putString("Registered players: "+
                 playerNames.toString().replace("[", "").replace("]",""));
         game = new Game(playerNames);
@@ -112,5 +112,14 @@ public class ConsoleTextUI implements TextUI {
                 players) {
             ioAdapter.putString(player.getName() + " has scored " + player.getPlayerPoints() + " points.");
         }
+    }
+
+    private List <String> sanitizePlayerName(List <String> names){
+        List <String> sanitizedNameList = new ArrayList<>();
+        for (String name :
+                names) {
+            sanitizedNameList.add(name.strip());
+        }
+        return sanitizedNameList;
     }
 }

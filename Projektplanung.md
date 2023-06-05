@@ -22,7 +22,7 @@
 ## Nach Implementierung der Main-Methode stachen folgende Usability-Issues hervor:
 - [x] Runden# nicht praktisch (Start bei 1 ist besser)
 - [x] Wer ist dran?
-- [ ] UserInputs sanitizen
+- [x] UserInputs sanitizen
 - [ ] Exception Handling bei invalid throw combinations
 - [ ] ScoreOutput nur nach Rundenende
 - [x] Strike/Spare ausgeben

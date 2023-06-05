@@ -29,6 +29,21 @@ class TextUITest {
         assertThat(players.get(0).getName()).isEqualTo("Steve");
         assertThat(players.get(1).getName()).isEqualTo("Notch");
     }
+    @Test
+    void startUIPutMultiPlayerGame_getGame_SanitizedNames() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("Steve ");
+        ioAdapter.queueInput(" Notch");
+        ioAdapter.queueInput("Kevins    ");
+
+        Game game = ui.createGame();
+        List <Player> players = game.getPlayers();
+        assertThat(players.get(0).getName()).isEqualTo("Steve");
+        assertThat(players.get(1).getName()).isEqualTo("Notch");
+        assertThat(players.get(2).getName()).isEqualTo("Kevins");
+
+    }
 
     @Test
     void startGamePlayRound_gameIsInFirstRound() {
