@@ -18,8 +18,15 @@
 - maximale Spiellänge bis 42 - alle Runden mod10=0 sind 10te Runden
 - Punkte werden weiter aufaddiert
   - danach ist Spiel beendet
-- 
 
+## Nach Implementierung der Main-Methode stachen folgende Usability-Issues hervor:
+- Runden# nicht praktisch (Start bei 1 ist besser)
+- Wer ist dran?
+- UserInputs sanitizen
+- Exception Handling bei invalid throw combinations
+- ScoreOutput nur nach Rundenende
+- Strike/Spare ausgeben
+- das wars doch soweit (we are proud of our work)
 
 ## Vorgang
 - Spiellogik
@@ -68,4 +75,5 @@ Aktueller Spieler
 - Gewinner ermitteln
 - Spiel initialisieren
 - Rundennummer ermitteln
+
 
