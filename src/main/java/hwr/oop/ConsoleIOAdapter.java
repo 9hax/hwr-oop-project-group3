@@ -32,6 +32,11 @@ public class ConsoleIOAdapter implements IOAdapter {
     public void trimOutputQueue(Integer i) {
         throw new NonMockableClassException("The trimOutputQueue Mocking method has been called in a non-mockable class.");
     }
+
+    @Override
+    public void ignoreOutputs(Integer i) {
+        throw new NonMockableClassException("The ignoreOutputs Mocking method has been called in a non-mockable class.");
+    }
 }
 class NonMockableClassException extends RuntimeException {
     public NonMockableClassException(String errorMessage) {
