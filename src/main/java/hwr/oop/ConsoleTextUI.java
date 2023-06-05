@@ -50,6 +50,12 @@ public class ConsoleTextUI implements TextUI {
 
         ioAdapter.putString("The winner is "+ game.determineWinner().getName() +
                 " with "+ game.determineWinner().getPlayerPoints()+ " points. CongratulaZZ1ONES!");
+        
+        ioAdapter.putString("The Scores are the following:");
+        for (Player player :
+                game.getPlayers()) {
+            ioAdapter.putString(player.getName() + " scored " + player.getPlayerPoints() + " points.");
+        }
     }
 
 
