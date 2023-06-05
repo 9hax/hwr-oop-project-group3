@@ -56,10 +56,9 @@ class TextUITest {
         //ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
         ui.playRound();
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
+        ioAdapter.ignoreOutputs(2);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Current round is #1");
-        ioAdapter.pollOutput();
+        ioAdapter.ignoreOutputs(1);
         assertThat(ioAdapter.pollOutput()).isEqualTo("How many pins did Alex hit? >");
         assertThat(ioAdapter.pollOutput()).isEqualTo("Alex hit 2 pins and throws again.");
         assertThat(ioAdapter.pollOutput()).isEqualTo("How many pins did Alex hit? >");
@@ -92,29 +91,33 @@ class TextUITest {
         ioAdapter.queueInput("2");
         ioAdapter.queueInput("8");
         ioAdapter.queueInput("10");
-        ioAdapter.pollOutput();
-        for(int round = 0; round<= 36; round++){
+        ioAdapter.queueInput("1234524365");
+
+        ioAdapter.queueInput("2");
+        ioAdapter.queueInput("1234524365");
+        ioAdapter.queueInput("2");
+        for(int round = 0; round<= 34; round++){
             ioAdapter.queueInput("2");
         }
         ui.createGame();
         ui.playGame();
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
+        ioAdapter.ignoreOutputs(2);
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("The game starts now!");
-        ioAdapter.pollOutput();
+        ioAdapter.ignoreOutputs(1);
         assertThat(ioAdapter.pollOutput()).isEqualTo("It's Alex's turn.");
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
+        ioAdapter.ignoreOutputs(4);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Alex just scored a SPARE!");
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
-        ioAdapter.pollOutput();
+        ioAdapter.ignoreOutputs(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve just scored a STRIKE!");
+        ioAdapter.ignoreOutputs(5);
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Invalid input! Please try again.");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Current round is #2");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("This is the first throw this round.");
+        ioAdapter.ignoreOutputs(5);
+        assertThat(ioAdapter.pollOutput()).isEqualTo("This is the second throw this round.");
+
+
         ioAdapter.trimOutputQueue(5);
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("Game is finished!");
