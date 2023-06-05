@@ -20,13 +20,13 @@
   - danach ist Spiel beendet
 
 ## Nach Implementierung der Main-Methode stachen folgende Usability-Issues hervor:
-- Runden# nicht praktisch (Start bei 1 ist besser)
-- Wer ist dran?
-- UserInputs sanitizen
-- Exception Handling bei invalid throw combinations
-- ScoreOutput nur nach Rundenende
-- Strike/Spare ausgeben
-- das wars doch soweit (we are proud of our work)
+- [x] Runden# nicht praktisch (Start bei 1 ist besser)
+- [x] Wer ist dran?
+- [ ] UserInputs sanitizen
+- [ ] Exception Handling bei invalid throw combinations
+- [ ] ScoreOutput nur nach Rundenende
+- [ ] Strike/Spare ausgeben
+- [ ] das wars doch soweit (we are proud of our work)
 
 ## Vorgang
 - Spiellogik

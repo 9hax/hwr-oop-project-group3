@@ -25,6 +25,7 @@ public class ConsoleTextUI implements TextUI {
 
     private void allPlayersPlayOneRound() {
         boolean playNextRound = true;
+        ioAdapter.putString("It's " + game.getCurrentPlayer().getName()+ "'s turn.");
         while (playNextRound) {
             playNextRound = playPlayerRound(game.getCurrentPlayer());
         }

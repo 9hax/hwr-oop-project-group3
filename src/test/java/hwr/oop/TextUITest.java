@@ -86,7 +86,8 @@ class TextUITest {
         ioAdapter.pollOutput();
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("The game starts now!");
-
+        ioAdapter.pollOutput();
+        assertThat(ioAdapter.pollOutput()).isEqualTo("It's Alex's turn.");
         ioAdapter.trimOutputQueue(5);
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("Game is finished!");
