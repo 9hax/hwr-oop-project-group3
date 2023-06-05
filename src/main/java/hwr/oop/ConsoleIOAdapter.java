@@ -10,7 +10,7 @@ public class ConsoleIOAdapter implements IOAdapter {
     @Override
     @SuppressWarnings("java:S106")
     public void putString(String outputString) {
-        System.out.print(outputString);
+        System.out.println(outputString);
     }
 
     @Override
@@ -26,6 +26,11 @@ public class ConsoleIOAdapter implements IOAdapter {
     @Override
     public String lastOutput() {
         throw new NonMockableClassException("The pollOutput Mocking method has been called in a non-mockable class.");
+    }
+
+    @Override
+    public void trimOutputQueue(Integer i) {
+        throw new NonMockableClassException("The trimOutputQueue Mocking method has been called in a non-mockable class.");
     }
 }
 class NonMockableClassException extends RuntimeException {

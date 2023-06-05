@@ -96,6 +96,7 @@ class IOAdapterTest {
         assertThatThrownBy(() ->ioAdapter.queueInput("")).isInstanceOf(RuntimeException.class);
         assertThatThrownBy(ioAdapter::pollOutput).isInstanceOf(RuntimeException.class);
         assertThatThrownBy(ioAdapter::lastOutput).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() ->ioAdapter.trimOutputQueue(null)).isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -110,5 +111,18 @@ class IOAdapterTest {
         String lastOutput = ioAdapter.lastOutput();
 
         assertThat(lastOutput).isEqualTo(outputString2);
+    }
+
+    @Test
+    void trimOutputQueue() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        for(int i = 0; i<9; i++) {
+            ioAdapter.putString(Integer.toString(i));
+        }
+        ioAdapter.trimOutputQueue(2);
+        assertThat(ioAdapter.pollOutput()).isEqualTo("7");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("8");
+
+        assertThatThrownBy(() -> ioAdapter.trimOutputQueue(1)).isInstanceOf(IndexOutOfBoundsException.class);
     }
 }

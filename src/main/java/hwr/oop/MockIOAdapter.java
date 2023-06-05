@@ -44,4 +44,16 @@ public class MockIOAdapter implements IOAdapter {
         return lastOutput;
     }
 
+    @Override
+    public void trimOutputQueue(Integer i) {
+        if(outputQueue.size() < i) {
+            throw new IndexOutOfBoundsException("The output queue is not long enough.");
+        }
+        while (outputQueue.size() > i) {
+            outputQueue.poll();
+        }
+    }
+
 }
+
+

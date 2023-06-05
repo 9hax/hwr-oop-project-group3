@@ -10,4 +10,6 @@ public interface IOAdapter {
     String pollOutput();
 
     String lastOutput();
+
+    void trimOutputQueue(Integer i);
 }
