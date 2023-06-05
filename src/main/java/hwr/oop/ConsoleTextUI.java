@@ -31,7 +31,6 @@ public class ConsoleTextUI implements TextUI {
         while (playNextRound) {
             playNextRound = playPlayerRound(game.getCurrentPlayer());
         }
-        printScores();
     }
 
     @Override
@@ -41,6 +40,7 @@ public class ConsoleTextUI implements TextUI {
         while (currentRound == game.getRound()) {
             allPlayersPlayOneRound();
         }
+        printScores();
     }
 
     @Override

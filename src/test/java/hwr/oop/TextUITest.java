@@ -108,7 +108,7 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("It's Alex's turn.");
         ioAdapter.ignoreOutputs(4);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Alex just scored a SPARE!");
-        ioAdapter.ignoreOutputs(5);
+        ioAdapter.ignoreOutputs(3);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve just scored a STRIKE!");
         ioAdapter.ignoreOutputs(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Invalid input! Please try again.");
