@@ -72,9 +72,12 @@ class TextUITest {
         ioAdapter.queueInput("Steve von der Steve");
         ioAdapter.queueInput("");
 
+
+        ioAdapter.queueInput("2");
+        ioAdapter.queueInput("2");
         ioAdapter.queueInput("3");
         ioAdapter.pollOutput();
-        for(int round = 0; round<= 39; round++){
+        for(int round = 0; round<= 37; round++){
             ioAdapter.queueInput("2");
         }
         ui.createGame();
@@ -84,11 +87,11 @@ class TextUITest {
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("The game starts now!");
 
-        for(int round = 0; round<= 39; round++){
+        for(int round = 0; round<= 129; round++){
             ioAdapter.pollOutput();
         }
-        System.out.println(ioAdapter.pollOutput());
-        assertThat(ioAdapter.lastOutput()).isEqualTo("The winner is Alex with 41 points. CongratulaZZ1ONES!");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Game is finished!");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("The winner is Steve von der Steve with 41 points. CongratulaZZ1ONES!");
     }
 
 }
