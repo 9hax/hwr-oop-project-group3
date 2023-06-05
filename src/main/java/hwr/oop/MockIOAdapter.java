@@ -34,7 +34,11 @@ public class MockIOAdapter implements IOAdapter {
     }
 
     public String pollOutput(){
-        return  outputQueue.poll();
+        String output = outputQueue.poll();
+        if (output == null) {
+            throw new QueueEmptyException("The output queue was empty when polled.");
+        }
+        return output;
     }
 
     @Override
@@ -54,6 +58,21 @@ public class MockIOAdapter implements IOAdapter {
         }
     }
 
+    @Override
+    public void ignoreOutputs(Integer count) {
+        if(outputQueue.size() < count) {
+            throw new IndexOutOfBoundsException("The output queue is not long enough.");
+        }
+        for (int i = 0; i < count; i++) {
+            outputQueue.poll();
+        }
+    }
+
 }
 
+class QueueEmptyException extends RuntimeException {
+    public QueueEmptyException(String errorMessage) {
+        super(errorMessage);
+    }
+}
 

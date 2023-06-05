@@ -3,6 +3,8 @@ package hwr.oop;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -87,6 +89,7 @@ class IOAdapterTest {
         lastOutput = ioAdapter.pollOutput();
 
         assertThat(lastOutput).isEqualTo(outputString);
+        assertThatThrownBy(ioAdapter::pollOutput).isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -97,6 +100,7 @@ class IOAdapterTest {
         assertThatThrownBy(ioAdapter::pollOutput).isInstanceOf(RuntimeException.class);
         assertThatThrownBy(ioAdapter::lastOutput).isInstanceOf(RuntimeException.class);
         assertThatThrownBy(() ->ioAdapter.trimOutputQueue(null)).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() ->ioAdapter.ignoreOutputs(null)).isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -124,5 +128,21 @@ class IOAdapterTest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("8");
 
         assertThatThrownBy(() -> ioAdapter.trimOutputQueue(1)).isInstanceOf(IndexOutOfBoundsException.class);
+    }
+
+    @Test
+    void ignoreOutputs() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        for(int i = 0; i<4; i++) {
+            ioAdapter.putString(Integer.toString(i));
+        }
+        ioAdapter.ignoreOutputs(2);
+
+        assertDoesNotThrow(ioAdapter::pollOutput);
+
+        assertThat(ioAdapter.pollOutput()).isEqualTo("3");
+
+        assertThatThrownBy(() -> ioAdapter.ignoreOutputs(1)).isInstanceOf(IndexOutOfBoundsException.class);
+
     }
 }

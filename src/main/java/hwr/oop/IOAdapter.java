@@ -12,4 +12,6 @@ public interface IOAdapter {
     String lastOutput();
 
     void trimOutputQueue(Integer i);
+
+    void ignoreOutputs(Integer i);
 }
