@@ -74,4 +74,10 @@ class GameTest {
         }
         assertThat(game.getRound()).isEqualTo(9);
     }
+
+    @Test
+    void getWinner_with_no_players() {
+        Game game = new Game(List.of());
+        assertThat(game.determineWinner()).isNull();
+    }
 }
