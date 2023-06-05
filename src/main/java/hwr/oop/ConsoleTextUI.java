@@ -7,6 +7,8 @@ public class ConsoleTextUI implements TextUI {
     final IOAdapter ioAdapter;
     Game game;
 
+    int tempHitPins;
+
     public ConsoleTextUI(IOAdapter ioAdapter) {
         this.ioAdapter = ioAdapter;
     }
@@ -34,7 +36,7 @@ public class ConsoleTextUI implements TextUI {
 
     @Override
     public void playRound() {
-        ioAdapter.putString("Current round is #" + (game.getRound()+2));
+        printRoundInfo();
         int currentRound = game.getRound();
         while (currentRound == game.getRound()) {
             allPlayersPlayOneRound();
@@ -67,20 +69,44 @@ public class ConsoleTextUI implements TextUI {
 
 
     private boolean playPlayerRound(Player player) {
+        boolean throwSuccessful = false;
+        boolean continuePlay = false;
+
+        while (!throwSuccessful) {
+            try {
+                continuePlay = doThrow(player);
+                throwSuccessful = true;
+            } catch (IllegalArgumentException ex) {
+                ioAdapter.putString("Invalid input! Please try again.");
+                printRoundInfo();
+                if (player.getTempRound() == null) {
+                    ioAdapter.putString("This is the first throw this round.");
+                } else {
+                    ioAdapter.putString("This is the second throw this round.");
+                }
+            }
+        }
+        announceScoring(continuePlay, player);
+        return continuePlay;
+    }
+
+    private boolean doThrow(Player player) {
         ioAdapter.putString("How many pins did " + player.getName() + " hit? >");
         String input = ioAdapter.getString();
-        int hitPins;
         try {
-            hitPins = Integer.parseInt(input);
+            tempHitPins = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            hitPins = 0;
+            tempHitPins = 0;
         }
-        boolean continuePlay = player.throwBall(hitPins);
+        return player.throwBall(tempHitPins);
+    }
+
+    private void announceScoring(boolean continuePlay, Player player) {
         if (continuePlay){
-            ioAdapter.putString(player.getName() + " hit " + hitPins + " pins and throws again.");
+            ioAdapter.putString(player.getName() + " hit " + tempHitPins + " pins and throws again.");
         }
         else {
-            ioAdapter.putString(player.getName() + " hit " + hitPins + " pins and has finished this round.");
+            ioAdapter.putString(player.getName() + " hit " + tempHitPins + " pins and has finished this round.");
             if (player.getLastPlayedRound().isStrike()){
                 ioAdapter.putString(player.getName() + " just scored a STRIKE!");
             }
@@ -88,7 +114,6 @@ public class ConsoleTextUI implements TextUI {
                 ioAdapter.putString(player.getName() + " just scored a SPARE!");
             }
         }
-        return continuePlay;
     }
 
     private List<String> inputStringList(){
@@ -121,5 +146,9 @@ public class ConsoleTextUI implements TextUI {
             sanitizedNameList.add(name.strip());
         }
         return sanitizedNameList;
+    }
+
+    private void printRoundInfo() {
+        ioAdapter.putString("Current round is #" + (game.getRound()+2));
     }
 }
