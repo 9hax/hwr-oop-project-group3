@@ -33,3 +33,7 @@ build/
 ### Maven Wrapper ###
 /.mvn/wrapper/maven-wrapper.jar
 /.env/
+
+
+### Default Persistence will not be versioned.
+defaultPersistence.json
