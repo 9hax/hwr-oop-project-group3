@@ -48,6 +48,9 @@ Test driven development is hard to grasp at first, but easier the more time you 
 | Number | Dependency Name                    | Dependency Description                                                    | Why is it necessary?         |
 |--------|------------------------------------|---------------------------------------------------------------------------|------------------------------|
 | 1      | Java-Compatible JVM implementation | A JVM implementation that supports reading Java Class Files from Javac17. | Provides runtime environment |
+| 2      | Google GSON                        | A Simple JSON serialization library.                                      | Persistence                  |
+
+
 
 ## Contributing
 
