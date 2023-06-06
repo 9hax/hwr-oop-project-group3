@@ -2,8 +2,8 @@ package hwr.oop;
 
 public class ScorePrimitive {
 
-    private String name;
-    private Integer score;
+    private final String name;
+    private final Integer score;
     ScorePrimitive(String name, Integer score) {
         this.name = name;
         this.score = score;

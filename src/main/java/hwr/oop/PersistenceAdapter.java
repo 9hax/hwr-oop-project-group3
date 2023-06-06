@@ -1,7 +1,5 @@
 package hwr.oop;
 
-import java.util.List;
-
 public interface PersistenceAdapter {
     void save(Object persistentObject, String key);
 
