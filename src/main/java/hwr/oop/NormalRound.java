@@ -15,6 +15,7 @@ public class NormalRound implements Round{
 
     boolean bonusPointCalculationCounterIsValid;
 
+    static final String MORE_THAN_10_PINS_ERROR = "FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.";
 
     public NormalRound() {
         this.throwList = Arrays.asList(new BowlingThrow(), new BowlingThrow());
@@ -30,7 +31,7 @@ public class NormalRound implements Round{
             this.throwList = throwList;
             this.prepareBonusCounter();
         } else {
-            throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
+            throw new IllegalArgumentException(MORE_THAN_10_PINS_ERROR);
         }
     }
 
@@ -43,7 +44,7 @@ public class NormalRound implements Round{
             this.previousRound = previousRound;
             this.prepareBonusCounter();
         } else {
-            throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
+            throw new IllegalArgumentException(MORE_THAN_10_PINS_ERROR);
         }
     }
 
@@ -150,7 +151,7 @@ public class NormalRound implements Round{
         if (validateThrowList(newThrowList)){
             this.throwList = newThrowList;
         } else {
-            throw new IllegalArgumentException("FALSCH! This throwList is invalid because more than 10 Pins were hit, which is not a possible scenario.");
+            throw new IllegalArgumentException(MORE_THAN_10_PINS_ERROR);
         }
     }
 
