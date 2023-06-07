@@ -108,7 +108,7 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("It's Alex's turn.");
         ioAdapter.ignoreOutputs(4);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Alex just scored a SPARE!");
-        ioAdapter.ignoreOutputs(3);
+        ioAdapter.ignoreOutputs(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve just scored a STRIKE!");
         ioAdapter.ignoreOutputs(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Invalid input! Please try again.");
@@ -137,6 +137,23 @@ class TextUITest {
         ioAdapter.queueInput("");
         assertThat(ui.askRestart()).isFalse();
         assertThat(ioAdapter.pollOutput()).isEqualTo("Input Y to play another game. \n>");
+    }
+
+    @Test
+    void saveGameData_Test() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("Steve von der Steve");
+        ioAdapter.queueInput("");
+
+        for(int ballThrows = 0; ballThrows< 10; ballThrows++){
+            ioAdapter.queueInput("2");
+        }
+        ioAdapter.queueInput("S");
+
+        Game game = ui.createGame();
+        ui.playGame();
+        assertThat(new JSONPersistence(ioAdapter).load().getScorePrimitiveList().get(0).getName()).isEqualTo("Steve von der Steve");
     }
 }
 

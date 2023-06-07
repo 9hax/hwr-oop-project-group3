@@ -1,9 +1,9 @@
 package hwr.oop;
 
 public interface PersistenceAdapter {
-    void save(Object persistentObject, String key);
+    void save(ScorePrimitiveList scores, String key);
 
-    void save(Object persistentObject);
+    void save(ScorePrimitiveList scores);
 
     ScorePrimitiveList load(String key);
 

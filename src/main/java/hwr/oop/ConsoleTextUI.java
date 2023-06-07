@@ -31,6 +31,7 @@ public class ConsoleTextUI implements TextUI {
         while (playNextRound) {
             playNextRound = playPlayerRound(game.getCurrentPlayer());
         }
+        printScores();
     }
 
     @Override
@@ -40,7 +41,6 @@ public class ConsoleTextUI implements TextUI {
         while (currentRound == game.getRound()) {
             allPlayersPlayOneRound();
         }
-        printScores();
     }
 
     @Override
@@ -59,12 +59,22 @@ public class ConsoleTextUI implements TextUI {
                 game.getPlayers()) {
             ioAdapter.putString(player.getName() + " scored " + player.getPlayerPoints() + " points.");
         }
+        if (askSave()) saveGame(game);
     }
 
     @Override
     public boolean askRestart() {
         ioAdapter.putString("Input Y to play another game. \n>");
         return ioAdapter.getString().equals("Y");
+    }
+
+    boolean askSave() {
+        ioAdapter.putString("Input S to save the current scores.");
+        return ioAdapter.getString().equals("S");
+    }
+
+    void saveGame(Game game) {
+        new JSONPersistence(ioAdapter).save(new ScorePrimitiveList(game));
     }
 
 

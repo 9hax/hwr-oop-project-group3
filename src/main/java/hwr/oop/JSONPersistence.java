@@ -17,21 +17,21 @@ public class JSONPersistence implements PersistenceAdapter {
     }
 
     @Override
-    public void save(Object persistentObject, String key) {
+    public void save(ScorePrimitiveList scores, String key) {
         String fileName = key + ".json";
         try(FileWriter writer = new FileWriter((fileName))) {
-            writer.write(globalGson.toJson(persistentObject));
+            writer.write(globalGson.toJson(scores));
             globalIO.putString("Data saved successfully!");
         } catch (IOException e) {
             globalIO.putString("There was an error writing the file " + fileName + " to persistent storage.");
             globalIO.putString("Copy the following data instead:");
-            globalIO.putString(globalGson.toJson(persistentObject));
+            globalIO.putString(globalGson.toJson(scores));
         }
     }
 
     @Override
-    public void save(Object persistentObject) {
-        save(persistentObject, "defaultPersistence");
+    public void save(ScorePrimitiveList scores) {
+        save(scores, "defaultPersistence");
     }
 
     @Override
