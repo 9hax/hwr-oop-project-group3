@@ -16,6 +16,7 @@ public class HighscoreHandler {
     }
 
     public void clearHighscores() {
+        highscores = new ArrayList<>();
         highscores.clear();
         saveScores();
     }
