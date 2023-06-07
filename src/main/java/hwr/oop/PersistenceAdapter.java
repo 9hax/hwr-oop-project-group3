@@ -8,4 +8,6 @@ public interface PersistenceAdapter {
     ScorePrimitiveList load(String key);
 
     ScorePrimitiveList load();
+
+    ScorePrimitiveList loadUnsafe(String key);
 }
