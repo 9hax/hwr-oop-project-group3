@@ -7,8 +7,6 @@ public class ConsoleTextUI implements TextUI {
     final IOAdapter ioAdapter;
     Game game;
 
-    int tempHitPins;
-
     public ConsoleTextUI(IOAdapter ioAdapter) {
         this.ioAdapter = ioAdapter;
     }
@@ -36,7 +34,7 @@ public class ConsoleTextUI implements TextUI {
 
     @Override
     public void playRound() {
-        printRoundInfo();
+        ioAdapter.putString("Current round is #" + (game.getRound()+2));
         int currentRound = game.getRound();
         while (currentRound == game.getRound()) {
             allPlayersPlayOneRound();
@@ -78,45 +76,46 @@ public class ConsoleTextUI implements TextUI {
     }
 
 
-    private boolean playPlayerRound(Player player) {
-        boolean throwSuccessful = false;
-        boolean continuePlay = false;
-
-        while (!throwSuccessful) {
-            try {
-                continuePlay = doThrow(player);
-                throwSuccessful = true;
-            } catch (IllegalArgumentException ex) {
-                ioAdapter.putString("Invalid input! Please try again.");
-                printRoundInfo();
-                if (player.getTempRound() == null) {
-                    ioAdapter.putString("This is the first throw this round.");
-                } else {
-                    ioAdapter.putString("This is the second throw this round.");
-                }
-            }
+    @Override
+    public void saveGameData(Game game) {
+        boolean userAgreement = askSave();
+        if (userAgreement){
+            JSONPersistence jsonPersistence = new JSONPersistence(ioAdapter);
+            jsonPersistence.save(new ScorePrimitiveList(game));
         }
-        announceScoring(continuePlay, player);
-        return continuePlay;
     }
 
-    private boolean doThrow(Player player) {
+    @Override
+    public boolean askSave() {
+        ioAdapter.putString("Do you want to save your data? Press S to save.\n>");
+        return ioAdapter.getString().equals("S");
+    }
+
+
+    private boolean playPlayerRound(Player player) {
         ioAdapter.putString("How many pins did " + player.getName() + " hit? >");
         String input = ioAdapter.getString();
-        try {
-            tempHitPins = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            tempHitPins = 0;
-        }
-        return player.throwBall(tempHitPins);
-    }
+        int hitPins;
 
-    private void announceScoring(boolean continuePlay, Player player) {
+        try {
+            hitPins = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            hitPins = 0;
+        }
+
+        try {
+            player.throwBall(Integer.parseInt(input));
+        } catch (IllegalArgumentException e) {
+            ioAdapter.putString("Please type a valid character.");
+            hitPins = 0;
+        }
+
+        boolean continuePlay = player.throwBall(hitPins);
         if (continuePlay){
-            ioAdapter.putString(player.getName() + " hit " + tempHitPins + " pins and throws again.");
+            ioAdapter.putString(player.getName() + " hit " + hitPins + " pins and throws again.");
         }
         else {
-            ioAdapter.putString(player.getName() + " hit " + tempHitPins + " pins and has finished this round.");
+            ioAdapter.putString(player.getName() + " hit " + hitPins + " pins and has finished this round.");
             if (player.getLastPlayedRound().isStrike()){
                 ioAdapter.putString(player.getName() + " just scored a STRIKE!");
             }
@@ -124,6 +123,7 @@ public class ConsoleTextUI implements TextUI {
                 ioAdapter.putString(player.getName() + " just scored a SPARE!");
             }
         }
+        return continuePlay;
     }
 
     private List<String> inputStringList(){
@@ -156,9 +156,5 @@ public class ConsoleTextUI implements TextUI {
             sanitizedNameList.add(name.strip());
         }
         return sanitizedNameList;
-    }
-
-    private void printRoundInfo() {
-        ioAdapter.putString("Current round is #" + (game.getRound()+2));
     }
 }

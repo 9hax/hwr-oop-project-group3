@@ -55,6 +55,8 @@ class TextUITest {
         ioAdapter.queueInput("4");
         //ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
+
+
         ui.playRound();
         ioAdapter.ignoreOutputs(2);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Current round is #1");
@@ -77,6 +79,18 @@ class TextUITest {
         ui.createGame();
         ui.playRound();
         assertThat(ioAdapter.lastOutput()).isEqualTo("Alex has scored 2 points.");
+    }
+
+    @Test
+    void scorePoints_illegalPinNumber() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("Alex");
+        ioAdapter.queueInput("");
+        ioAdapter.queueInput("19");
+        ui.createGame();
+        ui.playRound();
+        assertThat(ioAdapter.lastOutput()).isEqualTo("Please type a valid character.");
     }
 
     @Test
@@ -116,7 +130,6 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("This is the first throw this round.");
         ioAdapter.ignoreOutputs(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("This is the second throw this round.");
-
 
         ioAdapter.trimOutputQueue(6);
 
