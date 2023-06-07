@@ -8,4 +8,9 @@ public interface TextUI {
     void playGame();
 
     boolean askRestart();
+
+    void saveGameData(Game game);
+
+    boolean askSave();
+
 }

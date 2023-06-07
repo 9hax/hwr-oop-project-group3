@@ -55,6 +55,8 @@ class TextUITest {
         ioAdapter.queueInput("4");
         //ioAdapter.queueInput("Steve");
         Game game = ui.createGame();
+
+
         ui.playRound();
         ioAdapter.ignoreOutputs(2);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Current round is #1");
@@ -77,6 +79,18 @@ class TextUITest {
         ui.createGame();
         ui.playRound();
         assertThat(ioAdapter.lastOutput()).isEqualTo("Alex has scored 2 points.");
+    }
+
+    @Test
+    void scorePoints_illegalPinNumber() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("Alex");
+        ioAdapter.queueInput("");
+        ioAdapter.queueInput("19");
+        ui.createGame();
+        ui.playRound();
+        assertThat(ioAdapter.lastOutput()).isEqualTo("Please type a valid character.");
     }
 
     @Test
@@ -117,7 +131,6 @@ class TextUITest {
         ioAdapter.ignoreOutputs(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("This is the second throw this round.");
 
-
         ioAdapter.trimOutputQueue(5);
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("Game is finished!");
@@ -137,6 +150,41 @@ class TextUITest {
         ioAdapter.queueInput("");
         assertThat(ui.askRestart()).isFalse();
         assertThat(ioAdapter.pollOutput()).isEqualTo("Input Y to play another game. \n>");
+    }
+
+    @Test
+    void askSave_Test() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("S");
+        assertThat(ui.askSave()).isTrue();
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Do you want to save your data? Press S to save.\n>");
+        ioAdapter.queueInput("");
+        assertThat(ui.askSave()).isFalse();
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Do you want to save your data? Press S to save.\n>");
+    }
+
+    @Test
+    void saveGameData_Test() {
+        IOAdapter ioAdapter = new MockIOAdapter();
+        TextUI ui = new ConsoleTextUI(ioAdapter);
+        ioAdapter.queueInput("Steve von der Steve");
+        ioAdapter.queueInput("");
+
+        for(int ballThrows = 0; ballThrows< 18; ballThrows++){
+            ioAdapter.queueInput("2");
+        }
+        Game game = ui.createGame();
+        ui.playGame();
+        ioAdapter.ignoreOutputs(36);
+        ioAdapter.queueInput("S");
+        assertThat(ui.askSave()).isTrue();
+        ioAdapter.ignoreOutputs(1);
+
+        assertThat(game.players.get(0).getName()).isEqualTo("Steve von der Steve");
+        assertThat(game.players.get(0).getPlayerPoints()).isEqualTo(40);
+
+        ui.saveGameData(game);
     }
 }
 
