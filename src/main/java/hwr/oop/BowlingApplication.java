@@ -7,6 +7,7 @@ public class BowlingApplication {
 
     public static void appLifecycle(IOAdapter ioAdapter) {
         TextUI applicationUI = new ConsoleTextUI(ioAdapter);
+        applicationUI.showHighScores();
         boolean playAnotherGame = true;
         while(playAnotherGame) {
             applicationUI.createGame();

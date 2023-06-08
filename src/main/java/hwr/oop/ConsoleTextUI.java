@@ -161,4 +161,14 @@ public class ConsoleTextUI implements TextUI {
     private void printRoundInfo() {
         ioAdapter.putString("Current round is #" + (game.getRound()+2));
     }
+
+    public void showHighScores(){
+        ioAdapter.putString("======== HIGHSCORES ========");
+        int i = 1;
+        for (ScorePrimitive sp: new HighscoreHandler(ioAdapter, "highscores").getHighScores().getScorePrimitiveList()
+             ) {
+            ioAdapter.putString(i + ". Place: " + sp.getName() + " with " + sp.getScore() + " points");
+            i++;
+        }
+    }
 }

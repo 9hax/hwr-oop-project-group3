@@ -8,4 +8,6 @@ public interface TextUI {
     void playGame();
 
     boolean askRestart();
+
+    void showHighScores();
 }
