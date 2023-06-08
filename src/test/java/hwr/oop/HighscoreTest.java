@@ -1,11 +1,30 @@
 package hwr.oop;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.ls.LSOutput;
+
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-class HighscoreTest {
+class HighScoreTest {
+
+    @AfterEach
+    void deleteJsonFile(){
+        Path fileToDeletePath = Paths.get("testHighscores.json");
+        try {
+            Files.delete(fileToDeletePath);
+        } catch (IOException e) {
+            System.out.println("Tried to delete test file, but test file was nonexistent");
+        }
+    }
+
     @Test
     void saveHighscore_loadHighscore() {
         IOAdapter mockIO = new MockIOAdapter();
