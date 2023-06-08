@@ -12,6 +12,8 @@ public class JSONPersistence implements PersistenceAdapter {
 
     Gson globalGson;
 
+    static final String FILE_FORMAT = ".json";
+
     public JSONPersistence(IOAdapter ioAdapter) {
         globalGson = new GsonBuilder().setPrettyPrinting().create();
         globalIO = ioAdapter;
@@ -19,7 +21,7 @@ public class JSONPersistence implements PersistenceAdapter {
 
     @Override
     public void save(ScorePrimitiveList scores, String key) {
-        String fileName = key + ".json";
+        String fileName = key + FILE_FORMAT;
         try(FileWriter writer = new FileWriter((fileName))) {
             writer.write(globalGson.toJson(scores));
             globalIO.putString("Data saved successfully!");
@@ -37,7 +39,7 @@ public class JSONPersistence implements PersistenceAdapter {
 
     @Override
     public ScorePrimitiveList load(String key) {
-        String fileName = key + ".json";
+        String fileName = key + FILE_FORMAT;
         String jsonData;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))){
             jsonData = bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));
@@ -55,7 +57,7 @@ public class JSONPersistence implements PersistenceAdapter {
 
     @Override
     public ScorePrimitiveList loadUnsafe(String key) {
-        String fileName = key + ".json";
+        String fileName = key + FILE_FORMAT;
         String jsonData;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))){
             jsonData = bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));

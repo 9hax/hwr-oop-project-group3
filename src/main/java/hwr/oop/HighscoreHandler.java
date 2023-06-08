@@ -5,9 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HighscoreHandler {
-    private IOAdapter ioAdapter;
-    private String persistenceKey;
-    private List<ScorePrimitive> highscores;
+    private final IOAdapter ioAdapter;
+    private final String persistenceKey;
+    private List<ScorePrimitive> highScores;
 
     public HighscoreHandler(IOAdapter ioAdapter, String persistenceKey) {
         this.ioAdapter = ioAdapter;
@@ -16,29 +16,28 @@ public class HighscoreHandler {
     }
 
     public void clearHighscores() {
-        highscores = new ArrayList<>();
-        highscores.clear();
+        highScores = new ArrayList<>();
         saveAllScores();
     }
 
     public void saveScore(ScorePrimitive potentialHighscore) {
-        highscores.add(potentialHighscore);
-        highscores.sort(Comparator.comparingInt(ScorePrimitive::getScore).reversed());
-        if (highscores.size() > 5) {
-            highscores = highscores.subList(0, 5);
+        highScores.add(potentialHighscore);
+        highScores.sort(Comparator.comparingInt(ScorePrimitive::getScore).reversed());
+        if (highScores.size() > 5) {
+            highScores = highScores.subList(0, 5);
         }
         saveAllScores();
     }
 
     public ScorePrimitiveList getHighScores() {
-        return new ScorePrimitiveList(highscores);
+        return new ScorePrimitiveList(highScores);
     }
 
     private void loadHighScores() {
-        highscores = new JSONPersistence(ioAdapter).loadUnsafe(persistenceKey).getScorePrimitiveList();
+        highScores = new JSONPersistence(ioAdapter).loadUnsafe(persistenceKey).getScorePrimitiveList();
     }
 
     private void saveAllScores() {
-        new JSONPersistence(ioAdapter).save(new ScorePrimitiveList(highscores), persistenceKey);
+        new JSONPersistence(ioAdapter).save(new ScorePrimitiveList(highScores), persistenceKey);
     }
 }
