@@ -61,5 +61,20 @@ class HighScoreTest {
         assertDoesNotThrow(()->hsh.saveScore(new ScorePrimitive("Karlos - 01.01.1001, 01:01 UTC", 5)));
     }
 
-
+    @Test
+    void emptyFile_Test(){
+        try {
+            Path fileToDeletePath = Paths.get("emptyHighScoreFile.json");
+            Files.delete(fileToDeletePath);
+        } catch (IOException e) {
+            System.out.println("Tried to delete test file, but test file was nonexistent");
+        }
+        try {
+            new File("emptyHighScoreFile.json").createNewFile();
+        } catch (IOException e) {
+            System.out.println("Tried to touch test file, but test file was existent");
+        }
+        IOAdapter mockIO = new MockIOAdapter();
+        HighscoreHandler hsh = new HighscoreHandler(mockIO, "emptyHighScoreFile");
+    }
 }
