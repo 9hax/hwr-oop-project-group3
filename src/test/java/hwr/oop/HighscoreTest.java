@@ -75,6 +75,6 @@ class HighScoreTest {
             System.out.println("Tried to touch test file, but test file was existent");
         }
         IOAdapter mockIO = new MockIOAdapter();
-        HighscoreHandler hsh = new HighscoreHandler(mockIO, "emptyHighScoreFile");
+        new HighscoreHandler(mockIO, "emptyHighScoreFile");
     }
 }
