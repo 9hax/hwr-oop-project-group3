@@ -1,12 +1,27 @@
 package hwr.oop;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class TextUITest {
+    @AfterEach
+    void deleteJsonFile(){
+        Path fileToDeletePath = Paths.get("defaultPersistence.json");
+        try {
+            Files.delete(fileToDeletePath);
+        } catch (IOException e) {
+            System.out.println("Tried to delete test file, but test file was nonexistent");
+        }
+    }
+
     @Test
     void startUIPutPlayerName_getGame() {
         IOAdapter ioAdapter = new MockIOAdapter();
@@ -150,10 +165,10 @@ class TextUITest {
             ioAdapter.queueInput("2");
         }
         ioAdapter.queueInput("S");
-
+        ioAdapter.queueInput("YoMum");
         Game game = ui.createGame();
         ui.playGame();
-        assertThat(new JSONPersistence(ioAdapter).load().getScorePrimitiveList().get(0).getName()).isEqualTo("BingoCat");
+        assertThat(new JSONPersistence(ioAdapter).load("YoMum").getScorePrimitiveList().get(0).getName()).isEqualTo("BingoCat");
     }
 }
 
