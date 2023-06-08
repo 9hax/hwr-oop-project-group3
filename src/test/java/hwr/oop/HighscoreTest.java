@@ -2,6 +2,8 @@ package hwr.oop;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -25,6 +27,7 @@ class HighscoreTest {
     void saveHighscore_ExecuteFunctionTest() {
         IOAdapter mockIO = new MockIOAdapter();
         HighscoreHandler hsh = new HighscoreHandler(mockIO, "testHighscores");
+        hsh.clearHighscores();
         hsh.saveScore(new ScorePrimitive("Karsten - 01.01.1001, 01:01 UTC", 7));
 
         HighscoreHandler hsh2 = new HighscoreHandler(mockIO, "testHighscores");
