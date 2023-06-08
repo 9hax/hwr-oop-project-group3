@@ -60,6 +60,11 @@ public class ConsoleTextUI implements TextUI {
             ioAdapter.putString(player.getName() + " scored " + player.getPlayerPoints() + " points.");
         }
         if (askSave()) saveGame(game);
+
+        HighscoreHandler hs = new HighscoreHandler (ioAdapter, "highscores");
+        for(Player player: game.getPlayers()){
+            hs.saveScore(new ScorePrimitive(player.getName(), player.getPlayerPoints()));
+        }
     }
 
     @Override
@@ -69,12 +74,14 @@ public class ConsoleTextUI implements TextUI {
     }
 
     boolean askSave() {
-        ioAdapter.putString("Input S to save the current scores.");
+        ioAdapter.putString("Input S to save the current scores. >");
         return ioAdapter.getString().equals("S");
     }
 
     void saveGame(Game game) {
-        new JSONPersistence(ioAdapter).save(new ScorePrimitiveList(game));
+        ioAdapter.putString("What should the game be saved as? >");
+        String saveName = ioAdapter.getString();
+        new JSONPersistence(ioAdapter).save(new ScorePrimitiveList(game), saveName);
     }
 
 

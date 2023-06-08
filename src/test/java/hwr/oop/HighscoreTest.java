@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.io.File;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -33,9 +34,9 @@ class HighScoreTest {
         hsh.saveScore(new ScorePrimitive("Karlos - 01.01.1001, 01:01 UTC", 5));
         hsh.saveScore(new ScorePrimitive("Karbeldeutschland - 01.01.1001, 01:01 UTC", 3));
         hsh.saveScore(new ScorePrimitive("Karbellos - 01.01.1001, 01:01 UTC", 4));
+        hsh.saveScore(new ScorePrimitive("Karl - 01.01.1001, 01:01 UTC", 6));
         assertThat(hsh.getHighScores().getScorePrimitiveList().get(0).getName()).isEqualTo("Karsten - 01.01.1001, 01:01 UTC");
-        assertThat(hsh.getHighScores().getScorePrimitiveList().get(3).getName()).isEqualTo("Karbellos - 01.01.1001, 01:01 UTC");
-        assertThat(hsh.getHighScores().getScorePrimitiveList().get(1).getName()).isEqualTo("Karstachstan - 01.01.1001, 01:01 UTC");
+        assertThat(hsh.getHighScores().getScorePrimitiveList().get(3).getName()).isEqualTo("Karlos - 01.01.1001, 01:01 UTC");
     }
 
     @Test

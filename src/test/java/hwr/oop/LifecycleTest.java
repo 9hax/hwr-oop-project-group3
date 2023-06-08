@@ -7,6 +7,11 @@ class LifecycleTest {
     @Test
     void testLifecycle() {
         IOAdapter ioAdapter = new MockIOAdapter();
+
+        HighscoreHandler hsh = new HighscoreHandler(ioAdapter, "highscores");
+        hsh.clearHighscores();
+        hsh.saveScore(new ScorePrimitive("Konrad - 01.01.1001, 01:01 UTC", 7));
+
         ioAdapter.queueInput("Alex");
         ioAdapter.queueInput("");
 
@@ -26,6 +31,9 @@ class LifecycleTest {
         ioAdapter.queueInput("N"); // Don't play another game.
 
         BowlingApplication.appLifecycle(ioAdapter);
+
+        assertThat(ioAdapter.pollOutput()).isEqualTo("======== HIGHSCORES ========");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("1. Place: Konrad - 01.01.1001, 01:01 UTC with 7 points");
         ioAdapter.trimOutputQueue(4);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Sbeve scored 40 points.");
         ioAdapter.ignoreOutputs(1);

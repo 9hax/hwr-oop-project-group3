@@ -24,7 +24,6 @@ public class JSONPersistence implements PersistenceAdapter {
         String fileName = key + FILE_FORMAT;
         try(FileWriter writer = new FileWriter((fileName))) {
             writer.write(globalGson.toJson(scores));
-            globalIO.putString("Data saved successfully!");
         } catch (IOException e) {
             globalIO.putString("There was an error writing the file " + fileName + " to persistent storage.");
             globalIO.putString("Copy the following data instead:");
