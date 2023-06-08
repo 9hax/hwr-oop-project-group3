@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,11 +63,11 @@ public class JSONPersistence implements PersistenceAdapter {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))){
             jsonData = bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));
         } catch (IOException e) {
-            return new ScorePrimitiveList(List.of());
+            return new ScorePrimitiveList(new ArrayList<>());
         }
         ScorePrimitiveList loadedList = globalGson.fromJson(jsonData, ScorePrimitiveList.class);
         if(loadedList == null) {
-            return new ScorePrimitiveList(List.of());
+            return new ScorePrimitiveList(new ArrayList<>());
         }
         return loadedList;
     }
