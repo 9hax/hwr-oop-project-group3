@@ -18,7 +18,7 @@ public class HighscoreHandler {
     public void clearHighscores() {
         highscores = new ArrayList<>();
         highscores.clear();
-        saveScores();
+        saveAllScores();
     }
 
     public void saveScore(ScorePrimitive potentialHighscore) {
@@ -27,7 +27,7 @@ public class HighscoreHandler {
         if (highscores.size() > 5) {
             highscores = highscores.subList(0, 5);
         }
-        saveScores();
+        saveAllScores();
     }
 
     public ScorePrimitiveList getHighscores() {
@@ -41,7 +41,7 @@ public class HighscoreHandler {
         }
     }
 
-    private void saveScores() {
+    private void saveAllScores() {
         new JSONPersistence(ioAdapter).save(new ScorePrimitiveList(highscores), persistenceKey);
     }
 }
