@@ -16,9 +16,9 @@ class HighscoreTest {
         hsh.saveScore(new ScorePrimitive("Karlos - 01.01.1001, 01:01 UTC", 5));
         hsh.saveScore(new ScorePrimitive("Karbeldeutschland - 01.01.1001, 01:01 UTC", 3));
         hsh.saveScore(new ScorePrimitive("Karbellos - 01.01.1001, 01:01 UTC", 4));
-        assertThat(hsh.getHighscores().getScorePrimitiveList().get(0).getName()).isEqualTo("Karsten - 01.01.1001, 01:01 UTC");
-        assertThat(hsh.getHighscores().getScorePrimitiveList().get(3).getName()).isEqualTo("Karbellos - 01.01.1001, 01:01 UTC");
-        assertThat(hsh.getHighscores().getScorePrimitiveList().get(1).getName()).isEqualTo("Karstachstan - 01.01.1001, 01:01 UTC");
+        assertThat(hsh.getHighScores().getScorePrimitiveList().get(0).getName()).isEqualTo("Karsten - 01.01.1001, 01:01 UTC");
+        assertThat(hsh.getHighScores().getScorePrimitiveList().get(3).getName()).isEqualTo("Karbellos - 01.01.1001, 01:01 UTC");
+        assertThat(hsh.getHighScores().getScorePrimitiveList().get(1).getName()).isEqualTo("Karstachstan - 01.01.1001, 01:01 UTC");
     }
 
     @Test
@@ -28,7 +28,7 @@ class HighscoreTest {
         hsh.saveScore(new ScorePrimitive("Karsten - 01.01.1001, 01:01 UTC", 7));
 
         HighscoreHandler hsh2 = new HighscoreHandler(mockIO, "testHighscores");
-        assertThat(hsh2.getHighscores().getScorePrimitiveList().get(0).getName()).isEqualTo("Karsten - 01.01.1001, 01:01 UTC");
+        assertThat(hsh2.getHighScores().getScorePrimitiveList().get(0).getName()).isEqualTo("Karsten - 01.01.1001, 01:01 UTC");
     }
 
     @Test
@@ -37,9 +37,9 @@ class HighscoreTest {
         HighscoreHandler hsh = new HighscoreHandler(mockIO, "testHighscores");
         hsh.saveScore(new ScorePrimitive("Karsten - 01.01.1001, 01:01 UTC", 7));
         hsh.clearHighscores();
-        assertThat(hsh.getHighscores().getScorePrimitiveList().isEmpty()).isTrue();
+        assertThat(hsh.getHighScores().getScorePrimitiveList().isEmpty()).isTrue();
         HighscoreHandler hsh2 = new HighscoreHandler(mockIO, "testHighscores");
-        assertThat(hsh2.getHighscores().getScorePrimitiveList().isEmpty()).isTrue();
+        assertThat(hsh2.getHighScores().getScorePrimitiveList().isEmpty()).isTrue();
         assertDoesNotThrow(()->hsh.saveScore(new ScorePrimitive("Karlos - 01.01.1001, 01:01 UTC", 5)));
     }
 

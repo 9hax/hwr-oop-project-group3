@@ -62,6 +62,10 @@ public class JSONPersistence implements PersistenceAdapter {
         } catch (IOException e) {
             return new ScorePrimitiveList(List.of());
         }
-        return globalGson.fromJson(jsonData, ScorePrimitiveList.class);
+        ScorePrimitiveList loadedList = globalGson.fromJson(jsonData, ScorePrimitiveList.class);
+        if(loadedList == null) {
+            return new ScorePrimitiveList(List.of());
+        }
+        return loadedList;
     }
 }

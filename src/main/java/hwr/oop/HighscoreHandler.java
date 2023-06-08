@@ -12,7 +12,7 @@ public class HighscoreHandler {
     public HighscoreHandler(IOAdapter ioAdapter, String persistenceKey) {
         this.ioAdapter = ioAdapter;
         this.persistenceKey = persistenceKey;
-        loadHighscores();
+        loadHighScores();
     }
 
     public void clearHighscores() {
@@ -30,15 +30,12 @@ public class HighscoreHandler {
         saveAllScores();
     }
 
-    public ScorePrimitiveList getHighscores() {
+    public ScorePrimitiveList getHighScores() {
         return new ScorePrimitiveList(highscores);
     }
 
-    private void loadHighscores() {
+    private void loadHighScores() {
         highscores = new JSONPersistence(ioAdapter).loadUnsafe(persistenceKey).getScorePrimitiveList();
-        if (highscores == null) {
-            highscores = new ArrayList<>();
-        }
     }
 
     private void saveAllScores() {
