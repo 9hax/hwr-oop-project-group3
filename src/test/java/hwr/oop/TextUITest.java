@@ -166,6 +166,7 @@ class TextUITest {
         }
         ioAdapter.queueInput("S");
         ioAdapter.queueInput("YoMum");
+        Game game = ui.createGame();
         ui.playGame();
         assertThat(new JSONPersistence(ioAdapter).load("YoMum").getScorePrimitiveList().get(0).getName()).isEqualTo("BingoCat");
     }
