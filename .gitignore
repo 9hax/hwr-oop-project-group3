@@ -37,3 +37,7 @@ build/
 
 ### Default Persistence will not be versioned.
 defaultPersistence.json
+/.json
+/highscores.json
+/emptyHighScoreFile.json
+/YoMum.json
