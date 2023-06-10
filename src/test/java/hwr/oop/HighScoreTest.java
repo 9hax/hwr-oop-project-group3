@@ -69,6 +69,7 @@ class HighScoreTest {
         assertDoesNotThrow(()->hsh.saveScore(new ScorePrimitive("Karlos - 01.01.1001, 01:01 UTC", 5)));
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Test
     void emptyFile_Test(){
         try {
