@@ -39,7 +39,7 @@ class LifecycleTest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("======== HIGHSCORES ========");
         assertThat(ioAdapter.pollOutput()).isEqualTo("1. Place: Konrad - 01.01.1001, 01:01 UTC with 7 points");
         ioAdapter.trimOutputQueue(5);
-        assertThat(ioAdapter.pollOutput()).isEqualTo("Sbeve scored 40 points.");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Sbeve has scored 40 points.");
         ioAdapter.ignoreOutputs(2);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Input Y to play another game. \n>");
         assertThat(ioAdapter.pollOutput()).isEqualTo("Goodbye!");

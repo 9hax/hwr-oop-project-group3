@@ -144,8 +144,8 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("Game is finished!");
         assertThat(ioAdapter.pollOutput()).isEqualTo("The winner is Steve von der Steve with 50 points. CongratulaZZ1ONES!");
         assertThat(ioAdapter.pollOutput()).isEqualTo("The Scores are the following:");
-        assertThat(ioAdapter.pollOutput()).isEqualTo("Alex scored 48 points.");
-        assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve scored 50 points.");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Alex has scored 48 points.");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve has scored 50 points.");
     }
 
     @Test
