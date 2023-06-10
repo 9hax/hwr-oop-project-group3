@@ -12,14 +12,14 @@ class NormalRoundTest {
 
     @Test
     void createEmptyRoundTest() {
-        Round round = new NormalRound();
+        NormalRound round = new NormalRound();
         assertThat(round.getPoints()).isZero();
     }
 
     @Test
     void addThrow_getNewPoints() {
         List <BowlingThrow> singleThrowList = List.of(new BowlingThrow(3));
-        Round unfinishedRound = new NormalRound(singleThrowList);
+        NormalRound unfinishedRound = new NormalRound(singleThrowList);
         unfinishedRound.addThrow(new BowlingThrow(4));
         int points = unfinishedRound.getPoints();
         assertThat(points).isEqualTo(7);
@@ -28,14 +28,14 @@ class NormalRoundTest {
     @Test
     void getPointsTest() {
         List<BowlingThrow> normalThrowList = List.of(new BowlingThrow(1), new BowlingThrow(3));
-        Round round = new NormalRound(normalThrowList);
+        NormalRound round = new NormalRound(normalThrowList);
         assertThat(round.getPoints()).isEqualTo(4);
     }
 
     @Test
     void playNormalRound_hasNoBonusPoints() {
         List<BowlingThrow> normalThrowList = List.of(new BowlingThrow(1), new BowlingThrow(3));
-        Round round = new NormalRound(normalThrowList);
+        NormalRound round = new NormalRound(normalThrowList);
         round.calculateBonusPoints();
         assertThat(round.getBonusPoints()).isZero();
     }
@@ -44,8 +44,8 @@ class NormalRoundTest {
     void playStrikeRound_get7BonusPoints() {
         List<BowlingThrow> strikeRoundThrows = List.of(new BowlingThrow(10));
         List<BowlingThrow> secondRoundThrows = List.of(new BowlingThrow(3), new BowlingThrow(4));
-        Round strikeRound = new NormalRound(strikeRoundThrows);
-        Round secondRound = new NormalRound(secondRoundThrows, strikeRound);
+        NormalRound strikeRound = new NormalRound(strikeRoundThrows);
+        NormalRound secondRound = new NormalRound(secondRoundThrows, strikeRound);
         strikeRound.prepareBonusCounter();
         secondRound.prepareBonusCounter();
         secondRound.calculateBonusPoints();
@@ -60,8 +60,8 @@ class NormalRoundTest {
     void playSpareRound_get3BonusPoints() {
         List<BowlingThrow> strikeRoundThrows = List.of(new BowlingThrow(4), new BowlingThrow(6));
         List<BowlingThrow> secondRoundThrows = List.of(new BowlingThrow(3), new BowlingThrow(4));
-        Round strikeRound = new NormalRound(strikeRoundThrows);
-        Round secondRound = new NormalRound(secondRoundThrows, strikeRound);
+        NormalRound strikeRound = new NormalRound(strikeRoundThrows);
+        NormalRound secondRound = new NormalRound(secondRoundThrows, strikeRound);
         strikeRound.prepareBonusCounter();
         secondRound.prepareBonusCounter();
         secondRound.calculateBonusPoints();
@@ -120,10 +120,10 @@ class NormalRoundTest {
     @Test
     void setPreviousSpareTest(){
         List<BowlingThrow> firstRoundThrows = List.of(new BowlingThrow(4), new BowlingThrow(6));
-        Round firstRound = new NormalRound(firstRoundThrows);
+        NormalRound firstRound = new NormalRound(firstRoundThrows);
 
         List<BowlingThrow> secondRoundThrows = List.of(new BowlingThrow(4), new BowlingThrow(2));
-        Round secondRound = new NormalRound(secondRoundThrows, firstRound);
+        NormalRound secondRound = new NormalRound(secondRoundThrows, firstRound);
 
         secondRound.setPreviousRound(firstRound);
         secondRound.calculateBonusPoints();
@@ -135,7 +135,7 @@ class NormalRoundTest {
     @Test
     void throw3PinsThrow6Pins_noSpare() {
         List<BowlingThrow> noSpareThrows = List.of(new BowlingThrow(3), new BowlingThrow(6));
-        Round noSpareRound = new NormalRound(noSpareThrows);
+        NormalRound noSpareRound = new NormalRound(noSpareThrows);
         boolean isSpare = noSpareRound.isSpare();
         assertThat(isSpare).isFalse();
     }
@@ -143,7 +143,7 @@ class NormalRoundTest {
     @Test
     void throw10Pins_noSpare() {
         List<BowlingThrow> spareThrow = List.of(new BowlingThrow(10));
-        Round strikeRound = new NormalRound(spareThrow);
+        NormalRound strikeRound = new NormalRound(spareThrow);
         boolean isSpare = strikeRound.isSpare();
         assertThat(isSpare).isFalse();
     }
@@ -151,7 +151,7 @@ class NormalRoundTest {
     @Test
     void throw0PinsThrow10Pins_noStrike() {
         List<BowlingThrow> notStrikeThrows = List.of(new BowlingThrow(0), new BowlingThrow(10));
-        Round notStrikeRound = new NormalRound(notStrikeThrows);
+        NormalRound notStrikeRound = new NormalRound(notStrikeThrows);
         boolean isStrike = notStrikeRound.isStrike();
         assertThat(isStrike).isFalse();
     }
@@ -159,7 +159,7 @@ class NormalRoundTest {
     @Test
     void throw3PinsThrow5Pins_8Points() {
         List<BowlingThrow> eightPointsThrow = List.of(new BowlingThrow(3), new BowlingThrow(5));
-        Round eightPointsRound = new NormalRound(eightPointsThrow);
+        NormalRound eightPointsRound = new NormalRound(eightPointsThrow);
         int points = eightPointsRound.getPoints();
         assertThat(points).isEqualTo(8);
     }
@@ -168,8 +168,8 @@ class NormalRoundTest {
     void throw3and5_throw4and3_noBonusPointsInFirstRound() {
         List<BowlingThrow> firstRoundThrows = List.of(new BowlingThrow(3), new BowlingThrow(5));
         List<BowlingThrow> secondRoundThrows = List.of(new BowlingThrow(3), new BowlingThrow(4));
-        Round firstRound = new NormalRound(firstRoundThrows);
-        Round secondRound = new NormalRound(secondRoundThrows, firstRound);
+        NormalRound firstRound = new NormalRound(firstRoundThrows);
+        NormalRound secondRound = new NormalRound(secondRoundThrows, firstRound);
         int bonusPoints = secondRound.getBonusPoints();
         assertThat(bonusPoints).isZero();
     }
@@ -180,9 +180,9 @@ class NormalRoundTest {
         List<BowlingThrow> secondRoundThrows = List.of(new BowlingThrow(10));
         List<BowlingThrow> thirdRoundThrows = List.of(new BowlingThrow(3), new BowlingThrow(4));
 
-        Round firstRound = new NormalRound(firstRoundThrows);
-        Round secondRound = new NormalRound(secondRoundThrows, firstRound);
-        Round thirdRound = new NormalRound(thirdRoundThrows, secondRound);
+        NormalRound firstRound = new NormalRound(firstRoundThrows);
+        NormalRound secondRound = new NormalRound(secondRoundThrows, firstRound);
+        NormalRound thirdRound = new NormalRound(thirdRoundThrows, secondRound);
         thirdRound.calculateBonusPoints();
         int bonusPointsFirstRound = firstRound.getBonusPoints();
         int bonusPointsSecondRound = secondRound.getBonusPoints();
@@ -193,9 +193,9 @@ class NormalRoundTest {
 
     @Test
     void createThreeRounds_convertToList() {
-        Round firstRound = new NormalRound(List.of(new BowlingThrow(0), new BowlingThrow(1)));
-        Round secondRound = new NormalRound(List.of(new BowlingThrow(0), new BowlingThrow(2)), firstRound);
-        Round thirdRound = new NormalRound(List.of(new BowlingThrow(0), new BowlingThrow(3)), secondRound);
+        NormalRound firstRound = new NormalRound(List.of(new BowlingThrow(0), new BowlingThrow(1)));
+        NormalRound secondRound = new NormalRound(List.of(new BowlingThrow(0), new BowlingThrow(2)), firstRound);
+        NormalRound thirdRound = new NormalRound(List.of(new BowlingThrow(0), new BowlingThrow(3)), secondRound);
 
         ArrayList<Round> roundList = thirdRound.convertToList();
         ArrayList<Round> roundTestList = new ArrayList<>(List.of(firstRound, secondRound, thirdRound));
@@ -205,7 +205,7 @@ class NormalRoundTest {
 
     @Test
     void playStrikeRound_getBonusPointCalculationCounter(){
-        Round firstRound = new NormalRound(List.of(new BowlingThrow(10)));
+        NormalRound firstRound = new NormalRound(List.of(new BowlingThrow(10)));
         assertThat(firstRound.getBonusPointCalculationCounter()).isEqualTo(2);
     }
 }

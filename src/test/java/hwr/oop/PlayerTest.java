@@ -18,7 +18,7 @@ class PlayerTest {
 
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getLastPlayedRound().getPoints()).isEqualTo(10);
-        Round lastPlayedRound = namedPlayer.getLastPlayedRound();
+        NormalRound lastPlayedRound = (NormalRound) namedPlayer.getLastPlayedRound();
         assertThat(lastPlayedRound.getBonusPointCalculationCounter()).isEqualTo(2);
         continueRound = namedPlayer.throwBall(5);
         assertThat(continueRound).isTrue();
@@ -94,6 +94,4 @@ class PlayerTest {
         int playerPoints = namedPlayer.getPlayerPoints();
         assertThat(playerPoints).isEqualTo(24);
     }
-
-    //TODO make everything package private
 }

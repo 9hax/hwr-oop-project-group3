@@ -5,7 +5,7 @@ import java.util.List;
 public class Player {
     private final String name;
     private Round lastFinishedRound;
-    private Round tempRound;
+    private NormalRound tempRound;
 
     Player(String name) {
         this.name = name;
