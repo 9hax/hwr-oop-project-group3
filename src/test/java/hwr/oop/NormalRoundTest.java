@@ -23,6 +23,12 @@ class NormalRoundTest {
         unfinishedRound.addThrow(new BowlingThrow(4));
         int points = unfinishedRound.getPoints();
         assertThat(points).isEqualTo(7);
+
+        List <BowlingThrow> singleThrowListString =
+                List.of(new BowlingThrow("3 4 5 6 7 9"));
+        NormalRound unfinishedRoundString = new NormalRound(singleThrowListString);
+        unfinishedRound.addThrow(new BowlingThrow("8"));
+        assertThat(unfinishedRoundString.getPoints()).isEqualTo(7);
     }
 
     @Test

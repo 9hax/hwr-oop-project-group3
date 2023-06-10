@@ -159,7 +159,6 @@ public class NormalRound implements Round{
             return getPoints();
         }
     }
-
     @Override
     public int getRound() {
         if(previousRound == null) {
@@ -175,9 +174,19 @@ public class NormalRound implements Round{
 
     private static boolean validateThrowList(List<BowlingThrow> throwListValidationTarget) {
         int fallenPinsValidityCounter = 0;
+        String fallenPinsValidityString = "";
+
         for (BowlingThrow singleThrow :
                 throwListValidationTarget) {
-            fallenPinsValidityCounter += singleThrow.getFallenPins();
+            if(singleThrow.getFallenPinsString() == null){
+                fallenPinsValidityCounter += singleThrow.getFallenPins();
+            }
+            else{
+                if(fallenPinsValidityString.contains(singleThrow.getFallenPinsString())){
+                    return false;
+                }
+                fallenPinsValidityString=fallenPinsValidityString.concat(singleThrow.getFallenPinsString());
+            }
         }
         return fallenPinsValidityCounter <= 10;
     }
