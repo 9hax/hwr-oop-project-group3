@@ -55,16 +55,13 @@ public class ConsoleTextUI implements TextUI {
                 " with "+ game.determineWinner().getPlayerPoints()+ " points. CongratulaZZ1ONES!");
         
         ioAdapter.putString("The Scores are the following:");
-        for (Player player :
-                game.getPlayers()) {
-            ioAdapter.putString(player.getName() + " scored " + player.getPlayerPoints() + " points.");
-        }
-        if (askSave()) {
-            saveGame(game);
-        } else {
-            ioAdapter.putString("Game won't be saved.");
-        }
+        printScores();
 
+        askSave();
+        handleHighScores();
+    }
+
+    private void handleHighScores() {
         HighscoreHandler hs = new HighscoreHandler (ioAdapter, "highscores");
         for(Player player: game.getPlayers()){
             hs.saveScore(new ScorePrimitive(player.getName(), player.getPlayerPoints()));
@@ -77,9 +74,14 @@ public class ConsoleTextUI implements TextUI {
         return ioAdapter.getString().equals("Y");
     }
 
-    boolean askSave() {
+    void askSave() {
         ioAdapter.putString("Input S to save the current scores. >");
-        return ioAdapter.getString().equals("S");
+        boolean result = ioAdapter.getString().equals("S");
+        if (result) {
+            saveGame(game);
+        } else {
+            ioAdapter.putString("Game won't be saved.");
+        }
     }
 
     void saveGame(Game game) {
