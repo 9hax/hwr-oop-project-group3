@@ -1,6 +1,10 @@
 package hwr.oop;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class LifecycleTest {
@@ -34,10 +38,24 @@ class LifecycleTest {
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("======== HIGHSCORES ========");
         assertThat(ioAdapter.pollOutput()).isEqualTo("1. Place: Konrad - 01.01.1001, 01:01 UTC with 7 points");
-        ioAdapter.trimOutputQueue(4);
+        ioAdapter.trimOutputQueue(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Sbeve scored 40 points.");
-        ioAdapter.ignoreOutputs(1);
+        ioAdapter.ignoreOutputs(2);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Input Y to play another game. \n>");
         assertThat(ioAdapter.pollOutput()).isEqualTo("Goodbye!");
+    }
+
+    @Disabled("This will not work since the application expects input and therefore the test will run indefinetely.")
+    @Test
+    void testMain() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream stream = new PrintStream(outputStream);
+        System.setOut(stream);
+
+        BowlingApplication.main(null);
+
+        String[] outputLines = outputStream.toString().split(System.lineSeparator());
+        String firstOutput = outputLines[0];
+        assertThat(firstOutput).isEqualTo("======== HIGHSCORES ========");
     }
 }

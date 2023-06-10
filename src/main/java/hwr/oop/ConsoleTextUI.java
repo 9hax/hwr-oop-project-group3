@@ -59,7 +59,11 @@ public class ConsoleTextUI implements TextUI {
                 game.getPlayers()) {
             ioAdapter.putString(player.getName() + " scored " + player.getPlayerPoints() + " points.");
         }
-        if (askSave()) saveGame(game);
+        if (askSave()) {
+            saveGame(game);
+        } else {
+            ioAdapter.putString("Game won't be saved.");
+        }
 
         HighscoreHandler hs = new HighscoreHandler (ioAdapter, "highscores");
         for(Player player: game.getPlayers()){

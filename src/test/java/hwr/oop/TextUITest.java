@@ -3,6 +3,7 @@ package hwr.oop;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,14 +14,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class TextUITest {
     @AfterEach
-    void deleteJsonFile(){
-        Path fileToDeletePath = Paths.get("defaultPersistence.json");
+    void deleteJsonFile() {
+        deleteJsonFile("defaultPersistence.json");
+    }
+
+    void deleteJsonFile(String path){
+        Path fileToDeletePath = Paths.get(path);
         try {
             Files.delete(fileToDeletePath);
         } catch (IOException e) {
-            System.out.println("Tried to delete test file, but test file was nonexistent");
+            System.out.println("Tried to delete test file at "+path+", but test file was nonexistent");
         }
     }
+
 
     @Test
     void startUIPutPlayerName_getGame() {
@@ -133,7 +139,7 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("This is the second throw this round.");
 
 
-        ioAdapter.trimOutputQueue(6);
+        ioAdapter.trimOutputQueue(7);
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("Game is finished!");
         assertThat(ioAdapter.pollOutput()).isEqualTo("The winner is Steve von der Steve with 50 points. CongratulaZZ1ONES!");
@@ -157,18 +163,29 @@ class TextUITest {
     @Test
     void saveGameData_Test() {
         IOAdapter ioAdapter = new MockIOAdapter();
-        TextUI ui = new ConsoleTextUI(ioAdapter);
-        ioAdapter.queueInput("BingoCat");
+        ConsoleTextUI ui = new ConsoleTextUI(ioAdapter);
+
+        ioAdapter.queueInput("Alex");
+        ioAdapter.queueInput("Steve von der Steve");
         ioAdapter.queueInput("");
 
-        for(int ballThrows = 0; ballThrows< 20; ballThrows++){
+        for(int round = 0; round< 40; round++){
             ioAdapter.queueInput("2");
         }
-        ioAdapter.queueInput("S");
-        ioAdapter.queueInput("YoMum");
-        Game game = ui.createGame();
+
+        ioAdapter.queueInput("S"); //Save the game
+        ioAdapter.queueInput("YoMum"); //Name the saved file
+
+        ui.createGame();
         ui.playGame();
-        assertThat(new JSONPersistence(ioAdapter).load("YoMum").getScorePrimitiveList().get(0).getName()).isEqualTo("BingoCat");
+
+        ioAdapter.trimOutputQueue(2);
+        assertThat(ioAdapter.pollOutput()).isEqualTo("Input S to save the current scores. >");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("What should the game be saved as? >");
+
+        File f = new File("YoMum.json");
+        assertThat(f.exists()).isTrue();
+        deleteJsonFile("YoMum.json");
     }
 }
 
