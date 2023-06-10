@@ -30,9 +30,9 @@ class GameTest {
         assertThat(currentPlayer.getName()).isEqualTo("Bruh");
 
         assertThat(currentPlayer.getRound()).isEqualTo(-1);
-        currentPlayer.throwBall(4);
+        currentPlayer.throwBallNormal(4);
         assertThat(currentPlayer.getPlayerPoints()).isZero();
-        currentPlayer.throwBall(2);
+        currentPlayer.throwBallNormal(2);
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(6);
 
         // Bruh has six points after the round, but is not the game.CurrentPlayer anymore.
@@ -42,9 +42,9 @@ class GameTest {
         assertThat(currentPlayer.getName()).isEqualTo("Bro");
 
         assertThat(currentPlayer.getPlayerPoints()).isZero();
-        currentPlayer.throwBall(3);
+        currentPlayer.throwBallNormal(3);
         assertThat(currentPlayer.getPlayerPoints()).isZero();
-        currentPlayer.throwBall(5);
+        currentPlayer.throwBallNormal(5);
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(8);
 
         // Bro has 8 points after the round, but is not the game.CurrentPlayer anymore.
@@ -54,9 +54,9 @@ class GameTest {
         assertThat(currentPlayer.getName()).isEqualTo("Bre");
 
         assertThat(currentPlayer.getPlayerPoints()).isZero();
-        currentPlayer.throwBall(1);
+        currentPlayer.throwBallNormal(1);
         assertThat(currentPlayer.getPlayerPoints()).isZero();
-        currentPlayer.throwBall(8);
+        currentPlayer.throwBallNormal(8);
         assertThat(currentPlayer.getPlayerPoints()).isEqualTo(9);
 
         // Bro has 8 points after the round, but is not the game.CurrentPlayer anymore.
@@ -70,7 +70,7 @@ class GameTest {
         assertThat(game.getCurrentPlayer().getName()).isEqualTo("Hänsel");
         assertThat(game.getRound()).isEqualTo(-1);
         for(int i = 0; i < 40; i++) {
-            game.getCurrentPlayer().throwBall(1);
+            game.getCurrentPlayer().throwBallNormal(1);
         }
         assertThat(game.getRound()).isEqualTo(9);
     }

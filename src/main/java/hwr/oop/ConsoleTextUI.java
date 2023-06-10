@@ -121,7 +121,7 @@ public class ConsoleTextUI implements TextUI {
         } catch (NumberFormatException e) {
             tempHitPins = 0;
         }
-        return player.throwBall(tempHitPins);
+        return player.throwBallNormal(tempHitPins);
     }
 
     private void announceScoring(boolean continuePlay, Player player) {

@@ -51,7 +51,7 @@ class PersistenceTest {
     void convertGameToScorePrimitiveList(){
         Game game = new Game(List.of("Bibi", "Tina"));
         for(int i = 0; i < 40; i++) {
-            game.getCurrentPlayer().throwBall(1);
+            game.getCurrentPlayer().throwBallNormal(1);
         }
         ScorePrimitiveList spl = new ScorePrimitiveList(game);
         assertThat(spl.getScorePrimitiveList().get(0).getName()).isEqualTo("Bibi");
