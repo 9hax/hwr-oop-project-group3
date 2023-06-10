@@ -33,7 +33,7 @@ public class HighscoreHandler {
         return new ScorePrimitiveList(highScores);
     }
 
-    private void loadHighScores() {
+    public void loadHighScores() {
         highScores = new JSONPersistence(ioAdapter).loadUnsafe(persistenceKey).getScorePrimitiveList();
     }
 

@@ -103,6 +103,8 @@ class TextUITest {
     @Test
     void playGameTest() {
         IOAdapter ioAdapter = new MockIOAdapter();
+        HighscoreHandler hsh = new HighscoreHandler(ioAdapter, "highscores");
+        hsh.clearHighscores();
         TextUI ui = new ConsoleTextUI(ioAdapter);
         ioAdapter.queueInput("Alex");
         ioAdapter.queueInput("Steve von der Steve");
@@ -146,6 +148,10 @@ class TextUITest {
         assertThat(ioAdapter.pollOutput()).isEqualTo("The Scores are the following:");
         assertThat(ioAdapter.pollOutput()).isEqualTo("Alex has scored 48 points.");
         assertThat(ioAdapter.pollOutput()).isEqualTo("Steve von der Steve has scored 50 points.");
+
+        hsh.loadHighScores();
+        assertThat(hsh.getHighScores().getScorePrimitiveList().get(0).getName()).isEqualTo("Steve von der Steve");
+        assertThat(hsh.getHighScores().getScorePrimitiveList().get(0).getScore()).isEqualTo(50);
     }
 
     @Test

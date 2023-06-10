@@ -15,6 +15,7 @@ class LifecycleTest {
         HighscoreHandler hsh = new HighscoreHandler(ioAdapter, "highscores");
         hsh.clearHighscores();
         hsh.saveScore(new ScorePrimitive("Konrad - 01.01.1001, 01:01 UTC", 7));
+        hsh.saveScore(new ScorePrimitive("Kupido - 01.01.1001, 01:01 UTC", 6));
 
         ioAdapter.queueInput("Alex");
         ioAdapter.queueInput("");
@@ -38,6 +39,8 @@ class LifecycleTest {
 
         assertThat(ioAdapter.pollOutput()).isEqualTo("======== HIGHSCORES ========");
         assertThat(ioAdapter.pollOutput()).isEqualTo("1. Place: Konrad - 01.01.1001, 01:01 UTC with 7 points");
+        assertThat(ioAdapter.pollOutput()).isEqualTo("2. Place: Kupido - 01.01.1001, 01:01 UTC with 6 points");
+
         ioAdapter.trimOutputQueue(5);
         assertThat(ioAdapter.pollOutput()).isEqualTo("Sbeve has scored 40 points.");
         ioAdapter.ignoreOutputs(2);
