@@ -16,11 +16,18 @@ class HighScoreTest {
 
     @AfterEach
     void deleteJsonFile(){
-        Path fileToDeletePath = Paths.get("testHighscores.json");
+        deleteFile("defaultPersistence.json");
+        deleteFile("emptyHighScoreFile.json");
+        deleteFile("highscores.json");
+        deleteFile("testHighscores.json");
+    }
+
+    void deleteFile(String path){
+        Path fileToDeletePath = Paths.get(path);
         try {
             Files.delete(fileToDeletePath);
         } catch (IOException e) {
-            System.out.println("Tried to delete test file, but test file was nonexistent");
+            System.out.println("Tried to delete test file at "+path+", but test file was nonexistent");
         }
     }
 
