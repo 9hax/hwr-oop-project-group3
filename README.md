@@ -7,25 +7,20 @@ HWR Berlin (summer term 2023).
 
 ## Abstract
 
-[TODO]: <> (Write a short description of your project.)
 This application provides the logic of a bowling game. 
 The player has to give the number of fallen pins to the program. 
 The program then calculates the points and the bonus points for every round.
 Multiple Players are supported.
 
-[TODO]: <> (State most important features.)
-[not implemented]: <> (Score Table Calculation)
-[not implemented]: <> (User Management)
-
 ### Problems
-[TODO]: <> (State the most interesting problems you encountered during the project.)
 Test driven development is hard to grasp at first, but easier the more time you spend on it.
+PITest doesn't always work on java20 yet.
 
 ## Feature List
 - play a bowling game
-- multiplayer and singleplayer are supported
-- robust error handling and input sanitisation
-- text-mode output
+- multiplayer and single player are supported
+- robust error handling and input sanitization
+- text-mode in- and output
 
 [TODO]: <> (Add a new row to the table for every completed feature.)
 
