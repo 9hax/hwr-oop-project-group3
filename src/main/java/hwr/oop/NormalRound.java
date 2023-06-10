@@ -7,7 +7,7 @@ import java.util.List;
 public class NormalRound implements Round{
 
     private List<BowlingThrow> throwList;
-    private Round previousRound;
+    private NormalRound previousRound;
 
     int bonusPoints;
 
@@ -35,7 +35,7 @@ public class NormalRound implements Round{
         }
     }
 
-    public NormalRound(List<BowlingThrow> throwList, Round previousRound) {
+    public NormalRound(List<BowlingThrow> throwList, NormalRound previousRound) {
         this.previousRound = null;
         this.bonusPointCalculationCounterIsValid = false;
 
@@ -77,17 +77,17 @@ public class NormalRound implements Round{
         return sum == 10;
     }
 
-    @Override
+
+
+
     public int getBonusPoints() {
         return bonusPoints;
     }
 
-    @Override
     public void setPreviousRound(Round round) {
-        this.previousRound = round;
+        this.previousRound = (NormalRound) round;
     }
 
-    @Override
     public void calculateBonusPoints() {
         if (previousRound == null){
             return;
@@ -95,7 +95,6 @@ public class NormalRound implements Round{
         previousRound.calculateBonusPoints(throwList);
     }
 
-    @Override
     public void calculateBonusPoints(List<BowlingThrow> throwList){
         List<BowlingThrow> tempThrowList = new ArrayList<>(throwList);
         for (; bonusPointCalculationCounter > 0; bonusPointCalculationCounter--){
@@ -111,7 +110,6 @@ public class NormalRound implements Round{
         previousRound.calculateBonusPoints(fullThrowList);
     }
 
-    @Override
     public void prepareBonusCounter(){
         if (bonusPointCalculationCounterIsValid) return;
         if (isStrike()){
@@ -122,15 +120,6 @@ public class NormalRound implements Round{
             bonusPointCalculationCounter = 1;
             bonusPointCalculationCounterIsValid = true;
         }
-    }
-
-    private static boolean validateThrowList(List<BowlingThrow> throwListValidationTarget) {
-        int fallenPinsValidityCounter = 0;
-        for (BowlingThrow singleThrow :
-                throwListValidationTarget) {
-            fallenPinsValidityCounter += singleThrow.getFallenPins();
-        }
-        return fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 10;
     }
 
     public ArrayList<Round> convertToList(){
@@ -180,10 +169,16 @@ public class NormalRound implements Round{
         }
     }
 
-    @Override
     public int getBonusPointCalculationCounter() {
         return bonusPointCalculationCounter;
     }
 
-
+    private static boolean validateThrowList(List<BowlingThrow> throwListValidationTarget) {
+        int fallenPinsValidityCounter = 0;
+        for (BowlingThrow singleThrow :
+                throwListValidationTarget) {
+            fallenPinsValidityCounter += singleThrow.getFallenPins();
+        }
+        return fallenPinsValidityCounter >= 0 && fallenPinsValidityCounter <= 10;
+    }
 }
