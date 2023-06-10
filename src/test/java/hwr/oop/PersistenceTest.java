@@ -54,6 +54,6 @@ class PersistenceTest {
             game.getCurrentPlayer().throwBall(1);
         }
         ScorePrimitiveList spl = new ScorePrimitiveList(game);
-
+        assertThat(spl.getScorePrimitiveList().get(0).getName()).isEqualTo("Bibi");
     }
 }
