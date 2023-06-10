@@ -14,15 +14,15 @@ class PlayerTest {
     @Test
     void playerPlaysStrikeThenNormalRound_getGameStatus() {
         Player namedPlayer = new Player("Steve");
-        boolean continueRound = namedPlayer.throwBall(10);
+        boolean continueRound = namedPlayer.throwBallNormal(10);
 
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getLastPlayedRound().getPoints()).isEqualTo(10);
-        Round lastPlayedRound = namedPlayer.getLastPlayedRound();
+        NormalRound lastPlayedRound = (NormalRound) namedPlayer.getLastPlayedRound();
         assertThat(lastPlayedRound.getBonusPointCalculationCounter()).isEqualTo(2);
-        continueRound = namedPlayer.throwBall(5);
+        continueRound = namedPlayer.throwBallNormal(5);
         assertThat(continueRound).isTrue();
-        continueRound = namedPlayer.throwBall(3);
+        continueRound = namedPlayer.throwBallNormal(3);
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getLastPlayedRound().getPreviousRound()).isEqualTo(lastPlayedRound);
     }
@@ -30,11 +30,11 @@ class PlayerTest {
     @Test
     void playUnfinishedRound_getTempRound(){
         Player namedPlayer = new Player("Steve");
-        boolean continueRound = namedPlayer.throwBall(5);
+        boolean continueRound = namedPlayer.throwBallNormal(5);
 
         assertThat(continueRound).isTrue();
         assertThat(namedPlayer.getTempRound().getPoints()).isEqualTo(5);
-        continueRound = namedPlayer.throwBall(3);
+        continueRound = namedPlayer.throwBallNormal(3);
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getLastPlayedRound().getPoints()).isEqualTo(8);
     }
@@ -47,15 +47,15 @@ class PlayerTest {
     @Test
     void calculatePlayerPoints() {
         Player namedPlayer = new Player("Steve");
-        boolean continueRound = namedPlayer.throwBall(5);
+        boolean continueRound = namedPlayer.throwBallNormal(5);
         assertThat(continueRound).isTrue();
-        continueRound = namedPlayer.throwBall(3);
+        continueRound = namedPlayer.throwBallNormal(3);
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(8);
 
-        continueRound = namedPlayer.throwBall(2);
+        continueRound = namedPlayer.throwBallNormal(2);
         assertThat(continueRound).isTrue();
-        continueRound = namedPlayer.throwBall(7);
+        continueRound = namedPlayer.throwBallNormal(7);
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(17);
     }
@@ -63,13 +63,13 @@ class PlayerTest {
     @Test
     void playStrike_getPlayerPoints() {
         Player namedPlayer = new Player("Dudududedudude-du Steve");
-        boolean continueRound = namedPlayer.throwBall(10);
+        boolean continueRound = namedPlayer.throwBallNormal(10);
         assertThat(continueRound).isFalse();
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(10);
 
-        continueRound = namedPlayer.throwBall(5);
+        continueRound = namedPlayer.throwBallNormal(5);
         assertThat(continueRound).isTrue();
-        continueRound = namedPlayer.throwBall(4);
+        continueRound = namedPlayer.throwBallNormal(4);
         assertThat(continueRound).isFalse();
 
         int playerPoints = namedPlayer.getPlayerPoints();
@@ -79,16 +79,16 @@ class PlayerTest {
     @Test
     void playSpare_getPlayerPoints() {
         Player namedPlayer = new Player("Dudududedudude-du Steve");
-        boolean continueRound = namedPlayer.throwBall(9);
+        boolean continueRound = namedPlayer.throwBallNormal(9);
         assertThat(continueRound).isTrue();
-        continueRound = namedPlayer.throwBall(1);
+        continueRound = namedPlayer.throwBallNormal(1);
         assertThat(continueRound).isFalse();
 
         assertThat(namedPlayer.getPlayerPoints()).isEqualTo(10);
 
-        continueRound = namedPlayer.throwBall(5);
+        continueRound = namedPlayer.throwBallNormal(5);
         assertThat(continueRound).isTrue();
-        continueRound = namedPlayer.throwBall(4);
+        continueRound = namedPlayer.throwBallNormal(4);
         assertThat(continueRound).isFalse();
 
         int playerPoints = namedPlayer.getPlayerPoints();
