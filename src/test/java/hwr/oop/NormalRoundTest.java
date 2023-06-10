@@ -58,9 +58,9 @@ class NormalRoundTest {
 
     @Test
     void playSpareRound_get3BonusPoints() {
-        List<BowlingThrow> strikeRoundThrows = List.of(new BowlingThrow(4), new BowlingThrow(6));
+        List<BowlingThrow> spareRoundThrows = List.of(new BowlingThrow(4), new BowlingThrow(6));
         List<BowlingThrow> secondRoundThrows = List.of(new BowlingThrow(3), new BowlingThrow(4));
-        NormalRound strikeRound = new NormalRound(strikeRoundThrows);
+        NormalRound strikeRound = new NormalRound(spareRoundThrows);
         NormalRound secondRound = new NormalRound(secondRoundThrows, strikeRound);
         strikeRound.prepareBonusCounter();
         secondRound.prepareBonusCounter();
