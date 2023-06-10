@@ -15,14 +15,29 @@ public class Player {
         return name;
     }
 
-    boolean throwBall(int fallenPins) {
+    boolean throwBallNormal(int fallenPins) {
         if (tempRound != null) {
             tempRound.addThrow(new BowlingThrow(fallenPins));
-            tempRound.prepareBonusCounter();
+            ((NormalRound) tempRound).prepareBonusCounter();
             updateLastPlayedRound();
             return false;
         } else {
             tempRound = new NormalRound(List.of(new BowlingThrow(fallenPins)));
+            if (tempRound.isStrike()) {
+                updateLastPlayedRound();
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+    boolean throwBallTen(int fallenPins) {
+        if (tempRound != null) {
+            tempRound.addThrow(new BowlingThrow(fallenPins));
+            updateLastPlayedRound();
+            return false;
+        } else {
+            tempRound = new TenthRound(List.of(new BowlingThrow(fallenPins)));
             if (tempRound.isStrike()) {
                 updateLastPlayedRound();
                 return false;
