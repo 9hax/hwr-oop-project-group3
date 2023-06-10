@@ -7,19 +7,12 @@ interface Round {
 
     int getPoints();
 
-
     boolean isStrike();
 
     boolean isSpare();
 
-    int getBonusPoints();
 
     void setPreviousRound(Round round);
-
-    void calculateBonusPoints();
-    void calculateBonusPoints(List<BowlingThrow> throwList);
-
-    void prepareBonusCounter();
 
     ArrayList<Round> convertToList();
 
@@ -30,6 +23,4 @@ interface Round {
     int getTotalPoints();
 
     int getRound();
-
-    int getBonusPointCalculationCounter();
 }
