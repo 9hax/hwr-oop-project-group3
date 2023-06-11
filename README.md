@@ -35,7 +35,7 @@ PITest doesn't always work on java20 yet.
 | 6      | TextUI     | 7     |
 | 7      | Lifecycle  | 1     |
 | 8      | TenthRound | 15    |
-
+|--------|------------|-------|
 
 
 
