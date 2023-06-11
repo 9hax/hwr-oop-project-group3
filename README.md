@@ -15,6 +15,7 @@ Multiple Players are supported.
 ### Problems
 Test driven development is hard to grasp at first, but easier the more time you spend on it.
 PITest doesn't always work on java20 yet.
+10th round not implemented.
 
 ## Feature List
 - play a bowling game
@@ -24,15 +25,17 @@ PITest doesn't always work on java20 yet.
 
 [TODO]: <> (Add a new row to the table for every completed feature.)
 
-| Number | Feature   | Tests |
-|--------|-----------|-------|
-| 1      | Throws    | 4     |
-| 2      | Rounds    | 20    |
-| 3      | Player    | 7     |
-| 4      | Game      | 4     |
-| 5      | IOAdapter | 10    |
-| 6      | TextUI    | 7     |
-| 7      | Lifecycle | 1     |
+| Number | Feature    | Tests |
+|--------|------------|-------|
+| 1      | Throws     | 4     |
+| 2      | Rounds     | 20    |
+| 3      | Player     | 7     |
+| 4      | Game       | 4     |
+| 5      | IOAdapter  | 10    |
+| 6      | TextUI     | 7     |
+| 7      | Lifecycle  | 1     |
+| 8      | TenthRound | 15    |
+
 
 
 
