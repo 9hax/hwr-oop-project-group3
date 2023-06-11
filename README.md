@@ -15,6 +15,7 @@ Multiple Players are supported.
 ### Problems
 Test driven development is hard to grasp at first, but easier the more time you spend on it.
 PITest doesn't always work on java20 yet.
+Splits not fully implemented.
 
 ## Feature List
 - play a bowling game
@@ -33,6 +34,7 @@ PITest doesn't always work on java20 yet.
 | 5      | IOAdapter | 10    |
 | 6      | TextUI    | 7     |
 | 7      | Lifecycle | 1     |
+|--------|-----------|-------|
 
 
 
