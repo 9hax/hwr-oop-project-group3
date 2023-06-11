@@ -188,6 +188,6 @@ public class NormalRound implements Round{
                 fallenPinsValidityString=fallenPinsValidityString.concat(singleThrow.getFallenPinsString());
             }
         }
-        return fallenPinsValidityCounter <= 10;
+        return fallenPinsValidityCounter <= 10 || fallenPinsValidityString.split(" ").length <= 10;
     }
 }
