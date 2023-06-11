@@ -24,15 +24,17 @@ PITest doesn't always work on java20 yet.
 
 [TODO]: <> (Add a new row to the table for every completed feature.)
 
-| Number | Feature   | Tests |
-|--------|-----------|-------|
-| 1      | Throws    | 4     |
-| 2      | Rounds    | 20    |
-| 3      | Player    | 7     |
-| 4      | Game      | 4     |
-| 5      | IOAdapter | 10    |
-| 6      | TextUI    | 7     |
-| 7      | Lifecycle | 1     |
+| Number | Feature       | Tests       |
+|--------|---------------|-------------|
+| 1      | Throws        | 4           |
+| 2      | Rounds        | 20          |
+| 3      | Player        | 7           |
+| 4      | Game          | 4           |
+| 5      | IOAdapter     | 10          |
+| 6      | TextUI        | 8           |
+| 7      | Lifecycle     | 1/1 ignored |
+| 8      | Persistence   | 3           |
+| 9      | HighScores    | 4           |
 
 
 
